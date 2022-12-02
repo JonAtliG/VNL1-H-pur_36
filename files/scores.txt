@@ -1,0 +1,153 @@
+
+
+#### Date: 2022-11-16T20:00:00
+
+
+Game:   The Rings - The Oligarcs
+
+Grayson Ewing        1 0 501 1 1      Gilberto Pollard
+Eliezer Atkinson     0 0 501 1 1      Maggie Lynch
+Matteo Roberts       1 1 501 0 0      Cassie Obrien
+Payten Tucker        0 0 501 1 1      Devin Villarreal
+Payten Tucker        1 0 301 1 1      Gilberto Pollard
+Grayson Ewing        0 0 301 0 0      Devin Villarreal
+Matteo Roberts       0 0  C  1 1      Maggie Lynch
+Eliezer Atkinson     0 0  C  0 0      Cassie Obrien
+Payten Tucker        1 1 501 0 1      Devin Villarreal
+Matteo Roberts       0 0 501 0 0      Gilberto Pollard
+Grayson Ewing        0 0 501 0 0      Cassie Obrien
+Eliezer Atkinson     0 0 501 0 0      Maggie Lynch
+
+
+Game:   The ligthings - The Rings
+
+Elaina Singleton     0 0 501 1 1      Matteo Roberts
+Jacqueline Payne     1 1 501 0 1      Eliezer Atkinson
+Marcel Arias         0 0 501 1 1      Payten Tucker
+Kallie Hansen        1 1 501 0 0      Grayson Ewing
+Marcel Arias         1 0 301 1 1      Grayson Ewing
+Kallie Hansen        0 0 301 0 0      Eliezer Atkinson
+Elaina Singleton     1 1  C  0 1      Matteo Roberts
+Jacqueline Payne     0 0  C  0 0      Payten Tucker
+Kallie Hansen        1 1 501 0 0      Payten Tucker
+Elaina Singleton     0 0 501 0 0      Matteo Roberts
+Marcel Arias         0 0 501 0 0      Eliezer Atkinson
+Jacqueline Payne     0 0 501 0 0      Grayson Ewing
+
+
+Game:   The Brahms - The ligthings
+
+Gwendoline Lucider   1 1 501 0 1      Elaina Singleton
+Sporgonizza Fabio    1 0 501 1 1      Kallie Hansen
+Zarathustra Ford     1 1 501 0 0      Jacqueline Payne
+Winston Birdshill    1 0 501 1 1      Marcel Arias
+Sporgonizza Fabio    1 0 301 1 1      Elaina Singleton
+Gwendoline Lucider   0 0 301 0 0      Marcel Arias
+Zarathustra Ford     1 0  C  1 1      Kallie Hansen
+Winston Birdshill    0 0  C  0 0      Jacqueline Payne
+Sporgonizza Fabio    1 0 501 1 1      Elaina Singleton
+Zarathustra Ford     0 0 501 0 0      Jacqueline Payne
+Winston Birdshill    0 0 501 0 0      Marcel Arias
+Gwendoline Lucider   0 0 501 0 0      Kallie Hansen
+
+
+#### Date: 2022-11-23T20:00:00
+
+
+Game:   The ligthings - The Cesars
+
+Marcel Arias         1 0 501 1 1      Kailey Green
+Elaina Singleton     1 1 501 0 0      Erik Bradshaw
+Kallie Hansen        1 0 501 1 1      Dayanara Mckinney
+Jacqueline Payne     0 0 501 1 1      Marianna Bush
+Jacqueline Payne     1 1 301 0 0      Marianna Bush
+Marcel Arias         0 0 301 0 0      Dayanara Mckinney
+Elaina Singleton     1 1  C  0 0      Erik Bradshaw
+Kallie Hansen        0 0  C  0 0      Kailey Green
+Marcel Arias         1 0 501 1 1      Dayanara Mckinney
+Kallie Hansen        0 0 501 0 0      Kailey Green
+Elaina Singleton     0 0 501 0 0      Marianna Bush
+Jacqueline Payne     0 0 501 0 0      Erik Bradshaw
+
+
+Game:   The ligthings - The Oligarcs
+
+Jacqueline Payne     1 1 501 0 0      Devin Villarreal
+Marcel Arias         1 1 501 0 0      Maggie Lynch
+Elaina Singleton     1 0 501 1 1      Gilberto Pollard
+Kallie Hansen        1 0 501 1 1      Cassie Obrien
+Jacqueline Payne     1 0 301 1 1      Gilberto Pollard
+Kallie Hansen        0 0 301 0 0      Devin Villarreal
+Marcel Arias         0 0  C  1 1      Cassie Obrien
+Elaina Singleton     0 0  C  0 0      Maggie Lynch
+Elaina Singleton     1 1 501 0 0      Gilberto Pollard
+Jacqueline Payne     0 0 501 0 0      Maggie Lynch
+Kallie Hansen        0 0 501 0 0      Cassie Obrien
+Marcel Arias         0 0 501 0 0      Devin Villarreal
+
+
+Game:   The Oligarcs - The Rings
+
+Cassie Obrien        1 1 501 0 0      Eliezer Atkinson
+Maggie Lynch         1 1 501 0 0      Matteo Roberts
+Devin Villarreal     0 0 501 1 1      Payten Tucker
+Gilberto Pollard     1 1 501 0 1      Grayson Ewing
+Maggie Lynch         0 1 301 0 1      Payten Tucker
+Gilberto Pollard     0 0 301 0 0      Matteo Roberts
+Cassie Obrien        1 1  C  0 0      Grayson Ewing
+Devin Villarreal     0 0  C  0 0      Eliezer Atkinson
+Gilberto Pollard     1 0 501 1 1      Payten Tucker
+Devin Villarreal     0 0 501 0 0      Eliezer Atkinson
+Maggie Lynch         0 0 501 0 0      Grayson Ewing
+Cassie Obrien        0 0 501 0 0      Matteo Roberts
+
+
+#### Date: 2022-11-30T20:00:00
+
+
+Game:   The Oligarcs - The ligthings
+
+Gilberto Pollard     1 1 501 0 0      Marcel Arias
+Devin Villarreal     0 0 501 1 1      Jacqueline Payne
+Maggie Lynch         1 1 501 0 0      Elaina Singleton
+Cassie Obrien        1 0 501 1 1      Kallie Hansen
+Devin Villarreal     1 0 301 1 1      Elaina Singleton
+Maggie Lynch         0 0 301 0 0      Kallie Hansen
+Gilberto Pollard     1 0  C  1 1      Jacqueline Payne
+Cassie Obrien        0 0  C  0 0      Marcel Arias
+Maggie Lynch         0 0 501 1 1      Kallie Hansen
+Devin Villarreal     0 0 501 0 0      Elaina Singleton
+Gilberto Pollard     0 0 501 0 0      Jacqueline Payne
+Cassie Obrien        0 0 501 0 0      Marcel Arias
+
+
+Game:   The Brahms - The Oligarcs
+
+Winston Birdshill    1 1 501 0 0      Devin Villarreal
+Sporgonizza Fabio    1 1 501 0 1      Cassie Obrien
+Zarathustra Ford     1 0 501 1 1      Maggie Lynch
+Gwendoline Lucider   1 1 501 0 0      Gilberto Pollard
+Zarathustra Ford     1 0 301 1 1      Maggie Lynch
+Sporgonizza Fabio    0 0 301 0 0      Devin Villarreal
+Winston Birdshill    0 0  C  1 1      Gilberto Pollard
+Gwendoline Lucider   0 0  C  0 0      Cassie Obrien
+Winston Birdshill    1 1 501 0 1      Maggie Lynch
+Zarathustra Ford     0 0 501 0 0      Gilberto Pollard
+Sporgonizza Fabio    0 0 501 0 0      Devin Villarreal
+Gwendoline Lucider   0 0 501 0 0      Cassie Obrien
+
+
+Game:   The Oligarcs - The Brahms
+
+Maggie Lynch         1 1 501 0 1      Winston Birdshill
+Cassie Obrien        1 1 501 0 1      Gwendoline Lucider
+Gilberto Pollard     1 1 501 0 0      Zarathustra Ford
+Devin Villarreal     1 0 501 1 1      Sporgonizza Fabio
+Cassie Obrien        1 0 301 1 1      Winston Birdshill
+Gilberto Pollard     0 0 301 0 0      Sporgonizza Fabio
+Maggie Lynch         1 1  C  0 0      Zarathustra Ford
+Devin Villarreal     0 0  C  0 0      Gwendoline Lucider
+Cassie Obrien        1 1 501 0 0      Zarathustra Ford
+Devin Villarreal     0 0 501 0 0      Winston Birdshill
+Gilberto Pollard     0 0 501 0 0      Gwendoline Lucider
+Maggie Lynch         0 0 501 0 0      Sporgonizza Fabio
