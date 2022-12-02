@@ -7,6 +7,10 @@ class LogicWrapper():
     def __init__(self):
         self.data = "data object idk"
         
+    def get_all_players(self):
+        '''Returns dictonary of all players'''
+        pass
+        
     def create_leage(self):
         pass
         
