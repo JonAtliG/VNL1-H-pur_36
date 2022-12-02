@@ -19,3 +19,7 @@ class CreateTeam():
         list.append(ID)
 
         return list
+    
+    def addteamcaptain(self, teamcaptain):
+        self.teamcaptain = teamcaptain
+        teamcaptain= input("Select Team Captain ( ID ): ")
