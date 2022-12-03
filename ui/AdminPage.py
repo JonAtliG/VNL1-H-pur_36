@@ -1,5 +1,8 @@
 #from MainMenu import MainMenu?
 from DisplayCTP import DisplayCTP
+from logic.logic_wrapper import Logic_Wrapper
+from model.player import Player
+from model.club import Club
 #from that other thing import another thing
 #etc
 
@@ -37,13 +40,13 @@ class AdminPage():
                 #host = create_host()
 
             elif choice == '2':
-                pass
-                #player = Player()
-                #player.name =
-                #player.address = 
-                #player.email = 
-                #player.telephone = 
-                #player.mobile = 
+                player = Player()
+                player.name = input()
+                player.address = input()
+                player.email = input()
+                player.telephone = input()
+                player.mobile = input()
+                Logic_Wrapper.create_player(player)
                 #player = create_player()
                 #player_list.append(player)
                 #return player
@@ -55,8 +58,9 @@ class AdminPage():
 
             elif choice == '4':
                 pass
-                #club = Club()
-                #club_name = input("Enter club name: ")
+                club = Club()
+                club.name = input("Enter club name: ")
+                Logic_Wrapper.create_club(club)
                 #create_club = create_club()
                 #club_list.append(club)
                 #return club?? or create_club

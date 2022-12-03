@@ -9,7 +9,7 @@ class Player_Logic():
         
         pass
     
-    def create_player(self):
+    def create_player(self, player):
         '''Takes in player object and forwards to data layer'''
         pass
     

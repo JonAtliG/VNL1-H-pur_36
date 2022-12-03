@@ -1,13 +1,14 @@
 class Player():
-    def __init__(self, name = None , NID = None, address = None ,Phone = None):
+    def __init__(self, name = None , SSN = None, address = None ,mobile = None, telephone = None, email = None):
         self.name = name
-        self.NID =  NID
+        self.SSN =  SSN
         self.address = address
-        self.Phone = Phone
-        self.host = False
+        self.mobile = mobile
+        self.telephone = telephone
+        self.email = email
 
     def __str__(self):
-        return f"Name: {self.name}, NID: {self.NID}, Address: {self.address}, Phone: {self.Phone}"
+        return f"Name: {self.name}, NID: {self.SSN}, Address: {self.address}, Phone: {self.Phone}"
 
     def getName(self):
         return self.name
