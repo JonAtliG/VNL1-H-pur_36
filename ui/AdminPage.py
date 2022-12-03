@@ -1,12 +1,15 @@
 #from MainMenu import MainMenu?
 #from DisplayCTP import DisplayCTP
-from logic.logic_wrapper import Logic_Wrapper
+#from logic.logic_wrapper import Logic_Wrapper
 from model.player import Player
 from model.club import Club
 #from that other thing import another thing
 #etc
 
 class AdminPage():
+    
+    def __init__(self, logic_connection) -> None:
+        self.logic_wrapper = logic_connection
 
     def __str__(self) -> str:
         
@@ -41,12 +44,12 @@ class AdminPage():
             elif choice == '2':
                 player = Player()
                 player.name = input()
-                player.SSN = input()
-                player.address = input()
-                player.email = input()
-                player.telephone = input()
-                player.mobile = input()
-                Logic_Wrapper.create_player(player)
+                player.nid = input()
+                player.mail = input()
+                player.birthdate = input()
+                player.team = input()
+                print(player)
+                self.logic_wrapper.create_player(player)
                 #player = create_player()
                 #player_list.append(player)
                 #return player
@@ -60,7 +63,7 @@ class AdminPage():
                 pass
                 club = Club()
                 club.name = input("Enter club name: ")
-                Logic_Wrapper.create_club(club)
+                #Logic_Wrapper.create_club(club)
                 #create_club = create_club()
                 #club_list.append(club)
                 #return club?? or create_club
@@ -70,7 +73,8 @@ class AdminPage():
                 #display current tournament information
 
             elif choice == '6':
-                view = DisplayCTP("club list", "team list", "player list")
+                pass
+                #view = DisplayCTP("club list", "team list", "player list")
 
             elif choice == 'q':
                 pass #go back to main menu if possible?

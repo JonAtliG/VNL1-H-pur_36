@@ -1,14 +1,15 @@
 from model.player import Player
 
 class Player_Logic():
-    def __init__():
-        pass
+    def __init__(self, data_connection):
+        self.data_wrapper = data_connection
     
     def get_all_players(self, players):
         '''takes in players and converts to dictonary and returns'''
-        pass
+        return self.data_wrapper.get_players()
     
     def create_player(self, player):
         '''Takes in player object and forwards to data layer'''
-        pass
+        print("recieved in player_logic")
+        self.data_wrapper.add_player(player)
     

@@ -1,17 +1,19 @@
+from logic.logic_wrapper import Logic_Wrapper
 from ui.AdminPage import AdminPage
 
 class MainMenu:
     
 
     def __init__(self) -> None:
-        print("Welcome")
-        print("_"*25)
+        self.logic_wrapper = Logic_Wrapper()
 
     def __str__(self) -> str:
         
         return f"{self.menu_output()}{self.input_prompt()}"
 
     def menu_output(self):
+        print("Welcome")
+        print("_"*25)
         print("""
     Select an option:
 
@@ -35,7 +37,7 @@ class MainMenu:
             #if admin Id is correct, then input password
             Admin_password = input("Password: ")
             #if admin password is correct, run admin option window
-            run_admin = AdminPage()
+            run_admin = AdminPage(self.logic_wrapper)
             #clear command?
             print("\n", run_admin)
         else:

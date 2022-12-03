@@ -1,10 +1,11 @@
-from teams_in_tournament import Registered_Teams
-from club_data import Club
-from scores import Scores
-from players import Players
+from data.teams_in_tournament import Registered_Teams
+from data.club_data import Club
+from data.scores import Scores
+from data.players import Player_Data
 
 class Data_Wrapper:
     def __init__(self):
+        self.player_data = Player_Data()
         self.teams_in_tournament = Registered_Teams()
         self.club_data = Club()
         self.scores = Scores()
@@ -34,7 +35,8 @@ class Data_Wrapper:
         return self.scores.add_score(game)
     
     def get_players():
-        return Players.get_players()
+        return Player_Data.get_players()
     
-    def add_player(player):
-        return Players.add_player(player)
+    def add_player(self, player):
+        print("recieved in data wrapper")
+        return self.player_data.add_player(player)
