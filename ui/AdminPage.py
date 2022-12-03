@@ -8,7 +8,6 @@ from model.club import Club
 
 class AdminPage():
 
-
     def __str__(self) -> str:
         
         return f"{self.adminpage_output()}{self.input_prompt()}"

@@ -1,4 +1,4 @@
-from AdminPage import AdminPage
+from ui.AdminPage import AdminPage
 
 class MainMenu:
     
