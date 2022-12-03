@@ -10,6 +10,5 @@ class Player_Logic():
     
     def create_player(self, player):
         '''Takes in player object and forwards to data layer'''
-        print("recieved in player_logic")
         self.data_wrapper.add_player(player)
     
