@@ -11,8 +11,8 @@ class Logic_Wrapper():
         self.player_logic = Player_Logic(self.data_wrapper)
         
     def get_all_players(self):
-        '''Returns dictonary of all players'''
-        pass
+        '''Fetches list of all players from player_logic and forwards to ui layer'''
+        return self.player_logic.get_all_players()
         
     def create_leage(self):
         pass
