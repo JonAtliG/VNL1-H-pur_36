@@ -1,6 +1,7 @@
 from teams_in_tournament import Registered_Teams
 from club_data import Club
 from scores import Scores
+from players import Players
 
 class Data_Wrapper:
     def __init__(self):
@@ -31,3 +32,9 @@ class Data_Wrapper:
     
     def add_score(self, game):
         return self.scores.add_score(game)
+    
+    def get_players():
+        return Players.get_players()
+    
+    def add_player(player):
+        return Players.add_player(player)
