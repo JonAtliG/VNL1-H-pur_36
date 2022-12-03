@@ -1,5 +1,5 @@
 #from MainMenu import MainMenu?
-from DisplayCTP import DisplayCTP
+#from DisplayCTP import DisplayCTP
 from logic.logic_wrapper import Logic_Wrapper
 from model.player import Player
 from model.club import Club
@@ -42,6 +42,7 @@ class AdminPage():
             elif choice == '2':
                 player = Player()
                 player.name = input()
+                player.SSN = input()
                 player.address = input()
                 player.email = input()
                 player.telephone = input()
