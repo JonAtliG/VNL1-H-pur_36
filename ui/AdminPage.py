@@ -1,19 +1,18 @@
 #from MainMenu import MainMenu?
-from ui.DisplayCTP import DisplayCTP
-from logic.logic_wrapper import Logic_Wrapper
+#from DisplayCTP import DisplayCTP
 from model.player import Player
 from model.club import Club
 #from that other thing import another thing
 #etc
 
 class AdminPage():
-
+    
     def __init__(self, logic_connection) -> None:
         self.logic_wrapper = logic_connection
 
-    def __str__(self) -> str:
-        
-        return f"{self.adminpage_output()}{self.input_prompt()}"
+    #def __str__(self) -> str:
+    #    
+    #    return f"{self.adminpage_output()}{self.input_prompt()}"
 
     def adminpage_output(self) -> str:
         print("Welcome, Admin")
@@ -30,11 +29,7 @@ class AdminPage():
 
     def input_prompt(self):
         while True:
-
-            club_list = []
-            team_list = []
-            player_list = []
-
+            self.adminpage_output()
             choice = input("Select an option: ")
 
             if choice == '1':
@@ -49,9 +44,10 @@ class AdminPage():
                 player.birthdate = input("Birthdate: ")
                 player.team = input("Team name: ")
                 print(player)
-                Logic_Wrapper.create_player(player)
-                player_list.append(player)
-                return player
+                self.logic_wrapper.create_player(player)
+                #player = create_player()
+                #player_list.append(player)
+                #return player
 
             elif choice == '3':
                 pass
@@ -62,19 +58,21 @@ class AdminPage():
                 pass
                 club = Club()
                 club.name = input("Enter club name: ")
-                Logic_Wrapper.create_club(club)
-                club_list.append(club)
-                return club
+                #Logic_Wrapper.create_club(club)
+                #create_club = create_club()
+                #club_list.append(club)
+                #return club?? or create_club
 
             elif choice == '5':
                 pass
                 #display current tournament information
 
             elif choice == '6':
-                view = DisplayCTP(club_list, team_list, player_list)
+                pass
+                #view = DisplayCTP("club list", "team list", "player list")
 
             elif choice == 'q':
-                pass #go back to main menu if possible?
+                return
 
             else:
-                print("Invalid option")
+                input("Invalid option, click enter to continue.")

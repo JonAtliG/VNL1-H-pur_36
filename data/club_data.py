@@ -1,6 +1,6 @@
 class Club:
     def __init__(self):
-        self.file_name = "files/clubs.csv"
+        self.file_name = "data/files/clubs.csv"
     
     def get_all_clubs(self):
         clubs = []
@@ -12,7 +12,7 @@ class Club:
                     teams.append(line[j+2])
                 clubs.append([line[1], teams])
             return clubs
-    
+
     def get_teams_by_club(self, club_name):
         clubs = self.get_all_clubs()
         for i in clubs:

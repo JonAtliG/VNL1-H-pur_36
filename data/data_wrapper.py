@@ -2,6 +2,7 @@ from data.teams_in_tournament import Registered_Teams
 from data.club_data import Club
 from data.scores import Scores
 from data.player_data import Player_Data
+from data.admin_data import Admin_Data
 
 class Data_Wrapper:
     def __init__(self):
@@ -9,7 +10,14 @@ class Data_Wrapper:
         self.teams_in_tournament = Registered_Teams()
         self.club_data = Club()
         self.scores = Scores()
-
+        self.admin_data = Admin_Data()
+    
+    def get_admin_id(self):
+        return self.admin_data.get_ID()
+    
+    def get_admin_password(self):
+        return self.admin_data.get_password()
+    
     def get_all_clubs(self):
         return self.club_data.get_all_clubs()
 
