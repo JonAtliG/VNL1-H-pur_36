@@ -46,5 +46,4 @@ class Data_Wrapper:
         return self.player_data.get_players()
     
     def add_player(self, player):
-        print("recieved in data wrapper")
         return self.player_data.add_player(player)
