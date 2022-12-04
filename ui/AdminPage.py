@@ -45,9 +45,6 @@ class AdminPage():
                 player.team = input("Team name: ")
                 print(player)
                 self.logic_wrapper.create_player(player)
-                #player = create_player()
-                #player_list.append(player)
-                #return player
 
             elif choice == '3':
                 pass
