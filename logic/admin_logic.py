@@ -11,13 +11,7 @@ class Admin_Logic():
         return self.data_wrapper.get_admin_password()
     
     def verify_ID(self, ID):
-        if self.get_ID() == ID:
-            return True
-        else:
-            return False
+        return self.get_ID() == ID
     
     def verify_Password(self, password):
-        if self.get_Password() == password:
-            return True
-        else:
-            return False
+        return self.get_Password() == password

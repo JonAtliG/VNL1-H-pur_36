@@ -3,6 +3,7 @@ from data.club_data import Club
 from data.scores import Scores
 from data.player_data import Player_Data
 from data.admin_data import Admin_Data
+from data.teams_data import Team_Data
 
 class Data_Wrapper:
     def __init__(self):
@@ -11,6 +12,7 @@ class Data_Wrapper:
         self.club_data = Club()
         self.scores = Scores()
         self.admin_data = Admin_Data()
+        self.team_data = Team_Data()
     
     def get_admin_id(self):
         return self.admin_data.get_ID()
@@ -42,8 +44,14 @@ class Data_Wrapper:
     def add_score(self, game):
         return self.scores.add_score(game)
     
+    def get_team_data_by_name(self, name):
+        return self.team_data.get_team_data_by_name(name)
+    
     def get_players(self):
         return self.player_data.get_players()
     
+    def get_player_by_id(self, id):
+        return self.player_data.get_player_by_id(id)
+        
     def add_player(self, player):
         return self.player_data.add_player(player)

@@ -11,6 +11,7 @@ class Logic_Wrapper():
         self.data_wrapper = Data_Wrapper()
         self.player_logic = Player_Logic(self.data_wrapper)
         self.admin_logic = Admin_Logic(self.data_wrapper)
+        self.team_logic = Team_Logic(self.data_wrapper)
     
     def verify_admin_id(self, ID):
         return self.admin_logic.verify_ID(ID)
@@ -24,9 +25,6 @@ class Logic_Wrapper():
         
     def create_leage(self):
         pass
-        
-    def create_team(self):
-        pass
     
     def create_club(self):
         pass
@@ -34,4 +32,7 @@ class Logic_Wrapper():
     def create_player(self, player):
         '''Recieves player from player_logic and forwards to data layer'''
         self.player_logic.create_player(player)
+    
+    def get_team_by_name(self, name):
+        return self.team_logic.get_team_by_name(name)
     
