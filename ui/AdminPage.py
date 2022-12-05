@@ -1,9 +1,8 @@
-#from MainMenu import MainMenu?
-#from DisplayCTP import DisplayCTP
+#from ui.DisplayAll import DisplayAll
+from logic.logic_wrapper import Logic_Wrapper
 from model.player import Player
 from model.club import Club
-#from that other thing import another thing
-#etc
+from model.team import Team
 
 class AdminPage():
     
@@ -34,7 +33,12 @@ class AdminPage():
 
             if choice == '1':
                 pass
-                #host = create_host()
+                #host = Host()
+                #host.name = input("Host name: ")
+                #host.nid = input("Host ID: ")
+                #create host --> applies permission to host ID
+                #return to AdminPage
+                #If host already exists, print("Host already exists!")
 
             elif choice == '2':
                 player = Player()
@@ -48,17 +52,19 @@ class AdminPage():
 
             elif choice == '3':
                 pass
-                #team_list.append(team)
-                #return team
+                #team = Team()
+                #team.name = input("Enter team name: ")
+                #team.captain = input("Enter Team Captain ID: ")
+                #team.players = input("Add member (by ID): ")
+                #team.club = input("Add team Club: ")
+                #self.logic_wrapper.create_team(team)
 
             elif choice == '4':
                 pass
                 club = Club()
                 club.name = input("Enter club name: ")
-                #Logic_Wrapper.create_club(club)
-                #create_club = create_club()
-                #club_list.append(club)
-                #return club?? or create_club
+                Logic_Wrapper.create_club(club)
+                return club
 
             elif choice == '5':
                 pass
@@ -66,7 +72,7 @@ class AdminPage():
 
             elif choice == '6':
                 pass
-                #view = DisplayCTP("club list", "team list", "player list")
+                #print(DisplayAll())
 
             elif choice == 'q':
                 return
