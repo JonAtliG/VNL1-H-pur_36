@@ -1,7 +1,6 @@
-from PlayerInfo import PlayerSetup
-from MainMenu import MainMenu
+from ui.PlayerDefault import PlayerDefault
 
-class TeamCaptainDefault():
+class CaptainDefault():
     def __init__(self, ID) -> None:
         self.id = ID
 
@@ -13,13 +12,19 @@ class TeamCaptainDefault():
         print("""Welcome, ####
         Please select an option:
         1. Record match scores
+        2. View Teams and Players
+        3. See upcoming matches
         'q' to logout.""")
 
     def input_prompt(self):
         choice = input("Select an option: ")
-        #if choice == '1'
-        #   open list of matches that have happened
-        if choice == 'q':
-            MainMenu()
+        if choice == '1':
+            pass
+        elif choice == '2':
+            pass
+        elif choice == '3':
+            pass
+        elif choice == 'q':
+            return
         else:
             print("Invalid option")
