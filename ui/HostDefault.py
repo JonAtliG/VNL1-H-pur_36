@@ -1,5 +1,4 @@
-from VerklegtH22.MainMenu import MainMenu
-#logging in with host ID
+
 
 class HostDefault():
 
@@ -17,7 +16,21 @@ class HostDefault():
         print("_"*25)
 
     def input_prompt():
-        pass
+        
+        option = input("Select an option: ")
+
+        if option == '1':
+            pass
+        elif option == '2':
+            pass
+        elif option == '3':
+            pass
+        elif option == '4':
+            pass
+        elif option == 'q':
+            return
+        else:
+            print("Invalid option")
 
     def __str__(self) -> str:
         pass
