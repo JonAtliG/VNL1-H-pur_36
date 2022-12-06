@@ -8,10 +8,6 @@ class AdminPage():
         self.logic_wrapper = logic_connection
         self.display_all = DisplayAll(logic_connection)
 
-    #def __str__(self) -> str:
-    #    
-    #    return f"{self.adminpage_output()}{self.input_prompt()}"
-
     def adminpage_output(self) -> str:
         print("Welcome, Admin")
         print("""Please select one of the options:
@@ -46,7 +42,7 @@ class AdminPage():
                 return
 
             else:
-                input("Invalid option, click enter to continue.")
+                input("Invalid option, press enter to continue.")
     
     def set_host_privileges(self):
         player_id = input("Enter player ID: ")
@@ -58,7 +54,7 @@ class AdminPage():
                 player.host = False
                 self.logic_wrapper.update_player(player)
         else:
-            print(f"{player.name} currently does not have host privileges, do you want to give them?")
+            print(f"{player.name} currently does not have host privileges, do you want to apply them?")
             choice = input("y/n: ")
             if choice == "y":
                 player.host = True
@@ -91,8 +87,14 @@ class AdminPage():
     
     def display_info(self):
         while True:
-            print("1= display all players, 2= display all teams, 3= display all clubs")
-            choice = input()
+            print("""
+            1. View only Players
+            2. View Teams with Players
+            3. View Clubs, Teams, Players
+
+            'q' to go back
+            """)
+            choice = input("Select an option: ")
             if choice == "q":
                 break
             elif choice == "1":
@@ -101,3 +103,5 @@ class AdminPage():
                 self.display_all.display_all_teams(self.logic_wrapper.get_all_teams())
             elif choice == "3":
                 self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
+            else:
+                print("Invalid option")
