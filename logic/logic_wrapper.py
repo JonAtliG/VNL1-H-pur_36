@@ -85,4 +85,10 @@ class Logic_Wrapper():
     def add_player(self, player: Player) -> None:
         '''Recieves player from player_logic and forwards to data layer'''
         self.player_logic.add_player(player)
+    
+    ### League Logic
+    
+    ### Match Logic
+    
+    ### Game Logic
 
