@@ -32,6 +32,8 @@ class MainMenu:
                 quit()
             elif selection == "1":
                 ID_input = input("\nEnter ID: ")
+                player = PlayerDefault(self.logic_wrapper, ID_input)
+                print(player)
             elif selection == '2':
                 pass # guest default
             elif selection == "3":
