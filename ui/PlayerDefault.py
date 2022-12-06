@@ -20,34 +20,34 @@ class PlayerDefault():
         3. View all teams, clubs, players
         'q' to quit""")
 
-        self.input_prompt(self.id)
-
-
-
     def input_prompt(self, ID):
         self.id = ID
         while True:
             option = input("Enter option: ")
 
-            if option == 'q':
-                return
-            elif option == '1':
+            if option == '1':
                 self.information(ID)
                 continue
             elif option == '2':
                 pass
             elif option == '3':
-                print("1. View Clubs")
-                print("2. View Teams")
-                print("3. View Players")
+                print("""
+                1. View only Players
+                2. View Teams and Players
+                3. View Clubs, Teams, Players
+
+                'q' to go back
+                """)
                 player_input = input("Enter option: ")
                 if input == '1':
-                    pass
+                    self.display_all.display_all_players(self.logic_wrapper.get_all_players())
                 elif input == '2':
-                    pass
+                    self.display_all.display_all_teams(self.logic_wrapper.get_all_teams())
                 elif input == '3':
-                    pass
+                    self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
                 continue
+            elif option == 'q':
+                return
             else:
                 invalid = input("Invalid option, press enter to continue: ")
 
