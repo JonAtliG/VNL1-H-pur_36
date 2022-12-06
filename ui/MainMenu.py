@@ -1,5 +1,7 @@
 from logic.logic_wrapper import Logic_Wrapper
 from ui.AdminPage import AdminPage
+from ui.GuestDefault import GuestDefault
+from ui.PlayerDefault import PlayerDefault
 
 class MainMenu:
     
@@ -36,7 +38,9 @@ class MainMenu:
                 print(player)
                 continue
             elif selection == '2':
-                pass # guest default
+                guest_default_page = GuestDefault(self.logic_wrapper)
+                guest_default_page.input_prompt()
+                continue
             elif selection == "3":
                 Admin_login = input("\nEnter admin ID: ")
                 if self.logic_wrapper.verify_admin_id(Admin_login):
