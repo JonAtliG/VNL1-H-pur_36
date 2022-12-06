@@ -1,25 +1,44 @@
 from model.player import Player
+from data.CSV_Handler import CSV_Handler
+
+'''
+name index      = 0
+nid index       = 1
+mail index      = 2
+birthdate index = 3
+phone index     = 4
+address index   = 5
+team index      = 6
+host index      = 7
+'''
 
 class Player_Data():
     def __init__(self):
         self.file_name = "data/files/players.csv"
-
-
-    def add_player(self, player):
-        with open(self.file_name, "a") as csv:
-            csv.write(player.name + ";" + player.nid + ";" + player.mail + ";" + player.birthdate + ";" + player.phone + ";" + player.address + ";" + player.team + "\n")
+        self.__CSV_Handler = CSV_Handler(self.file_name)
     
-    def get_player_by_id(self, id):
-        with open(self.file_name, "r") as csv:
-            for i in csv.readlines()[1:]:
-                line = i.split(";")
-                if line[1] == id:
-                    return Player(line[0], line[1], line[2], line[3],line[4],line[5], line[6])
+    def __create_player_data_from_object(self, player: Player) -> str:
+        player_data = ";".join([player.name, player.nid, player.mail, player.birthdate, player.phone, player.address, player.team])
+        if player.host:
+            player_data += ";" + "True"
+        else:
+            player_data += ";" + "False"
+        return player_data
+    
+    def __get_player_index_by_id(self, id: str) -> int:
+        return self.__CSV_Handler.get_line_index_by_data(id, 1)     
+ 
+    def get_player_data_by_id(self, id: str) -> list:
+        return self.__CSV_Handler.get_data_by_data(id, 1)
 
-    def get_players(self):
-        players = []
-        with open(self.file_name, "r") as csv:
-            for i in csv.readlines()[1:]:
-                line = i.strip("\n").split(";")
-                players.append(Player(line[0], line[1], line[2], line[3],line[4],line[5], line[6]))
-        return players
+    def get_all_player_data(self) -> list:
+        return self.__CSV_Handler.get_all_data()
+    
+    def update_player(self, player: Player):
+        index = self.__get_player_index_by_id(player.nid)
+        player_data = self.__create_player_data_from_object(player)
+        self.__CSV_Handler.replace_line(index, player_data)
+    
+    def add_player(self, player: Player):
+       player_data = self.__create_player_data_from_object(player)
+       self.__CSV_Handler.add_line(player_data)

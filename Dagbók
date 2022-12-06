@@ -70,3 +70,10 @@ Skýrlsa í lok dags:
 Erfitt að halda áfram það sem það vantaði hópameðlim sem vann mikið yfir helgina og þurfti að útskýra kóðann sinn.
 Fórum yfir í næsta skref, sem var að vinna í hvernig væri best að setja upp viðureignir og mót með dagsetningum.
 Byrjað að gera klasarit upp á nýtt, með 3-ja laga hönnun
+
+
+Þriðjudagur 6 des
+
+Nótt:
+Bjó til CSV_Handler, endurskrifaði alla dataklasa með functions úr CSV_Handler.
+Kláraði data og logic layer fyrir Player, Team og Club klasana. Byrjaði League í data layer og DisplayAll klasanum í UI. -Jón

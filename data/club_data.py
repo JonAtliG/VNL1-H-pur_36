@@ -1,36 +1,40 @@
-class Club:
-    def __init__(self):
-        self.file_name = "data/files/clubs.csv"
-    
-    def get_all_clubs(self):
-        clubs = []
-        with open(self.file_name, "r") as txt:
-            for i in txt:
-                line = i.strip("\n").split(";")
-                teams = []
-                for j in range(int(line[0])):
-                    teams.append(line[j+2])
-                clubs.append([line[1], teams])
-            return clubs
+from data.CSV_Handler import CSV_Handler
+from model.club import Club
 
-    def get_teams_by_club(self, club_name):
-        clubs = self.get_all_clubs()
-        for i in clubs:
-            if i[0] == club_name:
-                return i[1]
-        return None
+'''
+name index    = 0
+teams index   = 1
+address index = 2
+phone index   = 3
+'''
+
+class Club_Data():
+    def __init__(self) -> None:
+        self.file_name = "data/files/club_data.csv"
+        self.__CSV_Handler = CSV_Handler(self.file_name)
     
-    def add_club(self, club_name, teams):
-        with open(self.file_name, "a") as csv:
-            csv.write(str(len(teams)) + ";" + club_name + ";" + ";".join(teams) + "\n")
+    def __create_club_data_from_object(self, club: Club) -> str:
+        line = club.name + ";"
+        line += ",".join([team_name for team_name in [team.name for team in club.teams]]) + ";"
+        line += club.address + ";" + club.phone
+        return line
     
-    def add_teams_to_club(self, club_name, teams):
-        clubs = self.get_all_clubs()
-        for i in clubs:
-            if i[0] == club_name:
-                i[1].extend(teams)
-                with open(self.file_name, "w") as csv:
-                    for j in clubs:
-                        csv.write(str(len(j[1])) + ";" + j[0] + ";" + ";".join(j[1]) + "\n")
-                return True
-        return False
+    def __get_club_index_by_name(self, name: str) -> int:
+        return self.__CSV_Handler.get_line_index_by_data(name, 0)
+    
+    def get_club_data_by_name(self, name: str) -> list:
+        '''Fetches the club data for the name and returns it'''
+        return self.__CSV_Handler.get_data_by_data(name, 0)
+    
+    def get_all_club_data(self) -> list:
+        '''Fetches all club data and returns it'''
+        return self.__CSV_Handler.get_all_data()
+    
+    def update_club(self, club: Club) -> None:
+        index = self.__get_club_index_by_name(club.name)
+        club_data = self.__create_club_data_from_object(club)
+        self.__CSV_Handler.replace_line(index, club_data)
+        
+    def add_club(self, club: Club) -> None:
+        club_data = self.__create_club_data_from_object(club)
+        self.__CSV_Handler.add_line(club_data)

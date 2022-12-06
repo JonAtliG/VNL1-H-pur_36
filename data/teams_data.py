@@ -1,20 +1,38 @@
+from data.CSV_Handler import CSV_Handler
+from model.team import Team
+
+'''
+name index       = 0
+captain id index = 1
+members id index = 2
+club name index  = 3
+'''
+
 class Team_Data():
     def __init__(self) -> None:
         self.file_name = "data/files/teams.csv"
+        self.__CSV_Handler = CSV_Handler(self.file_name)
     
-    def add_team(self, team):
-        pass
+    def __create_team_data_from_object(self, team: Team):
+        data = team.name + ";" + team.captain.nid + ";"
+        data += ",".join([player.nid for player in team.players])
+        data += ";" + team.club
+        return data
     
-    def get_teams_data(self):
-        teams_data = []
-        with open(self.file_name, "r") as csv:
-            for i in csv.readlines()[1:]:
-                teams_data.append(i.split(";"))
+    def __get_team_index_by_name(self, name: str) -> int:
+        return self.__CSV_Handler.get_line_index_by_data(name, 0)
+
+    def get_all_team_data(self) -> list:
+        return self.__CSV_Handler.get_all_data()
                 
-    def get_team_data_by_name(self, name):
-        with open(self.file_name, "r") as csv:
-            for i in csv.readlines()[1:]:
-                line = i.split(";")
-                if line[0] == name:
-                    return line
-        return False
+    def get_team_data_by_name(self, name: str) -> list:
+        return self.__CSV_Handler.get_data_by_data(name, 0)
+    
+    def update_team(self, team: Team) -> None:
+        team_data = self.__create_team_data_from_object(team)
+        team_index = self.__get_team_index_by_name(team.name)
+        self.__CSV_Handler.replace_line(team_index, team_data)
+    
+    def add_team(self, team: Team) -> None:
+        team_data = self.__create_team_data_from_object(team)
+        self.__CSV_Handler.add_line(team_data)

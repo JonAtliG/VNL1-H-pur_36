@@ -1,13 +1,12 @@
-#from ui.DisplayAll import DisplayAll
-from logic.logic_wrapper import Logic_Wrapper
+from ui.DisplayAll import DisplayAll
 from model.player import Player
 from model.club import Club
 from model.team import Team
 
 class AdminPage():
-    
     def __init__(self, logic_connection) -> None:
         self.logic_wrapper = logic_connection
+        self.display_all = DisplayAll(logic_connection)
 
     #def __str__(self) -> str:
     #    
@@ -16,7 +15,7 @@ class AdminPage():
     def adminpage_output(self) -> str:
         print("Welcome, Admin")
         print("""Please select one of the options:
-        1. Create Host
+        1. Set host privileges
         2. Create Player
         3. Create Team
         4. Create Club
@@ -30,52 +29,75 @@ class AdminPage():
         while True:
             self.adminpage_output()
             choice = input("Select an option: ")
-
             if choice == '1':
-                pass
-                #host = Host()
-                #host.name = input("Host name: ")
-                #host.nid = input("Host ID: ")
-                #create host --> applies permission to host ID
-                #return to AdminPage
-                #If host already exists, print("Host already exists!")
-
+                self.set_host_privileges()
             elif choice == '2':
-                player = Player()
-                player.name = input("Player name: ")
-                player.nid = input("Player SSN: ")
-                player.mail = input("E-mail: ")
-                player.birthdate = input("Birthdate: ")
-                player.team = input("Team name: ")
-                print(player)
-                self.logic_wrapper.create_player(player)
-
+                self.create_player()
             elif choice == '3':
-                pass
-                #team = Team()
-                #team.name = input("Enter team name: ")
-                #team.captain = input("Enter Team Captain ID: ")
-                #team.players = input("Add member (by ID): ")
-                #team.club = input("Add team Club: ")
-                #self.logic_wrapper.create_team(team)
-
+                self.create_team()
             elif choice == '4':
-                pass
-                club = Club()
-                club.name = input("Enter club name: ")
-                Logic_Wrapper.create_club(club)
-                return club
-
+                self.create_club()
             elif choice == '5':
                 pass
                 #display current tournament information
-
             elif choice == '6':
-                pass
-                #print(DisplayAll())
-
+                self.display_info()
             elif choice == 'q':
                 return
 
             else:
                 input("Invalid option, click enter to continue.")
+    
+    def set_host_privileges(self):
+        player_id = input("Enter player ID: ")
+        player = self.logic_wrapper.get_player_by_id(player_id)
+        if player.host:
+            print(f"{player.name} currently has host privileges, do you want to remove them?")
+            choice = input("y/n: ")
+            if choice == "y":
+                player.host = False
+                self.logic_wrapper.update_player(player)
+        else:
+            print(f"{player.name} currently does not have host privileges, do you want to give them?")
+            choice = input("y/n: ")
+            if choice == "y":
+                player.host = True
+                self.logic_wrapper.update_player(player)
+    
+    def create_player(self):
+        player = Player()
+        player.name = input("Player name: ")
+        player.nid = input("Player SSN: ")
+        player.mail = input("E-mail: ")
+        player.birthdate = input("Birthdate: ")
+        player.team = input("Team name: ")
+        self.logic_wrapper.add_player(player)
+    
+    def create_team(self):
+        team = Team()
+        team.name = input("Enter team name: ")
+        team.captain = input("Enter Team Captain ID: ")
+        team.players = input("Add member (by ID): ")
+        team.club = input("Add team Club: ")
+        self.logic_wrapper.add_team(team)
+        # Eftir að gera check á hvort captain, players og club eru til
+    
+    def create_club(self):
+        club = Club()
+        club.name = input("Enter club name: ")
+        club.address = input("Enter address: ")
+        club.phone = input("Enter phone number: ")
+        self.logic_wrapper.add_club(club)
+    
+    def display_info(self):
+        while True:
+            print("1= display all players, 2= display all teams, 3= display all clubs")
+            choice = input()
+            if choice == "q":
+                break
+            elif choice == "1":
+                self.display_all.display_all_players(self.logic_wrapper.get_all_players())
+            elif choice == "2":
+                self.display_all.display_all_teams(self.logic_wrapper.get_all_teams())
+            elif choice == "3":
+                self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
