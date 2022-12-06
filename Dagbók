@@ -77,3 +77,6 @@ Byrjað að gera klasarit upp á nýtt, með 3-ja laga hönnun
 Nótt:
 Bjó til CSV_Handler, endurskrifaði alla dataklasa með functions úr CSV_Handler.
 Kláraði data og logic layer fyrir Player, Team og Club klasana. Byrjaði League í data layer og DisplayAll klasanum í UI. -Jón
+
+Morgunfundur:
+lagfærðum klasarit. unnum í að tengja ui klasa og klára logic layer.
