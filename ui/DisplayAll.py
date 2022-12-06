@@ -9,25 +9,30 @@ class DisplayAll():
     
     def display_all_players(self, players):
         for player in players:
-            print(player)
+            print("Name:", player.name + ",", " ID:", player.nid)
+            
     
     def display_team(self, team):
-        print(team.name)
-        print(f"{team.captain}:Captain")
+        cap = team.captain
+        print("\n")
+        print("Team:", team.name)
+        print("""
+{}
+
+    {}  {} {}""".format("Team Captain:", cap.name, "ID: ", cap.nid))
+        print("\nMembers:\n")
         for player in team.players:
-            print(f"{player}:Member")
+            print("    {}".format(player.name))
     
     def display_all_teams(self, teams):
         for team in teams:
             self.display_team(team)
     
     def display_club(self, club):
-        print(club.name)
+        print("\nClub:", club.name)
         for team in club.teams:
             self.display_team(team)
     
     def display_all_clubs(self, clubs):
         for club in clubs:
             self.display_club(club)
-
-    
