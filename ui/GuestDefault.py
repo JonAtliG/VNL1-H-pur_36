@@ -44,9 +44,9 @@ class GuestDefault:
                         print('"q". Go back')
                         choice = input("Select an option: ")
                         if choice == "1":
-                            DisplayAll.display_finished_matches(league)
+                            self.display_all.display_finished_matches(league)
                         elif choice == "2":
-                            DisplayAll.display_unfinished_matches(league)
+                            self.display_all.display_unfinished_matches(league)
                         elif choice == "q":
                             return
                         else:
