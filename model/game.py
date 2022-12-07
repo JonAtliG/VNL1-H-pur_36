@@ -5,5 +5,6 @@ class Game():
         self.away_player = away_player
         self.home_player_score = home_player_score
         self.away_player_score = away_player_score
+        self.game_type = game_type
         self.played = played
         self.time = time
