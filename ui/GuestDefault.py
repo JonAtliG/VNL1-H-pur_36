@@ -15,7 +15,8 @@ class GuestDefault:
         Select an option:
             1. View League
             2. View Clubs, Teams and Players
-            'q' to go back to Main Menu""")
+            'q' to logout
+            """)
 
     def input_prompt(self):
         while True:
@@ -24,13 +25,12 @@ class GuestDefault:
             if option == "q":
                 return
             elif option == "1":
-                #view_tournament_page = ViewTournament(self.logic_wrapper)
                 leagues = self.logic_wrapper.get_all_leagues()
                 c = 1
                 for league in leagues:
                     print(f"{c}. {league.name}")
                     c += 1
-                print(f'"q". Go back')
+                print(f"'q' to go back: "')
                 league_choice = input("Select a league: ")
                 if league_choice == "q":
                     return
