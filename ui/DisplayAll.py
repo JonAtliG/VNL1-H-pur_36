@@ -7,11 +7,12 @@ class DisplayAll():
     def view_all(self):
         while True:
             print("""
-            1. View only Players
-            2. View Teams and Players
-            3. View Clubs, Teams, Players
+            1. View all players
+            2. View all teams and their players
+            3. View all clubs, their teams and all players in each team
 
-            'q' to go back
+            'q' Logout
+        """)
             """)
             player_input = input("Enter option: ")
             if player_input == '1':
