@@ -15,14 +15,11 @@ class Match_Data():
     def get_all_match_ids(self):
         return self.__CSV_Handler.get_all_data_by_column_index(0)
     
-    #def __get_league_index_by_id(self, id: str):
-    #    return self.__CSV_Handler.get_line_index_by_data(id, 0)
-    #
-    #def get_league_data_by_name(self, name: str) -> list:
-    #    return self.__CSV_Handler.get_data_by_data(name, 0)
-    #
-    #def get_all_league_data(self):
-    #    return self.__CSV_Handler.get_all_data()
+    def get_all_match_data(self) -> list:
+        return self.__CSV_Handler.get_all_data()
+    
+    def get_match_data_by_id(self, id: str):
+        return self.__CSV_Handler.get_data_by_data(id, 0)
     
     def update_match(self, match: Match) -> None:
         index = self.__get_match_index_by_id(match.id)

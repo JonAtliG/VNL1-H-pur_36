@@ -77,33 +77,40 @@ class Data_Wrapper:
         return self.scores.add_score(game)
     
     ### League Data
-    def get_league_data_by_name(self, name):
-        pass
+    def get_league_data_by_name(self, name) -> list:
+        return self.leage_data.get_league_data_by_name(name)
     
-    def get_all_league_data(self):
-        pass
+    def get_all_league_data(self) -> list:
+        return self.leage_data.get_all_league_data()
     
-    def add_leage(self, league):
-        pass
+    def add_leage(self, league) -> None:
+        self.leage_data.add_league(league)
     
-    def update_leage(self, league):
-        pass
+    def update_leage(self, league) -> None:
+        self.leage_data.update_league(league)
     
     ### Match Data
-    def get_match_data_by_id(self, id):
-        pass
+    def get_match_data_by_id(self, id) -> list:
+        return self.match_data.get_match_data_by_id(id)
     
-    def get_all_match_data_by_league_name(self, name):
-        pass
-    
-    def get_all_match_data(self):
-        pass
+    def get_all_match_data_by_league_name(self, name) -> list:
+        league_data = self.get_league_data_by_name(name)
+        match_data = []
+        for match_id in league_data[2].split(","):
+            match_data.append(self.get_match_data_by_id(match_id))
+        return match_data
+
+    def get_all_match_data(self) -> list:
+        return self.match_data.get_all_match_data()
+
+    def get_all_match_ids(self) -> list:
+        return self.match_data.get_all_match_ids()
     
     def add_match(self, match):
-        pass
+        self.match_data.add_match(match)
     
     def update_match(self, match):
-        pass
+        self.update_match(match)
     
     ### Game Data
     def get_all_game_ids(self):

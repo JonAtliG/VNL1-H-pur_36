@@ -1,4 +1,5 @@
 from model.club import Club
+from model.team import Team
 
 class Club_Logic():
     def __init__(self, data_connection) -> None:
@@ -11,6 +12,13 @@ class Club_Logic():
         club.teams = teams
         club.address = club_data[2]
         club.phone = club_data[3]
+        return club
+    
+    def add_team_to_club(self, club: Club, team: Team):
+        if club.teams == "No Teams":
+            club.teams = [team]
+        else:
+            club.teams.append(team)
         return club
     
     def get_club_data_by_name(self, name: str) -> list:

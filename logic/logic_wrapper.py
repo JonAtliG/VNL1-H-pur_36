@@ -47,6 +47,9 @@ class Logic_Wrapper():
         all_club_data = self.__get_all_club_data()
         return [self.club_logic.make_club_object(club_data, self.get_teams_by_names(club_data[1])) for club_data in all_club_data]
     
+    def add_team_to_club(self, club: Club, team: Team) -> Team:
+        self.club_logic.add_team_to_club(club, team)
+    
     def update_club(self, club: Club):
         self.data_wrapper.update_club(club)
     
@@ -64,6 +67,12 @@ class Logic_Wrapper():
     def get_all_teams(self) -> list:
         all_team_data = self.team_logic.get_all_team_data()
         return [self.team_logic.make_team_object(team_data, self.get_player_by_id(team_data[1]), self.get_players_by_ids(team_data[2])) for team_data in all_team_data]
+    
+    def make_team_captain(self, team: Team, player: Player) -> Team:
+        return self.team_logic.add_player_to_team(team, player)
+    
+    def add_player_to_team(self, team: Team, player: Player) -> Team:
+        return self.team_logic.add_player_to_team(team, player)
     
     def update_team(self, team: Team) -> None:
         self.team_logic.update_team(team)

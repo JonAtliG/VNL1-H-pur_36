@@ -7,7 +7,11 @@ class League_Data():
         self.__CSV_Handler = CSV_Handler(self.file_name)
 
     def __create_league_data_from_object(self, league: League):
-        pass
+        league_data = f"{league.name};"
+        league_data += ",".join([team.name for team in league.teams]) + ";"
+        league_data += ",".join([match.ID for match in league.matches]) + ";"
+        league_data += f"{league.start_date};{league.end_date}"
+        return league_data
 
     def __get_league_index_by_id(self, id: str):
         return self.__CSV_Handler.get_line_index_by_data(id, 0)
@@ -15,7 +19,7 @@ class League_Data():
     def get_league_data_by_name(self, name: str) -> list:
         return self.__CSV_Handler.get_data_by_data(name, 0)
     
-    def get_all_league_data(self):
+    def get_all_league_data(self) -> list:
         return self.__CSV_Handler.get_all_data()
 
     def update_league(self, league: League) -> None:
