@@ -92,5 +92,12 @@ class AdminPage():
         club.name = input("Enter club name: ")
         club.address = input("Enter address: ")
         club.phone = input("Enter phone number: ")
+        while True:
+            add_team = input("Add team? (y/n)")
+            if add_team == 'y':
+                team_name == input("Enter Team Name: ")
+                # add team to club
+            elif add_team == 'n':
+                break
         self.logic_wrapper.add_club(club)
     
