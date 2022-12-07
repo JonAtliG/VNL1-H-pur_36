@@ -35,12 +35,10 @@ class MainMenu:
             elif selection == "1":
                 ID_input = input("\nEnter ID: ")
                 player = PlayerDefault(self.logic_wrapper, ID_input)
-                print(player)
-                continue
+                player.input_prompt(ID_input)
             elif selection == '2':
                 guest_default_page = GuestDefault(self.logic_wrapper)
                 guest_default_page.input_prompt()
-                continue
             elif selection == "3":
                 Admin_login = input("\nEnter admin ID: ")
                 if self.logic_wrapper.verify_admin_id(Admin_login):
