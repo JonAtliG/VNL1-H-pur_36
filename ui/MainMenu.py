@@ -2,6 +2,7 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.AdminPage import AdminPage
 from ui.GuestDefault import GuestDefault
 from ui.PlayerDefault import PlayerDefault
+from ui.HostDefault import HostDefault
 
 class MainMenu:
     
@@ -22,6 +23,7 @@ class MainMenu:
         1. Login with ID
         2. Login as Guest
         3. Admin Login
+        4. Host Login
         'q' to quit""")
         print("_"*30)
 
@@ -51,6 +53,10 @@ class MainMenu:
                         input("Incorrect password, click enter to continue")
                 else:
                     input("Incorrect ID, click enter to continue")
+            elif selection == "4":
+                host = HostDefault(self.logic_wrapper)
+                host.input_prompt()
+                    
 
             else:
                 print("Invalid option")

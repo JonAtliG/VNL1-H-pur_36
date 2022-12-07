@@ -17,7 +17,7 @@ class Match_Logic():
         return new_id
     
     def get_match_data_by_id(self, id):
-        return self.data_wrapper.get_match_by_id(id)
+        return self.data_wrapper.get_match_data_by_id(id)
     
     def create_match_object(self, data, home_team: Team, away_team: Team, games: list) -> Match:
         match_object = Match()
