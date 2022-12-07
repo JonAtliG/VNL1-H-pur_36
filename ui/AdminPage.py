@@ -37,7 +37,7 @@ class AdminPage():
                 pass
                 #display current tournament information
             elif choice == '6':
-                self.DisplayAll.view_all()
+                self.display_all.view_all()
             elif choice == 'q':
                 return
 
