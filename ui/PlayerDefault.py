@@ -36,36 +36,19 @@ class PlayerDefault():
             elif option == '2':
                 pass
             elif option == '3':
-                self.view_all()
+                self.DisplayAll.view_all()
                 continue
             elif option == 'q':
                 return
             else:
                 invalid = input("Invalid option, press enter to continue: ")
 
-    def view_all(self):
-        print("""
-        1. View only Players
-        2. View Teams and Players
-        3. View Clubs, Teams, Players
-
-        'q' to go back
-        """)
-        player_input = input("Enter option: ")
-        if player_input == '1':
-            self.DisplayAll.display_all_players(self.logic_wrapper.get_all_players())
-        elif player_input == '2':
-            self.DisplayAll.display_all_teams(self.logic_wrapper.get_all_teams())
-        elif player_input == '3':
-            self.DisplayAll.display_all_clubs(self.logic_wrapper.get_all_clubs())
-        elif player_input == 'q':
-            return
-
 
     def information(self, ID):
         self.logic_wrapper.get_player_by_id(ID)
         print("\nPlayer information:\n")
         print("{:<15} {}".format("Team: ", self.player.team))
+        #if captain: print("Team Captain of", self.player.team)
         print("{:<15} {}".format("Name:", self.player.name))
         print("{:<15} {}".format("ID:", self.player.nid))
         print("{:<15} {}".format("Birthdate:", self.player.birthdate))
