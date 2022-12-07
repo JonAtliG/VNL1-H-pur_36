@@ -79,6 +79,9 @@ class DisplayAll():
                 print(f"{game.home_player.name} - {game.home_player_score} - {game.away_player_score} - {game.away_player.name}")
 
     def display_finished_matches(self, league: League):
+        if league.matches == []:
+            print("No matches have been played yet")
+            return
         print(league.name)
         for match in league.matches:
             print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
@@ -88,9 +91,43 @@ class DisplayAll():
     
 
     def display_unfinished_matches(self, league: League):
+        if league.matches == []:
+            print("No matches have been played yet")
+            return
         print(league.name)
         for match in league.matches:
             print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
             for game in match.games:
                 if game.played == False:
                     print(f"{game.home_player.name} ({game.home_player_score}) | {game.away_player.name} ({game.away_player_score})")
+    
+
+    def display_leaderboard(self, league: League):
+        if league.matches == []:
+            print("No matches have been played yet")
+            return
+        print(league.name)
+        teams = [[team.name, 0, 0] for team in league.teams]
+        teamnames = [team.name for team in league.teams]
+        for match in league.matches:
+            home = 0
+            away = 0
+            for game in match.games:
+                if game.home_player_score > game.away_player_score:
+                    home += 1
+                elif game.home_player_score < game.away_player_score:
+                    away += 1
+            if home > away:
+                teams[teamnames.index(match.home_team.name)][1] += 1
+            elif home < away:
+                teams[teamnames.index(match.away_team.name)][1] += 1
+            
+            teams[teamnames.index(match.home_team.name)][2] += home
+            teams[teamnames.index(match.away_team.name)][2] += away
+        
+        teams.sort(key=lambda x: x[0])
+        teams.sort(key=lambda x: (x[1], x[2]), reverse=True)
+        print("Team | Wins | Points")
+        print("--------------------")
+        for team in teams:
+            print(f"{team[0]} | {team[1]} | {team[2]}")
