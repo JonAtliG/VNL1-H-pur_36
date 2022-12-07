@@ -56,7 +56,3 @@ class MainMenu:
 
             else:
                 print("Invalid option")
-
-
-run = MainMenu()
-print(run)
