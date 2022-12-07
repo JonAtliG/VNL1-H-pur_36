@@ -37,12 +37,12 @@ class AdminPage():
                 pass
                 #display current tournament information
             elif choice == '6':
-                self.display_info()
+                self.DisplayAll.view_all()
             elif choice == 'q':
                 return
 
             else:
-                input("Invalid option, press enter to continue.")
+                input("Invalid option, click enter to continue.")
     
     def set_host_privileges(self):
         player_id = input("Enter player ID: ")
@@ -54,7 +54,7 @@ class AdminPage():
                 player.host = False
                 self.logic_wrapper.update_player(player)
         else:
-            print(f"{player.name} currently does not have host privileges, do you want to apply them?")
+            print(f"{player.name} currently does not have host privileges, do you want to give them?")
             choice = input("y/n: ")
             if choice == "y":
                 player.host = True
@@ -85,26 +85,3 @@ class AdminPage():
         club.phone = input("Enter phone number: ")
         self.logic_wrapper.add_club(club)
     
-    def display_info(self):
-        while True:
-            print("""
-            1. View only Players
-            2. View Teams with Players
-            3. View Clubs, Teams, Players
-
-            'q' to go back
-            """)
-            choice = input("Select an option: ")
-            if choice == "q":
-                break
-            elif choice == "1":
-                self.display_all.display_all_players(self.logic_wrapper.get_all_players())
-                input("Click enter to continue")
-            elif choice == "2":
-                self.display_all.display_all_teams(self.logic_wrapper.get_all_teams())
-                input("Click enter to continue")
-            elif choice == "3":
-                self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
-                input("Click enter to continue")
-            else:
-                input("Invalid option, click enter to continue")
