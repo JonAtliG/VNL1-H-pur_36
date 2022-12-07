@@ -41,6 +41,16 @@ class CSV_Handler():
             return data
         else:
             raise DataNotFound
+    
+    def get_all_data_by_column_index(self, index: int) -> list:
+        '''Returns a list of all data of at the index column'''
+        data = []
+        with open(self.__file_name, "r") as csv:
+            for line in csv.readlines()[1:]:
+                data.append(line.split(";")[index])
+        if data:
+            return data
+        raise DataNotFound
 
     def add_line(self, line: str) -> None:
         '''Adds a new line to the file'''

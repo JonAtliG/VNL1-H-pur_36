@@ -14,7 +14,7 @@ host index      = 7
 
 class Player_Data():
     def __init__(self):
-        self.file_name = "data/files/players.csv"
+        self.file_name = "data/files/player_data.csv"
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_player_data_from_object(self, player: Player) -> str:

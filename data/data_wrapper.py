@@ -1,6 +1,6 @@
 from data.admin_data import Admin_Data
 from data.club_data import Club_Data
-from data.teams_data import Team_Data
+from data.team_data import Team_Data
 from data.player_data import Player_Data
 from data.league_data import League_Data
 from data.match_data import Match_Data
@@ -16,6 +16,9 @@ class Data_Wrapper:
         self.player_data = Player_Data()
         self.teams_in_tournament = Registered_Teams()
         self.scores = Scores()
+        self.leage_data = League_Data()
+        self.match_data = Match_Data()
+        self.game_data = Game_Data()
    
    ### Admin data 
     def get_admin_id(self):
@@ -72,3 +75,56 @@ class Data_Wrapper:
     
     def add_score(self, game):
         return self.scores.add_score(game)
+    
+    ### League Data
+    def get_league_data_by_name(self, name):
+        pass
+    
+    def get_all_league_data(self):
+        pass
+    
+    def add_leage(self, league):
+        pass
+    
+    def update_leage(self, league):
+        pass
+    
+    ### Match Data
+    def get_match_data_by_id(self, id):
+        pass
+    
+    def get_all_match_data_by_league_name(self, name):
+        pass
+    
+    def get_all_match_data(self):
+        pass
+    
+    def add_match(self, match):
+        pass
+    
+    def update_match(self, match):
+        pass
+    
+    ### Game Data
+    def get_all_game_ids(self):
+        return self.game_data.get_all_game_ids()
+    
+    def get_game_data_by_id(self, id):
+        return self.game_data.get_game_data_by_id(id)
+    
+    def get_all_game_data_by_match_id(self, id):
+        match_data = self.get_match_data_by_id(id)
+        return [self.get_game_data_by_id(id) for id in match_data[3].split(",")]
+    
+    def get_all_game_data(self):
+        pass
+    
+    def get_all_game_data_by_nid(self, nid):
+        pass
+    
+    def add_game(self, game):
+        self.game_data.add_game(game)
+    
+    def update_game(self, game):
+        self.game_data.update_game(game)
+    

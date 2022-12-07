@@ -10,7 +10,7 @@ club name index  = 3
 
 class Team_Data():
     def __init__(self) -> None:
-        self.file_name = "data/files/teams.csv"
+        self.file_name = "data/files/team_data.csv"
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_team_data_from_object(self, team: Team):

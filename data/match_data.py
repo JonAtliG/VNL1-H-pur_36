@@ -4,22 +4,25 @@ from model.match import Match
 class Match_Data():
     def __init__(self) -> None:
         self.file_name = "data/files/match_data.csv"
-        self.CSV_Handler = CSV_Handler(self.file_name)
+        self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_match_data_from_object(self, match: Match):
-        return f"{match.ID};{match.home_team};{match.away_team};{match.games}"
+        return f"{match.ID};{match.home_team.name};{match.away_team.name};{','.join([game.ID for game in match.games])};{match.time}"
     
     def __get_match_index_by_id(self, id: str):
         return self.__CSV_Handler.get_line_index_by_data(id, 0)
     
-    def __get_league_index_by_id(self, id: str):
-        return self.__CSV_Handler.get_line_index_by_data(id, 0)
+    def get_all_match_ids(self):
+        return self.__CSV_Handler.get_all_data_by_column_index(0)
     
-    def get_league_data_by_name(self, name: str) -> list:
-        return self.__CSV_Handler.get_data_by_data(name, 0)
-    
-    def get_all_league_data(self):
-        return self.__CSV_Handler.get_all_data()
+    #def __get_league_index_by_id(self, id: str):
+    #    return self.__CSV_Handler.get_line_index_by_data(id, 0)
+    #
+    #def get_league_data_by_name(self, name: str) -> list:
+    #    return self.__CSV_Handler.get_data_by_data(name, 0)
+    #
+    #def get_all_league_data(self):
+    #    return self.__CSV_Handler.get_all_data()
     
     def update_match(self, match: Match) -> None:
         index = self.__get_match_index_by_id(match.id)

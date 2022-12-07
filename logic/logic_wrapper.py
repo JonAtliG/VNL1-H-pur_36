@@ -2,6 +2,9 @@ from data.data_wrapper import Data_Wrapper
 from model.club import Club
 from model.team import Team
 from model.player import Player
+from model.league import League
+from model.match import Match
+from model.game import Game
 from logic.admin_logic import Admin_Logic
 from logic.club_logic import Club_Logic
 from logic.team_logic import Team_Logic
@@ -91,4 +94,15 @@ class Logic_Wrapper():
     ### Match Logic
     
     ### Game Logic
+    def __get_game_data_by_id(self, id):
+        return self.game_logic.get_game_data_by_id(id)
+    
+    def get_game_by_id(self, id):
+        game_data = self.__get_game_data_by_id(id)
+        home_player = self.get_player_by_id(game_data[1])
+        away_player = self.get_player_by_id(game_data[2])
+        return self.game_logic.create_game_object(game_data, home_player, away_player)
+    
+    def add_game(self, game: Game) -> None:
+        self.game_logic.add_game(game)
 

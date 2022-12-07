@@ -99,9 +99,12 @@ class AdminPage():
                 break
             elif choice == "1":
                 self.display_all.display_all_players(self.logic_wrapper.get_all_players())
+                input("Click enter to continue")
             elif choice == "2":
                 self.display_all.display_all_teams(self.logic_wrapper.get_all_teams())
+                input("Click enter to continue")
             elif choice == "3":
                 self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
+                input("Click enter to continue")
             else:
-                print("Invalid option")
+                input("Invalid option, click enter to continue")
