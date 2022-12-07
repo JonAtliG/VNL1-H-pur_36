@@ -81,7 +81,7 @@ class DisplayAll():
     def display_finished_matches(self, league: League):
         print(league.name)
         for match in league.matches:
-            print(f"{match.home_team} --- {match.away_teame} | {match.date}")
+            print(f"{match.home_team} --- {match.away_team} | {match.date}")
             for game in match.games:
                 if game.played == True:
                     print(f"{game.home_player} ({game.home_player_score}) | {game.away_player} ({game.away_player_score})")
@@ -90,7 +90,7 @@ class DisplayAll():
     def display_unfinished_matches(self, league: League):
         print(league.name)
         for match in league.matches:
-            print(f"{match.home_team} --- {match.away_teame} | {match.date}")
+            print(f"{match.home_team} --- {match.away_team} | {match.date}")
             for game in match.games:
                 if game.played == False:
                     print(f"{game.home_player} ({game.home_player_score}) | {game.away_player} ({game.away_player_score})")
