@@ -11,37 +11,49 @@ class PlayerDefault():
     def __str__(self) -> str:
         pass
 
-
+    
     def options(self):
         print("""
-        1. View player information
-        2. View player matches
-        3. View all teams, clubs, players
+        1. View account information
+        2. View all clubs, teams and players
 
-        'q' to logout
+        'q' Logout
         """)
 
-    def input_prompt(self, ID):
-        self.id = ID
-        
-        while True:
-            self.options()
-            option = input("Enter option: ")
+    def input_prompt(self):      
+            while True:
+                self.options()
+                option = input("Enter option: ")
 
-            if option == '1':
-                self.information(ID)
-                go_back = input("\nEnter 'q' to go back: ")
-                if go_back == 'q':
+                if option == '1':
+                    self.information()
+                    go_back = input("\nPress enter to go back")
+                elif option == '2':
+                    self.view_all()
                     continue
-            elif option == '2':
-                pass
-            elif option == '3':
-                self.DisplayAll.view_all()
-                continue
-            elif option == 'q':
-                return
-            else:
-                invalid = input("Invalid option, press enter to continue: ")
+                elif option == 'q':
+                    return
+                else:
+                    invalid = input("Invalid option, press enter to continue: ")
+
+    def view_all(self):
+        print("""
+        1. View all players
+        2. View all teams and their players
+        3. View all clubs, their teams and all players in each team
+
+        'q' Logout
+        """)
+        player_input = input("Enter option: ")
+        if player_input == '1':
+            self.DisplayAll.display_all_players(self.logic_wrapper.get_all_players())
+        elif player_input == '2':
+            self.DisplayAll.display_all_teams(self.logic_wrapper.get_all_teams())
+        elif player_input == '3':
+            self.DisplayAll.display_all_clubs(self.logic_wrapper.get_all_clubs())
+        elif player_input == 'q':
+            return
+
 
 
     def information(self, ID):
