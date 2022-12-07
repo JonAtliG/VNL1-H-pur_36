@@ -15,8 +15,7 @@ class AdminPage():
         2. Create Player
         3. Create Team
         4. Create Club
-        5. View Tournament
-        6. View all Teams, Clubs and Players
+        5. View all Teams, Clubs and Players
         
         'q' to Logout
         """)
@@ -38,10 +37,7 @@ class AdminPage():
             elif choice == '4':
                 self.create_club()
             elif choice == '5':
-                pass
-                #display current tournament information
-            elif choice == '6':
-                self.display_all.view_all()
+                self.display_all.view_all()                
             elif choice == 'q':
                 return
 
@@ -104,4 +100,3 @@ class AdminPage():
             elif add_team == 'n':
                 break
         self.logic_wrapper.add_club(club)
-    
