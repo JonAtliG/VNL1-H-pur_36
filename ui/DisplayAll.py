@@ -3,6 +3,25 @@
 class DisplayAll():
     def __init__(self, logic_connection) -> None:
         self.logic_wrapper = logic_connection
+
+    def view_all(self):
+        while True:
+            print("""
+            1. View only Players
+            2. View Teams and Players
+            3. View Clubs, Teams, Players
+
+            'q' to go back
+            """)
+            player_input = input("Enter option: ")
+            if player_input == '1':
+                self.display_all_players(self.logic_wrapper.get_all_players())
+            elif player_input == '2':
+                self.display_all_teams(self.logic_wrapper.get_all_teams())
+            elif player_input == '3':
+                self.display_all_clubs(self.logic_wrapper.get_all_clubs())
+            elif player_input == 'q':
+                return
     
     def display_player(self, player):
         print(player)
@@ -14,15 +33,15 @@ class DisplayAll():
     
     def display_team(self, team):
         cap = team.captain
-        print("\n")
-        print("Team:", team.name)
+        print("\nTeam:", team.name)
         print("""
 {}
 
-    {}  {} {}""".format("Team Captain:", cap.name, "ID: ", cap.nid))
+    {}  {} {}""".format("Team Captain:", (cap.name + ","), "ID: ", cap.nid))
         print("\nMembers:\n")
         for player in team.players:
             print("    {}".format(player.name))
+        print("_ "*18)
     
     def display_all_teams(self, teams):
         for team in teams:
@@ -30,9 +49,12 @@ class DisplayAll():
     
     def display_club(self, club):
         print("\nClub:", club.name)
+        print("_"*30)
         for team in club.teams:
             self.display_team(team)
     
     def display_all_clubs(self, clubs):
         for club in clubs:
             self.display_club(club)
+
+    
