@@ -29,7 +29,7 @@ class PlayerDefault():
                     self.information()
                     go_back = input("\nPress enter to go back")
                 elif option == '2':
-                    self.view_all()
+                    self.DisplayAll.view_all()
                     continue
                 elif option == 'q':
                     return
@@ -38,8 +38,7 @@ class PlayerDefault():
 
 
 
-    def information(self, ID):
-        self.logic_wrapper.get_player_by_id(ID)
+    def information(self):
         print("\nPlayer information:\n")
         print("{:<15} {}".format("Team: ", self.player.team))
         #if captain: print("Team Captain of", self.player.team)
@@ -49,4 +48,3 @@ class PlayerDefault():
         print("{:<15} {}".format("Address:", self.player.address))
         print("{:<15} {}".format("Phone:", self.player.phone))
         print("{:<15} {}".format("E-mail:", self.player.mail))
-        
