@@ -1,5 +1,4 @@
 from ui.DisplayAll import DisplayAll
-from logic.logic_wrapper import Logic_Wrapper
 
 class GuestDefault:
 
@@ -41,12 +40,15 @@ class GuestDefault:
                         print(f"League: {league.name}")
                         print("1. View finished matches")
                         print("2. View upcoming matches")
+                        print("3. View leaderboard")
                         print('"q". Go back')
                         choice = input("Select an option: ")
                         if choice == "1":
                             self.display_all.display_finished_matches(league)
                         elif choice == "2":
                             self.display_all.display_unfinished_matches(league)
+                        elif choice == "3":
+                            self.display_all.display_leaderboard(league)
                         elif choice == "q":
                             return
                         else:
