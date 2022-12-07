@@ -25,10 +25,10 @@ class GuestDefault:
             if option == "q":
                 return
             elif option == "1":
-                view_tournament_page = ViewTournament(self.logic_wrapper)
+                pass#view_tournament_page = ViewTournament(self.logic_wrapper)
             elif option == "2":
-                view_matches_page = ViewMatches(self.logic_wrapper)
+                pass#view_matches_page = ViewMatches(self.logic_wrapper)
             elif option == "3":
-                self.display_all.display_all_clubs(self.logic_wrapper.get_all_clubs())
+                self.DisplayAll.view_all()
             else:
                 input("Invalid option, click enter to continue.")
