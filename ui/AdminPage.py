@@ -95,7 +95,7 @@ class AdminPage():
         while True:
             add_team = input("Add team? (y/n)")
             if add_team == 'y':
-                team_name == input("Enter Team Name: ")
+                team_name = input("Enter Team Name: ")
                 # add team to club
             elif add_team == 'n':
                 break
