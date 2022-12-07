@@ -15,6 +15,20 @@ class Game_Logic():
         else:
             new_id = 1
         return new_id
+    
+    def create_game_object(self, data, home_player: Player, away_player: Player):
+        game = Game()
+        game.ID = data[0]
+        game.home_player = home_player
+        game.away_player = away_player
+        game.home_player_score = data[3]
+        game.away_player_score = data[4]
+        game.game_type = data[5]
+        if data[5] == "True":
+            game.played = True
+        else:
+            game.played = False
+        return game
 
     def give_game_list_ids(self, games: list) -> list:
         id = self.__create_unique_id()
@@ -28,21 +42,11 @@ class Game_Logic():
         game.ID = self.__create_unique_id()
         return game
     
-    def create_game_object(self, data, home_player: Player, away_player: Player):
-        game = Game()
-        game.ID = data[0]
-        game.home_player = home_player
-        game.away_player = away_player
-        game.home_player_score = data[3]
-        game.away_player_score = data[4]
-        return game
-    
     def get_game_data_by_id(self, id):
         return self.data_wrapper.get_game_data_by_id(id)
     
     def add_game(self, game: Game) -> str:
         self.data_wrapper.add_game(game)
-        
     
     def update_game(self, game: Game) -> None:
         self.data_wrapper.update_game(game)

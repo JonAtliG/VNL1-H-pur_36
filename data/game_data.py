@@ -23,6 +23,9 @@ class Game_Data():
     def get_game_data_by_id(self, id):
         return self.__CSV_Handler.get_data_by_data(id, 0)
     
+    def get_all_game_data(self):
+        return self.__CSV_Handler.get_all_data()
+    
     def update_game(self, game: Game) -> None:
         index = self.__get_game_index_by_id(game.id)
         game_data = self.__create_game_data_from_object(game)

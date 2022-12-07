@@ -9,7 +9,6 @@ birthdate index = 3
 phone index     = 4
 address index   = 5
 team index      = 6
-host index      = 7
 '''
 
 class Player_Data():
@@ -19,10 +18,6 @@ class Player_Data():
     
     def __create_player_data_from_object(self, player: Player) -> str:
         player_data = ";".join([player.name, player.nid, player.mail, player.birthdate, player.phone, player.address, player.team])
-        if player.host:
-            player_data += ";" + "True"
-        else:
-            player_data += ";" + "False"
         return player_data
     
     def __get_player_index_by_id(self, id: str) -> int:

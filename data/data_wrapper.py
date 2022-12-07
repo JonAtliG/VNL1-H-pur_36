@@ -70,12 +70,6 @@ class Data_Wrapper:
     def add_player(self, player):
         self.player_data.add_player(player)
     
-    def get_scores(self):
-        return self.scores.get_scores()
-    
-    def add_score(self, game):
-        return self.scores.add_score(game)
-    
     ### League Data
     def get_league_data_by_name(self, name) -> list:
         return self.leage_data.get_league_data_by_name(name)
@@ -83,10 +77,10 @@ class Data_Wrapper:
     def get_all_league_data(self) -> list:
         return self.leage_data.get_all_league_data()
     
-    def add_leage(self, league) -> None:
+    def add_league(self, league) -> None:
         self.leage_data.add_league(league)
     
-    def update_leage(self, league) -> None:
+    def update_league(self, league) -> None:
         self.leage_data.update_league(league)
     
     ### Match Data
@@ -124,10 +118,7 @@ class Data_Wrapper:
         return [self.get_game_data_by_id(id) for id in match_data[3].split(",")]
     
     def get_all_game_data(self):
-        pass
-    
-    def get_all_game_data_by_nid(self, nid):
-        pass
+        return self.game_data.get_all_game_data()
     
     def add_game(self, game):
         self.game_data.add_game(game)

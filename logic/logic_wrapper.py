@@ -51,10 +51,10 @@ class Logic_Wrapper():
         self.club_logic.add_team_to_club(club, team)
     
     def update_club(self, club: Club):
-        self.data_wrapper.update_club(club)
+        self.club_logic.update_club(club)
     
     def add_club(self, club: Club) -> None:
-        self.data_wrapper.add_club(club)
+        self.club_logic.add_club(club)
     
     ### Team Logic
     def get_team_by_name(self, name: str) -> Team:
@@ -92,15 +92,48 @@ class Logic_Wrapper():
         return self.player_logic.get_all_players()
     
     def update_player(self, player: Player) -> None:
-        self.data_wrapper.update_player(player)
+        self.player_logic.update_player(player)
     
     def add_player(self, player: Player) -> None:
         '''Recieves player from player_logic and forwards to data layer'''
         self.player_logic.add_player(player)
     
     ### League Logic
+    def __get_league_data_by_name(self, name) -> list:
+        return self.league_logic.get_league_data_by_name(name)
+    
+    def __get_all_league_data(self) -> list:
+        return self.league_logic.get_all_league_data()
+    
+    def __get_league_by_data(self, data) -> League:
+        teams = [self.get_team_by_name(team_name) for team_name in data[1].split(",")]
+        matches = [self.get_match_by_id(match_id) for match_id in data[2].split(",")]
+        return self.league_logic.create_league_object(data, teams, matches)
+    
+    def get_league_by_name(self, name) -> League:
+        return self.__get_league_by_data(self.__get_league_data_by_name(name))
+    
+    def get_all_leagues(self) -> list:
+        return [self.__get_league_by_data(league_data) for league_data in self.__get_all_league_data()]
+        
+    
+    def add_league(self, league: League) -> None:
+        self.league_logic.add_leage(league)
+    
+    def update_league(self, league: League) -> None:
+        self.league_logic.update_league(league)
     
     ### Match Logic
+    def __get_match_data_by_id(self, id):
+        return self.match_logic.get_match_data_by_id(id)
+    
+    def get_match_by_id(self, id):
+        match_data = self.__get_match_data_by_id(id)
+        home_team = self.get_team_by_name(match_data[1])
+        away_team = self.get_team_by_name(match_data[2])
+        games = [self.get_game_by_id(game_id) for game_id in match_data[3].split(",")]
+        return self.match_logic.create_match_object(match_data, home_team, away_team, games)
+        
     
     ### Game Logic
     def __get_game_data_by_id(self, id):
@@ -114,4 +147,7 @@ class Logic_Wrapper():
     
     def add_game(self, game: Game) -> None:
         self.game_logic.add_game(game)
+    
+    def update_game(self, game: Game) -> None:
+        self.game_logic.update_game(game)
 

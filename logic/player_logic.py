@@ -7,10 +7,6 @@ class Player_Logic():
     def create_player_object_with_data(self, data: list) -> Player:
         '''Recieves data and returns Player object'''
         player = Player(data[0], data[1], data[2], data[3], data[4], data[5], data[6])
-        if data[7] == "True":
-            player.host = True
-        else:
-            player.host = False
         return player
     
     def get_player_by_id(self, id):

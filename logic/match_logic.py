@@ -1,4 +1,5 @@
 from model.match import Match
+from model.team import Team
 
 class Match_Logic():
     def __init__(self, data_connection) -> None:
@@ -14,6 +15,17 @@ class Match_Logic():
         else:
             new_id = 1
         return new_id
+    
+    def get_match_data_by_id(self, id):
+        return self.data_wrapper.get_match_by_id(id)
+    
+    def create_match_object(self, data, home_team: Team, away_team: Team, games: list) -> Match:
+        match_object = Match()
+        match_object.home_team = home_team
+        match_object.away_team = away_team
+        match_object.games = games
+        match_object.date = data[4]
+        return match_object
     
     def give_match_list_ids(self, matches: list) -> list:
         id = self.__create_unique_id()
