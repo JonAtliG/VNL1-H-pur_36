@@ -11,7 +11,7 @@ class AdminPage():
     def adminpage_output(self) -> str:
         print("Welcome, Admin")
         print("""Please select one of the options:
-        1. Set host privileges
+        1. Create Host
         2. Create Player
         3. Create Team
         4. Create Club
@@ -26,7 +26,11 @@ class AdminPage():
             self.adminpage_output()
             choice = input("Select an option: ")
             if choice == '1':
-                self.set_host_privileges()
+                #self.set_host_privileges()
+                # enter host ID
+                # add host privileges á bara þetta ID
+                # svo þegar maður log in by id, með Host ID, þá runnar HostDefault
+                pass
             elif choice == '2':
                 self.create_player()
             elif choice == '3':
@@ -42,7 +46,7 @@ class AdminPage():
                 return
 
             else:
-                input("Invalid option, click enter to continue.")
+                input("Invalid option, click enter to continue:")
     
     def set_host_privileges(self):
         player_id = input("Enter player ID: ")
