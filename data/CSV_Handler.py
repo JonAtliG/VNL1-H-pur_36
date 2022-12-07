@@ -15,21 +15,12 @@ class CSV_Handler():
     
     def get_data_by_data(self, data: str, data_index: int) -> list:
         '''Returns a list of the data of the line, if the data given matches the line data at the given index'''
-        #try:
         with open(self.__file_name, "r") as csv:
             for line in csv.readlines()[1:]:
                 split_line = line.strip("\n").split(";")
                 if split_line[data_index] == data:
                     return split_line
-        #            else:
-       #                 print(f"{split_line[data_index]} != {data}")
-       #     raise DataNotFound
-       # except DataNotFound:
-       #     print("EXEPTION")
-       #     print(f"{data}")
-        #    with open(self.__file_name, "r") as csv:
-        #        for line in csv.readlines():
-        #            print(line.split(";")[0])
+        raise DataNotFound
     
     def get_line_index_by_data(self, data: str, data_index: int) -> int:
         '''Returns the index of the line if the data given matches the line data at the given index'''
