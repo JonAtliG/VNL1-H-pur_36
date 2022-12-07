@@ -12,7 +12,6 @@ class DisplayAll():
             3. View all clubs, their teams and all players in each team
 
             'q' Logout
-        """)
             """)
             player_input = input("Enter option: ")
             if player_input == '1':
