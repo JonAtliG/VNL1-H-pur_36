@@ -11,13 +11,13 @@ class HostDefault():
     Please select an option:
         1. Create League
         2. Choose League    
-        'q' to logout.
+        'q' to logout
               """)
     
     def __league_options(self):
         print("""
     Please select an option:
-        1. Create League
+        1. Change match
         2. Add teams to League
         3. View matches played
         4. View teams and players
@@ -52,7 +52,13 @@ class HostDefault():
             self.__options()
             option = input("Select an option: ")
             if option == '1':
-                self.__create_league()
+                #self.__create_league()
+                print("1.") # match_ID 1
+                print("2.") #match_ID 2
+                match_option = input("Enter number of match to change: ")
+                # þarf að breyta því einhvern veginn svo að 
+                # númer verði fleiri eftir hversu margar match eru...
+                # og þarf með fleiri "if option == 1" setningar...
             elif option == '2':
                 pass
             elif option == '3':
