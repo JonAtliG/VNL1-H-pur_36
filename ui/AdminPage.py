@@ -71,9 +71,18 @@ class AdminPage():
     
     def create_team(self):
         team = Team()
-        team.name = input("Enter team name: ")
-        team.captain = input("Enter Team Captain ID: ")
-        team.players = input("Add member (by ID): ")
+        team.name = input("Enter Team Name: ")
+        while True:
+            add_player = input("Add player? (y/n): ")
+            if add_player == 'y':
+                player_id = input("Enter player ID: ")
+                #self.logic_wrapper.add_player_to_team(_______)
+            elif add_player == 'n':
+                break
+            #team = self.logic_wrapper.add_player_to_team(team, self.logic_wrapper.get_player_by_id(add_player))
+            self.displayall.display_team(team)
+        team.captain = self.logic_wrapper.get_player_by_id(input("Make Team Captain (ID): "))
+        #add captain privileges to ID
         team.club = input("Add team Club: ")
         self.logic_wrapper.add_team(team)
         # Eftir að gera check á hvort captain, players og club eru til
