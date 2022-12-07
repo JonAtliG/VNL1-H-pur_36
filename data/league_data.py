@@ -8,8 +8,14 @@ class League_Data():
 
     def __create_league_data_from_object(self, league: League):
         league_data = f"{league.name};"
-        league_data += ",".join([team.name for team in league.teams]) + ";"
-        league_data += ",".join([match.ID for match in league.matches]) + ";"
+        if league.teams == "No teams":
+            league_data +="No teams;"
+        else:
+            league_data += ",".join([team.name for team in league.teams]) + ";"
+        if league.matches == "No matches":
+            league_data += "No matches;"
+        else:
+            league_data += ",".join([match.ID for match in league.matches]) + ";"
         league_data += f"{league.start_date};{league.end_date}"
         return league_data
 

@@ -106,8 +106,14 @@ class Logic_Wrapper():
         return self.league_logic.get_all_league_data()
     
     def __get_league_by_data(self, data) -> League:
-        teams = [self.get_team_by_name(team_name) for team_name in data[1].split(",")]
-        matches = [self.get_match_by_id(match_id) for match_id in data[2].split(",")]
+        if data[1] != "No teams":
+            teams = [self.get_team_by_name(team_name) for team_name in data[1].split(",")]
+        else:
+            teams = data[1]
+        if data[2] == "No matches":
+            matches = data[2]
+        else:
+            matches = [self.get_match_by_id(match_id) for match_id in data[2].split(",")]
         return self.league_logic.create_league_object(data, teams, matches)
     
     def get_league_by_name(self, name) -> League:

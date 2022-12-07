@@ -5,12 +5,20 @@ class HostDefault():
     def __init__(self, logic_connection) -> None:
         self.logic_wrapper = logic_connection
         self.display_information = DisplayAll(logic_connection)
-
+    
     def __options(self):
         print("""
     Please select an option:
         1. Create League
-        2. Change match
+        2. Choose League    
+        'q' to logout.
+              """)
+    
+    def __league_options(self):
+        print("""
+    Please select an option:
+        1. Create League
+        2. Add teams to League
         3. View matches played
         4. View teams and players
         'q' to logout.""")
@@ -22,9 +30,24 @@ class HostDefault():
         league.start_date = input("Enter start date for the league (dd:mm:yy): ")
         league.end_date = input("Enter end date for the league (dd:mm:yy): ")
         self.logic_wrapper.add_league(league)
-        
-
+    
+    def __display_league_names(self) -> None:
+        [print(league.name) for league in self.logic_wrapper.get_all_leagues()]
+    
     def input_prompt(self):
+        while True:
+            self.__options()
+            option = input("Select an option: ")
+            if option == "q":
+                return
+            elif option == "1":
+                self.__create_league()
+            elif option == "2":
+                self.__display_league_names()
+            else:
+                input("Invalid option, click enter to continue.")
+    
+    def League_input_prompt(self):
         while True:
             self.__options()
             option = input("Select an option: ")
