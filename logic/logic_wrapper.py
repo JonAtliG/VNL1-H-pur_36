@@ -209,3 +209,12 @@ class Logic_Wrapper():
 
     def validate_number(self, number, high) -> bool:
         return self.input_validator.number(number, high)
+    
+    def validate_mail(self, mail) -> bool:
+        return self.input_validator.mail(mail)
+    
+    def validate_phone(self, phone) -> bool:
+        return self.input_validator.phone(phone)
+    
+    def validate_birthday(self, birthday) -> bool:
+        return self.input_validator.birthday(birthday)

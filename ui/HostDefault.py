@@ -39,13 +39,25 @@ class HostDefault():
         while True:
 
             name = input("Enter a name for the league: ")
-            if name not in [league.name for league in leagues]:
+            if name not in [league.name for league in leagues] and self.__logic_wrapper.validate_name(name):
                 break
+            elif not self.__logic_wrapper.validate_name(name):
+                input("Invalid name, click enter to continue.")
             else:
                 input("League name already exists, click enter to continue.")
         league.name = name
-        league.start_date = input("Enter start date for the league (dd:mm:yy): ")
-        league.end_date = input("Enter end date for the league (dd:mm:yy): ")
+        while True:
+            league.start_date = input("Enter start date for the league (dd.mm.yyyy): ")
+            if self.__logic_wrapper.validate_date(league.start_date):
+                break
+            else:
+                input("Invalid date, click enter to continue.")
+        while True:
+            league.end_date = input("Enter end date for the league (dd.mm.yyyy): ")
+            if self.__logic_wrapper.validate_date(league.end_date):
+                break
+            else:
+                input("Invalid date, click enter to continue.")
         self.host.league_names.append(league.name)
         self.__logic_wrapper.add_league(league)
         self.__logic_wrapper.update_host(self.host)

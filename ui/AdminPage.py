@@ -49,24 +49,73 @@ class AdminPage():
     
     def create_host(self):
         host = Host()
-        host.name = input("Enter Host Name: ")
-        host.id = input("Enter Host ID: ")
+        while True:
+            host.name = input("Enter Host Name: ")
+            if self.logic_wrapper.validate_name(host.name):
+                break
+            else:
+                input("Invalid name, click enter to continue.")
+        while True:
+            host.id = input("Enter Host ID: ")
+            if self.logic_wrapper.validate_id(host.id):
+                break
+            else:
+                input("Invalid ID, click enter to continue.")
+                
         self.logic_wrapper.add_host(host)
     
     def create_player(self):
         player = Player()
-        player.name = input("Player name: ")
-        player.nid = input("Player SSN: ")
-        player.mail = input("E-mail: ")
-        player.birthdate = input("Birthdate: ")
-        player.phone = input("Phone number: ")
-        player.address = input("Address: ")
+        while True:
+            player.name = input("Enter Player Name: ")
+            if self.logic_wrapper.validate_name(player.name):
+                break
+            else:
+                input("Invalid name, click enter to continue.")
+        while True:
+            player.nid = input("Player SSN: ")
+            if self.logic_wrapper.validate_id(player.nid):
+                break
+            else:
+                input("Invalid SSN, click enter to continue.")
+        while True:
+            player.mail = input("E-mail: ")
+            if self.logic_wrapper.validate_mail(player.mail):
+                break
+            else:
+                input("Invalid e-mail, click enter to continue.")
+        while True:
+            player.phone = input("Phone number: ")
+            if self.logic_wrapper.validate_phone(player.phone):
+                break
+            else:
+                input("Invalid phone number, click enter to continue.")
+        
+        while True:
+            player.birthdate = input("Birthdate: ")
+            if self.logic_wrapper.validate_birthday(player.birthdate):
+                break
+            else:
+                input("Invalid birthdate, click enter to continue.")
+        
+        while True:
+            player.address = input("Address: ")
+            if self.logic_wrapper.validate_name(player.address):
+                break
+            else:
+                input("Invalid address, click enter to continue.")
+
         player.team = "No team"
         self.logic_wrapper.add_player(player)
     
     def create_team(self):
         team = Team()
-        team.name = input("Enter Team Name: ")
+        while True:
+            team.name = input("Enter Team Name: ")
+            if self.logic_wrapper.validate_name(team.name):
+                break
+            else:
+                input("Invalid name, click enter to continue.")
         
         c = 0
         while c < 4:
@@ -99,9 +148,24 @@ class AdminPage():
     
     def create_club(self):
         club = Club()
-        club.name = input("Enter club name: ")
-        club.address = input("Enter address: ")
-        club.phone = input("Enter phone number: ")
+        while True:
+            club.name = input("Enter club name: ")
+            if self.logic_wrapper.validate_name(club.name):
+                break
+            else:
+                input("Invalid name, click enter to continue.")
+        while True:
+            club.address = input("Enter address: ")
+            if self.logic_wrapper.validate_name(club.address):
+                break
+            else:
+                input("Invalid address, click enter to continue.")
+        while True:
+            club.phone = input("Enter phone number: ")
+            if self.logic_wrapper.validate_phone(club.phone):
+                break
+            else:
+                input("Invalid phone number, click enter to continue.")
         club.teams = []
         while True:
             add_team = input("Add team? (y/n)")
