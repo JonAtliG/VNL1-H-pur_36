@@ -80,17 +80,18 @@ class AdminPage():
                 if player.team != "No team":
                     print("Person is already in a team")
                     c -= 1
+                else:
+                    player.team = team.name
                 if c == 0:
                     team.captain = player
                 else:
                     team.players.append(player)
-                player.team = team.name
-                self.logic_wrapper.update_player(player)
             except:
                 print("Player not found")
                 c -= 1
             c += 1
-        
+        self.logic_wrapper.update(team.captain)
+        [self.logic_wrapper.update(player) for player in team.players]
         self.logic_wrapper.add_team(team)
     
     def create_club(self):
