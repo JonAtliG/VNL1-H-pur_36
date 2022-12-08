@@ -58,12 +58,15 @@ class MainMenu:
                 else:
                     input("Incorrect ID, click enter to continue")
             elif selection == "4":
-                ID_input = input("\nEnter ID: ")
-                player = self.logic_wrapper.get_player_by_id(ID_input)
-                if player.host == True:
-                    host = HostDefault(self.logic_wrapper, ID_input)
-                    host.input_prompt()
-                else:
-                    input("ID does not have host privileges, click enter to continue")
+                self.host_login()
             else:
                 print("Invalid option")
+
+    def host_login(self):
+        ID_input = input("\nEnter host ID: ")
+        if self.logic_wrapper.verify_host_id(ID_input):
+            host = HostDefault(ID_input, self.logic_wrapper)
+            host.input_prompt()
+        else:
+            input("Host ID does not exist, click enter to continue.")
+            return

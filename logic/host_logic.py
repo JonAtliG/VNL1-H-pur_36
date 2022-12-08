@@ -8,7 +8,7 @@ class Host_logic():
         host = Host()
         host.id = data[0]
         host.name = data[1]
-        if host.league_names == "No leagues":
+        if data[2] == "No leagues":
             host.league_names = data[2]
         else:
             host.league_names = [name for name in data[2].split(",")]

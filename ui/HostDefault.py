@@ -2,9 +2,10 @@ from ui.DisplayAll import DisplayAll
 from model.league import League
 
 class HostDefault():
-    def __init__(self, logic_connection) -> None:
-        self.logic_wrapper = logic_connection
+    def __init__(self, hostid, logic_connection) -> None:
+        self.__logic_wrapper = logic_connection
         self.display_information = DisplayAll(logic_connection)
+        self.host = self.__logic_wrapper.get_host_by_id(hostid)
     
     def __options(self):
         print("""
@@ -16,7 +17,7 @@ class HostDefault():
     
     def __create_league(self):
         league = League()
-        leagues = self.logic_wrapper.get_all_leagues()
+        leagues = self.__logic_wrapper.get_all_leagues()
         
         while True: 
             name = input("Enter a name for the league: ")
@@ -29,10 +30,14 @@ class HostDefault():
         league.end_date = input("Enter end date for the league (dd:mm:yy): ")
         league.matchcount = input("Enter number of matches for the league: ")
         league.phone_number = input("Enter phone number for the league: ")
-        self.logic_wrapper.add_league(league)
+        self.__logic_wrapper.add_league(league)
     
     def __display_league_names(self) -> None:
-        leagues = self.logic_wrapper.get_all_leagues()
+        if self.host.league_names == "No leagues":
+            input("You have no leagues, click enter to continue.")
+            return
+        print([name for name in self.host.league_names])
+        leagues = [self.__logic_wrapper.get_league_by_name(name) for name in self.host.league_names]
         c = 1
         for league in leagues:
             print(f"{c}. {league.name}")

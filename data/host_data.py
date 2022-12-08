@@ -15,9 +15,6 @@ class Host_Data():
             host_data += ",".join(host.league_names)
         return host_data
     
-    def __get_all_host_data(self):
-        return self.__CSV_Handler.get_all_data()
-    
     def verify_id(self, id):
         try:
             self.__CSV_Handler.get_data_by_data(id, 0)
