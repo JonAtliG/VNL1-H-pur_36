@@ -22,6 +22,16 @@ class CSV_Handler():
                     return split_line
         raise DataNotFound
     
+    def get_data_by_data_in_data(self, data: str, data_index: int):
+        '''Returns a list of data of the line, if the data matches a data in the data of the line data at the given index'''
+        with open(self.__file_name, "r") as csv:
+            for line in csv.readlines()[1:]:
+                split_line = line.strip("\n").split(";")
+                for data_in_data in split_line[data_index].split(","):
+                    if data_in_data == data:
+                        return split_line
+        raise DataNotFound
+    
     def get_line_index_by_data(self, data: str, data_index: int) -> int:
         '''Returns the index of the line if the data given matches the line data at the given index'''
         with open(self.__file_name, "r") as csv:

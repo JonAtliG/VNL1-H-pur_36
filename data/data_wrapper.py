@@ -1,4 +1,5 @@
 from data.admin_data import Admin_Data
+from data.host_data import Host_Data
 from data.club_data import Club_Data
 from data.team_data import Team_Data
 from data.player_data import Player_Data
@@ -11,6 +12,7 @@ from data.scores import Scores
 class Data_Wrapper:
     def __init__(self):
         self.admin_data = Admin_Data()
+        self.host_data = Host_Data()
         self.club_data = Club_Data()
         self.team_data = Team_Data()
         self.player_data = Player_Data()
@@ -26,6 +28,22 @@ class Data_Wrapper:
     
     def get_admin_password(self):
         return self.admin_data.get_password()
+    
+    ### Host data
+    def verify_host_id(self, id):
+        return self.host_data.verify_id(id)
+    
+    def get_host_data_by_id(self, id):
+        return self.host_data.get_host_data_by_id(id)
+    
+    def get_host_data_by_league_name(self, name):
+        return self.host_data.get_host_data_by_league_name(name)
+    
+    def add_host(self, host):
+        self.host_data.add_host(host)
+    
+    def update_host(self, host):
+        self.host_data.update_host(host)
     
     ### Club data
     def get_club_data_by_name(self, name: str) -> list:

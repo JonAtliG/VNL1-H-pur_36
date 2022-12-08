@@ -30,7 +30,7 @@ class GuestDefault:
                 for league in leagues:
                     print(f"{c}. {league.name}")
                     c += 1
-                print(f"'q' to go back: "')
+                print(f"'q' to go back: ")
                 league_choice = input("Select a league: ")
                 if league_choice == "q":
                     return
