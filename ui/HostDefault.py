@@ -8,6 +8,22 @@ class HostDefault():
         self.display_information = DisplayAll(logic_connection)
         self.host = self.__logic_wrapper.get_host_by_id(hostid)
     
+    def input_prompt(self):
+        while True:
+                self.__options()
+                option = input("Select an option: ")
+                if option == "q":
+                    return
+                elif option == "1":
+                    print("_"*30)
+                    self.__create_league()
+                elif option == "2":
+                    print("_"*30)
+                    self.__league_options()
+                else:
+                    input("Invalid option, click enter to continue.")
+
+    
     def __options(self):
         print("""
     Please select an option:
@@ -62,7 +78,7 @@ class HostDefault():
                     if choice == "1":
                         league = self.__create_match(league)
                     elif choice == "2":
-                        pass
+                        self.__change_time_of_upcoming_match(league)
                     elif choice == "3":
                         pass
                     elif choice == "4":
@@ -122,6 +138,29 @@ class HostDefault():
                     return league
                 print("Invalid choice.")
     
+    def __change_time_of_upcoming_match(self, league):
+        if league.matches == "No matches":
+            input("League has no matches, click enter to continue.")
+        else:
+            upcoming_matches = []
+            for match in league.matches:
+                if match.games[0].played:
+                    upcoming_matches.append(match)
+            if len(upcoming_matches) > 0:
+                for i, match in enumerate(upcoming_matches):
+                    print(f"{i+1}. {match.home_team.name} vs {match.away_team.name} - Date: {match.date}")
+                choice = input("Choose a match to change its date or quit (q): ")
+                if choice: # input validator
+                    match_to_change = upcoming_matches[int(choice)-1]
+                    new_date = input("Enter a new date for the match (dd.mm.yyyy): ") # input validator
+                    match_to_change.date = new_date
+                    self.__logic_wrapper.update_match(match_to_change)
+                    input("Match has been updated, click enter to continue.")
+                    
+                
+                
+                
+    
     def __choose_team_to_add(self, league):
         while True:
             teams = self.__logic_wrapper.get_all_teams()
@@ -159,19 +198,3 @@ class HostDefault():
                         else:
                             return league
                 input("Invalid choice!, click enter to continue")
-
-    def input_prompt(self):
-        while True:
-                self.__options()
-                option = input("Select an option: ")
-                if option == "q":
-                    return
-                elif option == "1":
-                    print("_"*30)
-                    self.__create_league()
-                elif option == "2":
-                    print("_"*30)
-                    self.__league_options()
-                else:
-                    input("Invalid option, click enter to continue.")
-
