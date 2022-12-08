@@ -6,6 +6,7 @@ from model.league import League
 from model.match import Match
 from model.game import Game
 from logic.admin_logic import Admin_Logic
+from logic.host_logic import Host_logic
 from logic.club_logic import Club_Logic
 from logic.team_logic import Team_Logic
 from logic.player_logic import Player_Logic
@@ -18,6 +19,7 @@ class Logic_Wrapper():
     def __init__(self):
         self.data_wrapper = Data_Wrapper()
         self.admin_logic = Admin_Logic(self.data_wrapper)
+        self.host_logic = Host_logic(self.data_wrapper)
         self.club_logic = Club_Logic(self.data_wrapper)
         self.team_logic = Team_Logic(self.data_wrapper)
         self.player_logic = Player_Logic(self.data_wrapper)
@@ -31,6 +33,22 @@ class Logic_Wrapper():
     
     def verify_admin_password(self, password):
         return self.admin_logic.verify_Password(password)
+    
+    ### Host logic
+    def verify_host_id(self, id):
+        return self.host_logic.verify_id(id)
+    
+    def get_host_by_id(self, id):
+        return self.host_logic.get_host_by_id(id)
+    
+    def get_host_by_league_name(self, name):
+        return self.host_logic.get_host_by_league_name(name)
+    
+    def add_host(self, host):
+        self.host_logic.add_host(host)
+    
+    def update_host(self, host):
+        self.host_logic.update_host
     
     ### Club Logic
     def __get_club_data_by_name(self, name: str) -> list:
