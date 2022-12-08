@@ -10,6 +10,7 @@ class AdminPage():
         self.display_all = DisplayAll(logic_connection)
 
     def adminpage_output(self) -> str:
+        print("_"*30)
         print("Welcome, Admin")
         print("""Please select one of the options:
         1. Create Host

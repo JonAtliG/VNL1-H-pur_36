@@ -15,7 +15,8 @@ class MainMenu:
     #    return f"{self.menu_output()}{self.input_prompt()}"
 
     def menu_output(self):
-        print("Welcome")
+        print("_"*30)
+        print("          Welcome!!!")
         print("_"*30)
         print("""
     Select an option:
@@ -24,8 +25,8 @@ class MainMenu:
         2. Login as Guest
         3. Admin Login
         4. Host Login
-        'q' to quit""")
-        print("_"*30)
+        'q' to quit
+        """)
 
     def input_prompt(self):
         while True:
@@ -35,6 +36,7 @@ class MainMenu:
             if selection == "q":
                 quit()
             elif selection == "1":
+                print("_"*30)
                 ID_input = input("\nEnter ID: ")
                 ID_player = self.logic_wrapper.get_player_by_id(ID_input)
                 if ID_player.captain == True:
@@ -43,9 +45,11 @@ class MainMenu:
                     player = PlayerDefault(self.logic_wrapper, ID_input)
                 player.input_prompt()
             elif selection == '2':
+                print("_"*30)
                 guest_default_page = GuestDefault(self.logic_wrapper)
                 guest_default_page.input_prompt()
             elif selection == "3":
+                print("_"*30)
                 Admin_login = input("\nEnter admin ID: ")
                 if self.logic_wrapper.verify_admin_id(Admin_login):
                     Admin_password = input("Password: ")
@@ -58,6 +62,7 @@ class MainMenu:
                 else:
                     input("Incorrect ID, click enter to continue")
             elif selection == "4":
+                print("_"*30)
                 self.host_login()
             else:
                 print("Invalid option")

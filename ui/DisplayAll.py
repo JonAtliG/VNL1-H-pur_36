@@ -8,12 +8,13 @@ class DisplayAll():
 
     def view_all(self):
         while True:
+            print("_"*30)
             print("""
             1. View all players
             2. View all teams and their players
             3. View all clubs, their teams and all players in each team
 
-            'q' Logout
+            'q' Go back
             """)
             player_input = input("Enter option: ")
             if player_input == '1':
@@ -77,10 +78,12 @@ class DisplayAll():
             return
         print(league.name)
         for match in league.matches:
-            print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
+            print("-"*50)
+            print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
+            print()
             for game in match.games:
                 if game.played == True:
-                    print(f"{','.join(player.name for player in game.home_players)} ({game.home_player_score}) | {','.join(player.name for player in game.away_players)} ({game.away_player_score})")
+                    print(f"({game.home_player_score})\t{', '.join(player.name for player in game.home_players)}\t| {', '.join(player.name for player in game.away_players)}\t({game.away_player_score})")
     
 
     def display_unfinished_matches(self, league: League):
@@ -89,10 +92,12 @@ class DisplayAll():
             return
         print(league.name)
         for match in league.matches:
-            print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
+            print("-"*50)
+            print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
+            print()
             for game in match.games:
                 if game.played == False:
-                    print(f"{','.join(player.name for player in game.home_players)} ({game.home_player_score}) | {','.join(player.name for player in game.away_players)} ({game.away_player_score})")
+                    print(f"({game.home_player_score})\t{', '.join(player.name for player in game.home_players)}\t| {', '.join(player.name for player in game.away_players)}\t({game.away_player_score})")
     
 
     def display_leaderboard(self, league: League):

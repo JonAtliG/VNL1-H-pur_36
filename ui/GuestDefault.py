@@ -13,28 +13,30 @@ class GuestDefault:
     def options(self):
         print("""
         Select an option:
-            1. View League
+            1. View Leagues
             2. View Clubs, Teams and Players
-            'q' to logout
+            'q' Logout
             """)
 
     def input_prompt(self):
         while True:
             self.options()
-            option = input("Select an option: ")
+            option = input("Enter option: ")
             if option == "q":
                 return
             elif option == "1":
                 leagues = self.logic_wrapper.get_all_leagues()
                 c = 1
+                print("_"*30)
                 for league in leagues:
                     print(f"{c}. {league.name}")
                     c += 1
-                print(f"'q' to go back: ")
+                print(f"'q'. Go back: ")
                 league_choice = input("Select a league: ")
                 if league_choice == "q":
                     return
                 elif league_choice.isdigit():
+                    print("_"*30)
                     if 1 <= int(league_choice) < c:
                         league = leagues[int(league_choice) - 1]
                         host = self.logic_wrapper.get_host_by_league_name(league.name)
