@@ -7,7 +7,7 @@ class Game_Data():
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_game_data_from_object(self, game: Game):
-        game_data = f"{game.ID};"
+        game_data = f"{game.id};"
         game_data += ",".join(player.id for player in game.home_players) + ";"
         game_data += ",".join(player.id for player in game.away_players) + ";"
         game_data += f"{game.home_player_score};{game.away_player_score};{game.game_type};{game.player_count};{game.played}"

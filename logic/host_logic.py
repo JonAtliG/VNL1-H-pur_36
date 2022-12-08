@@ -8,7 +8,10 @@ class Host_logic():
         host = Host()
         host.id = data[0]
         host.name = data[1]
-        host.league_names = [name for name in data[2].split(",")]
+        if host.league_names == "No leagues":
+            host.league_names = data[2]
+        else:
+            host.league_names = [name for name in data[2].split(",")]
         return host
     
     def verify_id(self, id):

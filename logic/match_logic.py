@@ -3,7 +3,7 @@ from model.team import Team
 
 class Match_Logic():
     def __init__(self, data_connection) -> None:
-        self.data_wrapper = data_connection
+        self.__data_wrapper = data_connection
     
     def __get_int_list_of_all_ids(self):
         return [int(id) for id in self.data_wrapper.get_all_match_ids()]
@@ -17,7 +17,7 @@ class Match_Logic():
         return new_id
     
     def get_match_data_by_id(self, id):
-        return self.data_wrapper.get_match_data_by_id(id)
+        return self.__data_wrapper.get_match_data_by_id(id)
     
     def create_match_object(self, data, home_team: Team, away_team: Team, games: list) -> Match:
         match_object = Match()
@@ -40,3 +40,9 @@ class Match_Logic():
         id = self.__create_unique_id()
         match.ID = id
         return match
+    
+    def add_match(self, match: Match) -> None:
+        self.__data_wrapper.add_match(match)
+    
+    def update_match(self, match: Match) -> None:
+        self.__data_wrapper.update_match(match)
