@@ -54,9 +54,10 @@ class MainMenu:
                 else:
                     input("Incorrect ID, click enter to continue")
             elif selection == "4":
-                player = self.logic_wrapper.get_player_by_id(input("\nEnter ID: "))
+                ID_input = input("\nEnter ID: ")
+                player = self.logic_wrapper.get_player_by_id(ID_input)
                 if player.host == True:
-                    host = HostDefault(self.logic_wrapper)
+                    host = HostDefault(self.logic_wrapper, ID_input)
                     host.input_prompt()
                 else:
                     input("ID does not have host privileges, click enter to continue")
