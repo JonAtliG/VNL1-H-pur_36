@@ -8,8 +8,14 @@ class Game_Data():
     
     def __create_game_data_from_object(self, game: Game):
         game_data = f"{game.id};"
-        game_data += ",".join(player.id for player in game.home_players) + ";"
-        game_data += ",".join(player.id for player in game.away_players) + ";"
+        if game.home_players == "No players":
+            game_data += "No players;"
+        else:
+            game_data += ",".join(player.nid for player in game.home_players) + ";"
+        if game.away_players == "No players":
+            game_data += "No players"
+        else:
+            game_data += ",".join(player.nid for player in game.away_players) + ";"
         game_data += f"{game.home_player_score};{game.away_player_score};{game.game_type};{game.player_count};{game.played}"
         return game_data
     

@@ -6,12 +6,12 @@ class Match_Logic():
         self.__data_wrapper = data_connection
     
     def __get_int_list_of_all_ids(self):
-        return [int(id) for id in self.data_wrapper.get_all_match_ids()]
+        return [int(id) for id in self.__data_wrapper.get_all_match_ids()]
     
     def __create_unique_id(self):
         currentids = self.__get_int_list_of_all_ids()
         if len(currentids) > 0:
-            new_id = {max(currentids) + 1}
+            new_id = max(currentids) + 1
         else:
             new_id = 1
         return new_id
@@ -32,7 +32,7 @@ class Match_Logic():
         id = self.__create_unique_id()
         matches_with_ids = []
         for match in matches:
-            match.ID = id
+            match.id = id
             matches_with_ids.append(match)
             id += 1
         return matches_with_ids

@@ -40,7 +40,7 @@ class GuestDefault:
                     if 1 <= int(league_choice) < c:
                         league = leagues[int(league_choice) - 1]
                         host = self.logic_wrapper.get_host_by_league_name(league.name)
-                        print(f"League: {league.name} ({host.name}, phonenumber: {league.phone_number})")
+                        print(f"League: {league.name} ({host.name})")
                         print("1. View finished matches")
                         print("2. View upcoming matches")
                         print("3. View leaderboard")

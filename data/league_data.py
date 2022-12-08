@@ -15,7 +15,7 @@ class League_Data():
         if league.matches == "No matches":
             league_data += "No matches;"
         else:
-            league_data += ",".join([match.id for match in league.matches]) + ";"
+            league_data += ",".join([str(match.id) for match in league.matches]) + ";"
         league_data += f"{league.start_date};{league.end_date}"
         return league_data
 
