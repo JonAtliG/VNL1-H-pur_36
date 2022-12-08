@@ -32,6 +32,40 @@ class HostDefault():
         league.phone_number = input("Enter phone number for the league: ")
         self.__logic_wrapper.add_league(league)
     
+    def __choose_team_to_add(self, league):
+        while True:
+            teams = self.__logic_wrapper.get_all_teams()
+            teams_not_in_league = []
+            team_names_in_league = [team.name for team in league.teams]
+            c = 1
+            for team in teams:
+                if team.name in team_names_in_league:
+                    pass
+                else:
+                    teams_not_in_league.append(team)
+                    print(f"{c}. {team.name}")
+                    c += 1
+            if team_names_in_league == []:
+                input("There are no teams to add to the league, click enter to continue.")
+                return
+            while True:
+                choice = input("Choose a team to add or quit (q): ")
+                if choice == "q":
+                    return league
+                elif not choice.isdigit():
+                    input("Invalid choice!, click enter to continue")
+                elif not 0 < int(choice) < c:
+                    input("Invalid choice!, click enter to continue")
+                else:
+                    team_to_add = teams_not_in_league[int(choice)-1]
+                    league.teams.append(team_to_add)
+                    self.__logic_wrapper.update_league(league)
+                    again = input(f"{team_to_add.name} has been added to {league.name}, do you want to add another team? (y/n): ")
+                    if again == "y":
+                        break
+                    else:
+                        return league
+
     def input_prompt(self):
         while True:
                 self.__options()
@@ -41,7 +75,7 @@ class HostDefault():
                 elif option == "1":
                     self.__create_league()
                 elif option == "2":
-                    self.__display_league_names()
+                    self.league_options()
                 else:
                     input("Invalid option, click enter to continue.")
     
@@ -76,8 +110,7 @@ class HostDefault():
                 elif choice == "3":
                     pass
                 elif choice == "4":
-                    teams = self.__logic_wrapper.get_all_teams()
-                    
+                    league = self.__choose_team_to_add(league)
                 elif choice == "q":
                     return
                 else:

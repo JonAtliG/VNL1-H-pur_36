@@ -21,6 +21,7 @@ class Match_Logic():
     
     def create_match_object(self, data, home_team: Team, away_team: Team, games: list) -> Match:
         match_object = Match()
+        match_object.id = data[0]
         match_object.home_team = home_team
         match_object.away_team = away_team
         match_object.games = games
@@ -38,7 +39,7 @@ class Match_Logic():
 
     def give_match_id(self, match: Match) -> Match:
         id = self.__create_unique_id()
-        match.ID = id
+        match.id = id
         return match
     
     def add_match(self, match: Match) -> None:
