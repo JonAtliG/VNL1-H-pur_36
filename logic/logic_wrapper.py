@@ -157,7 +157,12 @@ class Logic_Wrapper():
         away_team = self.get_team_by_name(match_data[2])
         games = [self.get_game_by_id(game_id) for game_id in match_data[3].split(",")]
         return self.match_logic.create_match_object(match_data, home_team, away_team, games)
-        
+    
+    def add_match(self, match: Match) -> None:
+        self.match_logic.add_match(match)
+    
+    def update_match(self, match: Match) -> None:
+        self.match_logic.update_match(match)
     
     ### Game Logic
     def __get_game_data_by_id(self, id):
