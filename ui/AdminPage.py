@@ -116,7 +116,6 @@ class AdminPage():
                     print("Enter 'q' to quit")
                     if team_name == "q":
                         break
-                    team = self.logic_wrapper.get_team_by_name(team_name)
                     try:
                         team = self.logic_wrapper.get_team_by_name(team_name)
                         if team.club != "No club":
@@ -130,6 +129,13 @@ class AdminPage():
                         print("Team not found")
                         c -= 1
                     c += 1
+            
             elif add_team == 'n':
                 break
+
+            try:
+                if team_name == "q":
+                    break
+            except:
+                pass
         self.logic_wrapper.add_club(club)
