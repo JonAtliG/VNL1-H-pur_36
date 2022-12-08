@@ -47,7 +47,7 @@ class HostDefault():
                 print(f"League: {league.name}")
                 print("1. Plan upcoming matches")
                 print("2. Change time of an upcoming match")
-                print("3. Change score of a match")
+                print("3. Change score of a finished match")
                 print("4. Add teams to league")
                 print('"q". Go back')
                 choice = input("Select an option: ")
