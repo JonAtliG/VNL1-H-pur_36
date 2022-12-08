@@ -64,8 +64,6 @@ class AdminPage():
     def create_team(self):
         team = Team()
         team.name = input("Enter Team Name: ")
-        team.players = []
-        team.club = "No club"
         
         c = 0
         while c < 4:

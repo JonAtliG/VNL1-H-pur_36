@@ -140,7 +140,6 @@ class Logic_Wrapper():
     def get_all_leagues(self) -> list:
         return [self.__get_league_by_data(league_data) for league_data in self.__get_all_league_data()]
         
-    
     def add_league(self, league: League) -> None:
         self.league_logic.add_leage(league)
     
