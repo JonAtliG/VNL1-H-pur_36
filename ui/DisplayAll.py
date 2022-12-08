@@ -71,13 +71,6 @@ class DisplayAll():
 #game.away_player_score
 #game.played
 
-    def display_league_matches(self,league: League):
-        print(league.name)
-        for match in league.matches:
-            print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
-            for game in match.games:
-                print(f"{game.home_player.name} - {game.home_player_score} - {game.away_player_score} - {game.away_player.name}")
-
     def display_finished_matches(self, league: League):
         if league.matches == []:
             print("No matches have been played yet")
@@ -87,7 +80,7 @@ class DisplayAll():
             print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
             for game in match.games:
                 if game.played == True:
-                    print(f"{game.home_player.name} ({game.home_player_score}) | {game.away_player.name} ({game.away_player_score})")
+                    print(f"{','.join(player.name for player in game.home_players)} ({game.home_player_score}) | {','.join(player.name for player in game.away_players)} ({game.away_player_score})")
     
 
     def display_unfinished_matches(self, league: League):
@@ -99,7 +92,7 @@ class DisplayAll():
             print(f"{match.home_team.name} --- {match.away_team.name} | {match.date}")
             for game in match.games:
                 if game.played == False:
-                    print(f"{game.home_player.name} ({game.home_player_score}) | {game.away_player.name} ({game.away_player_score})")
+                    print(f"{','.join(player.name for player in game.home_players)} ({game.home_player_score}) | {','.join(player.name for player in game.away_players)} ({game.away_player_score})")
     
 
     def display_leaderboard(self, league: League):
