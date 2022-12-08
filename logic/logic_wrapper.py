@@ -1,4 +1,5 @@
 from data.data_wrapper import Data_Wrapper
+from model.host import Host
 from model.club import Club
 from model.team import Team
 from model.player import Player
@@ -13,7 +14,6 @@ from logic.player_logic import Player_Logic
 from logic.league_logic import League_Logic
 from logic.match_logic import Match_Logic
 from logic.game_logic import Game_Logic
-
 
 class Logic_Wrapper():
     def __init__(self):
@@ -35,20 +35,20 @@ class Logic_Wrapper():
         return self.admin_logic.verify_Password(password)
     
     ### Host logic
-    def verify_host_id(self, id):
+    def verify_host_id(self, id: str) -> bool:
         return self.host_logic.verify_id(id)
     
-    def get_host_by_id(self, id):
+    def get_host_by_id(self, id: str) -> Host:
         return self.host_logic.get_host_by_id(id)
     
-    def get_host_by_league_name(self, name):
+    def get_host_by_league_name(self, name: str) -> Host:
         return self.host_logic.get_host_by_league_name(name)
     
-    def add_host(self, host):
+    def add_host(self, host: Host):
         self.host_logic.add_host(host)
     
-    def update_host(self, host):
-        self.host_logic.update_host
+    def update_host(self, host: Host):
+        self.host_logic.update_host(host)
     
     ### Club Logic
     def __get_club_data_by_name(self, name: str) -> list:
@@ -165,13 +165,12 @@ class Logic_Wrapper():
     
     def get_game_by_id(self, id):
         game_data = self.__get_game_data_by_id(id)
-        home_player = self.get_player_by_id(game_data[1])
-        away_player = self.get_player_by_id(game_data[2])
-        return self.game_logic.create_game_object(game_data, home_player, away_player)
+        home_players = [self.get_player_by_id(player_id) for player_id in game_data[1].split(",")]
+        away_players = [self.get_player_by_id(player_id) for player_id in game_data[2].split(",")]
+        return self.game_logic.create_game_object(game_data, home_players, away_players)
     
     def add_game(self, game: Game) -> None:
         self.game_logic.add_game(game)
     
     def update_game(self, game: Game) -> None:
         self.game_logic.update_game(game)
-
