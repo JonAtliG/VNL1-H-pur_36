@@ -7,12 +7,11 @@ class Game_Data():
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_game_data_from_object(self, game: Game):
-        data = f"{game.ID};{game.home_player.nid};{game.away_player.nid};{game.home_player_score};{game.away_player_score};{game.game_type};"
-        if game.played == True:
-            data += "True"
-        else:
-            data += "False"
-        return data
+        game_data = f"{game.ID};"
+        game_data += ",".join(player.id for player in game.home_players) + ";"
+        game_data += ",".join(player.id for player in game.away_players) + ";"
+        game_data += f"{game.home_player_score};{game.away_player_score};{game.game_type};{game.player_count};{game.played}"
+        return game_data
     
     def __get_game_index_by_id(self, id: str):
         return self.__CSV_Handler.get_line_index_by_data(id, 0)

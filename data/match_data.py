@@ -7,7 +7,7 @@ class Match_Data():
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_match_data_from_object(self, match: Match):
-        return f"{match.ID};{match.home_team.name};{match.away_team.name};{','.join([game.ID for game in match.games])};{match.time}"
+        return f"{match.ID};{match.home_team.name};{match.away_team.name};{','.join([game.ID for game in match.games])};{match.date}"
     
     def __get_match_index_by_id(self, id: str):
         return self.__CSV_Handler.get_line_index_by_data(id, 0)
