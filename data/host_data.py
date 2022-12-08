@@ -8,11 +8,14 @@ class Host_Data():
     
     def __make_host_data_from_object(self, host: Host) -> str:
         host_data = f"{host.id};"
-        host_data += f"{host.name}"
+        host_data += f"{host.name};"
         if host.league_names == "No leagues":
             host_data += "No leagues"
         else:
-            host_data += ",".join(host.league_names)
+            if type(host.league_names) == str:
+                host_data += host.league_names
+            elif type(host.league_names) == list:
+                host_data += ",".join(host.league_names)
         return host_data
     
     def __get_all_host_data(self):

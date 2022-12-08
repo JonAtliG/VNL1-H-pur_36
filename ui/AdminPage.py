@@ -2,6 +2,7 @@ from ui.DisplayAll import DisplayAll
 from model.player import Player
 from model.club import Club
 from model.team import Team
+from model.host import Host
 
 class AdminPage():
     def __init__(self, logic_connection) -> None:
@@ -25,6 +26,7 @@ class AdminPage():
             self.adminpage_output()
             choice = input("Select an option: ")
             if choice == '1':
+                self.create_host()
                 #self.set_host_privileges()
                 # enter host ID
                 # add host privileges á bara þetta ID
@@ -44,21 +46,12 @@ class AdminPage():
             else:
                 input("Invalid option, click enter to continue:")
     
-    def set_host_privileges(self):
-        player_id = input("Enter player ID: ")
-        player = self.logic_wrapper.get_player_by_id(player_id)
-        if player.host:
-            print(f"{player.name} currently has host privileges, do you want to remove them?")
-            choice = input("y/n: ")
-            if choice == "y":
-                player.host = False
-                self.logic_wrapper.update_player(player)
-        else:
-            print(f"{player.name} currently does not have host privileges, do you want to give them?")
-            choice = input("y/n: ")
-            if choice == "y":
-                player.host = True
-                self.logic_wrapper.update_player(player)
+    def create_host(self):
+        host = Host()
+        host.name = input("Enter Host Name: ")
+        host.id = input("Enter Host ID: ")
+        host.league_names = input("Enter League Name: ")
+        self.logic_wrapper.add_host(host)
     
     def create_player(self):
         player = Player()
@@ -66,37 +59,70 @@ class AdminPage():
         player.nid = input("Player SSN: ")
         player.mail = input("E-mail: ")
         player.birthdate = input("Birthdate: ")
-        player.team = input("Team name: ")
+        player.team = "No team"
         self.logic_wrapper.add_player(player)
     
     def create_team(self):
         team = Team()
         team.name = input("Enter Team Name: ")
-        while True:
-            add_player = input("Add player? (y/n): ")
-            if add_player == 'y':
-                player_id = input("Enter player ID: ")
-                #self.logic_wrapper.add_player_to_team(_______)
-            elif add_player == 'n':
+        team.players = []
+        team.club = "No club"
+        
+        c = 0
+        while c < 4:
+            
+            if c== 0:
+                inp = input("Enter Captain ID: ")
+            else:
+                inp = input("Enter player ID: ")
+            print("Enter 'q' to quit")
+            if inp == "q":
                 break
-            #team = self.logic_wrapper.add_player_to_team(team, self.logic_wrapper.get_player_by_id(add_player))
-            self.displayall.display_team(team)
-        team.captain = self.logic_wrapper.get_player_by_id(input("Make Team Captain (ID): "))
-        #add captain privileges to ID
-        team.club = input("Add team Club: ")
+            try:
+                player = self.logic_wrapper.get_player_by_id(inp)
+                if player.team != "No team":
+                    print("Person is already in a team")
+                    c -= 1
+                if c == 0:
+                    team.captain = player
+                else:
+                    team.players.append(player)
+                player.team = team.name
+                self.logic_wrapper.update_player(player)
+            except:
+                print("Player not found")
+                c -= 1
+            c += 1
+        
         self.logic_wrapper.add_team(team)
-        # Eftir að gera check á hvort captain, players og club eru til
     
     def create_club(self):
         club = Club()
         club.name = input("Enter club name: ")
         club.address = input("Enter address: ")
         club.phone = input("Enter phone number: ")
+        club.teams = []
         while True:
             add_team = input("Add team? (y/n)")
             if add_team == 'y':
-                team_name = input("Enter Team Name: ")
-                # add team to club
+                while True:
+                    try:
+                        counter = int(input("How many teams do you want to add? (1-3): "))
+                        if 1 <= counter <= 3:
+                            break
+                    except:
+                        print("Invalid input")
+                
+                c = 0
+                while c < counter:
+                    team_name = input("Enter Team Name: ")
+                    try:
+                        team = self.logic_wrapper.get_team_by_name(team_name)
+                        club.teams.append(team)
+                    except:
+                        print("Team not found")
+                        c -= 1
+                    c += 1
             elif add_team == 'n':
                 break
         self.logic_wrapper.add_club(club)
