@@ -50,7 +50,6 @@ class AdminPage():
         host = Host()
         host.name = input("Enter Host Name: ")
         host.id = input("Enter Host ID: ")
-        host.league_names = input("Enter League Name: ")
         self.logic_wrapper.add_host(host)
     
     def create_player(self):
@@ -107,8 +106,8 @@ class AdminPage():
             if add_team == 'y':
                 while True:
                     try:
-                        counter = int(input("How many teams do you want to add? (1-3): "))
-                        if 1 <= counter <= 3:
+                        counter = int(input("How many teams do you want to add? (1-5): "))
+                        if 1 <= counter <= 5:
                             break
                     except:
                         print("Invalid input")
@@ -116,9 +115,19 @@ class AdminPage():
                 c = 0
                 while c < counter:
                     team_name = input("Enter Team Name: ")
+                    print("Enter 'q' to quit")
+                    if team_name == "q":
+                        break
+                    team = self.logic_wrapper.get_team_by_name(team_name)
                     try:
                         team = self.logic_wrapper.get_team_by_name(team_name)
-                        club.teams.append(team)
+                        if team.club != "No club":
+                            print("Team is already in a club")
+                            c -= 1
+                        else:
+                            team.club = club.name
+                            self.logic_wrapper.update_team(team)
+                            club.teams.append(team)
                     except:
                         print("Team not found")
                         c -= 1
