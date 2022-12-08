@@ -32,7 +32,20 @@ class HostDefault():
         league.phone_number = input("Enter phone number for the league: ")
         self.__logic_wrapper.add_league(league)
     
-    def __display_league_names(self) -> None:
+    def input_prompt(self):
+        while True:
+                self.__options()
+                option = input("Select an option: ")
+                if option == "q":
+                    return
+                elif option == "1":
+                    self.__create_league()
+                elif option == "2":
+                    self.__display_league_names()
+                else:
+                    input("Invalid option, click enter to continue.")
+    
+    def league_options(self) -> None:
         if self.host.league_names == "No leagues":
             input("You have no leagues, click enter to continue.")
             return
@@ -63,23 +76,12 @@ class HostDefault():
                 elif choice == "3":
                     pass
                 elif choice == "4":
-                    pass
+                    teams = self.__logic_wrapper.get_all_teams()
+                    
                 elif choice == "q":
                     return
                 else:
                     input("Invalid option, click enter to continue.")
         else:
             input("Invalid option, click enter to continue.")
-    
-    def input_prompt(self):
-        while True:
-            self.__options()
-            option = input("Select an option: ")
-            if option == "q":
-                return
-            elif option == "1":
-                self.__create_league()
-            elif option == "2":
-                self.__display_league_names()
-            else:
-                input("Invalid option, click enter to continue.")
+
