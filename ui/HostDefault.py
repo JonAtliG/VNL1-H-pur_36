@@ -37,6 +37,8 @@ class HostDefault():
         league.name = name
         league.start_date = input("Enter start date for the league (dd:mm:yy): ")
         league.end_date = input("Enter end date for the league (dd:mm:yy): ")
+        league.matchcount = input("Enter number of matches for the league: ")
+        league.phone_number = input("Enter phone number for the league: ")
         self.logic_wrapper.add_league(league)
     
     def __display_league_names(self) -> None:
@@ -53,9 +55,10 @@ class HostDefault():
             if 1 <= int(league_choice) < c:
                 league = leagues[int(league_choice) - 1]
                 print(f"League: {league.name}")
-                print("1.")
-                print("2.")
-                print("3.")
+                print("1. Plan upcoming matches")
+                print("2. Change time of an upcoming match")
+                print("3. Change score of a match")
+                print("4. Add teams to league")
                 print('"q". Go back')
                 choice = input("Select an option: ")
                 if choice == "1":
@@ -63,6 +66,8 @@ class HostDefault():
                 elif choice == "2":
                     pass
                 elif choice == "3":
+                    pass
+                elif choice == "4":
                     pass
                 elif choice == "q":
                     return
@@ -83,22 +88,3 @@ class HostDefault():
                 self.__display_league_names()
             else:
                 input("Invalid option, click enter to continue.")
-    
-    def League_input_prompt(self):
-        while True:
-            self.__options()
-            option = input("Select an option: ")
-            if option == '1':
-                self.__create_league()
-            elif option == '2':
-                pass
-            elif option == '3':
-                league = self.logic_wrapper.get_all_leagues()[0]
-                self.display_information.display_league_matches(league)
-            elif option == '4':
-                pass
-            elif option == 'q':
-                return
-            else:
-                input("Invalid option, click enter to continue")
-        
