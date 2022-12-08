@@ -58,6 +58,8 @@ class AdminPage():
         player.nid = input("Player SSN: ")
         player.mail = input("E-mail: ")
         player.birthdate = input("Birthdate: ")
+        player.phone = input("Phone number: ")
+        player.address = input("Address: ")
         player.team = "No team"
         self.logic_wrapper.add_player(player)
     
@@ -90,8 +92,8 @@ class AdminPage():
                 print("Player not found")
                 c -= 1
             c += 1
-        self.logic_wrapper.update(team.captain)
-        [self.logic_wrapper.update(player) for player in team.players]
+        self.logic_wrapper.update_player(team.captain)
+        [self.logic_wrapper.update_player(player) for player in team.players]
         self.logic_wrapper.add_team(team)
     
     def create_club(self):
