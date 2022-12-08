@@ -6,7 +6,7 @@ class Game_Logic():
         self.__data_wrapper = data_connection
     
     def __get_int_list_of_all_ids(self):
-        return [int(id) for id in self.data_wrapper.get_all_game_ids()]
+        return [int(id) for id in self.__data_wrapper.get_all_game_ids()]
     
     def __create_unique_id(self):
         currentids = self.__get_int_list_of_all_ids()
@@ -16,7 +16,22 @@ class Game_Logic():
             new_id = 1
         return new_id
     
-    def create_game_object(self, data, home_players: list, away_players: list):
+    def __give_game_list_ids(self, games: list) -> list:
+        id = self.__create_unique_id()
+        updated_games = []
+        for game in games:
+            game.id = id
+            id += 1
+            updated_games.append(game)
+        return updated_games
+    
+    def __create_new_game(self, gametype: str, playercount: int) -> Game:
+        game = Game()
+        game.game_type = gametype
+        game.player_count = playercount
+        return game
+    
+    def create_game_object(self, data, home_players: list, away_players: list) -> Game:
         game = Game()
         game.id = data[0]
         game.home_players = home_players
@@ -30,21 +45,23 @@ class Game_Logic():
         else:
             game.played = False
         return game
-
-    def give_game_list_ids(self, games: list) -> list:
-        id = self.__create_unique_id()
-        updated_games = []
-        for game in games:
-            game.id = id
-            id += 1
-            updated_games.append(game) # possibly not a needed list testing needed!
-        return updated_games
+    
+    def create_games_for_match(self) -> list:
+        games = []
+        gametypes = ["501", "301", "Cricket"]
+        for i in range(4):
+            games.append(self.__create_new_game(gametypes[0], 1))
+        for i in range(2):
+            games.append(self.__create_new_game(gametypes[i+1], 2))
+        games.append(self.__create_new_game(gametypes[0], 4))
+        games = self.__give_game_list_ids(games)
+        return games
     
     def give_game_id(self, game: Game) -> Game:
         game.id = self.__create_unique_id()
         return game
     
-    def get_game_data_by_id(self, id):
+    def get_game_data_by_id(self, id) -> list:
         return self.__data_wrapper.get_game_data_by_id(id)
     
     def add_game(self, game: Game) -> str:

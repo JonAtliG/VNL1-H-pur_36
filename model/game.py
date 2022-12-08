@@ -1,5 +1,5 @@
 class Game():
-    def __init__(self, id = None, home_players = None, away_players = None, home_player_score = None, away_player_score = None, game_type = None, player_count: int = None, played = False) -> None:
+    def __init__(self, id = None, home_players = "No players", away_players = "No players", home_player_score = 0, away_player_score = 0, game_type = None, player_count: int = None, played = False) -> None:
         self.id = id
         self.home_players = home_players
         self.away_players = away_players

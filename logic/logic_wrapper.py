@@ -150,6 +150,13 @@ class Logic_Wrapper():
     def __get_match_data_by_id(self, id):
         return self.match_logic.get_match_data_by_id(id)
     
+    def give_match_id(self, match: Match) -> Match:
+        return self.match_logic.give_match_id(match)
+    
+    def give_match_games(self, match: Match) -> Match:
+        match.games = self.__create_games_for_match()
+        return match
+    
     def get_match_by_id(self, id):
         match_data = self.__get_match_data_by_id(id)
         home_team = self.get_team_by_name(match_data[1])
@@ -167,10 +174,19 @@ class Logic_Wrapper():
     def __get_game_data_by_id(self, id):
         return self.game_logic.get_game_data_by_id(id)
     
+    def __create_games_for_match(self) -> list:
+        return self.game_logic.create_games_for_match()
+    
     def get_game_by_id(self, id):
         game_data = self.__get_game_data_by_id(id)
-        home_players = [self.get_player_by_id(player_id) for player_id in game_data[1].split(",")]
-        away_players = [self.get_player_by_id(player_id) for player_id in game_data[2].split(",")]
+        if game_data[1] == "No players":
+            home_players = game_data[1]
+        else:
+            home_players = [self.get_player_by_id(player_id) for player_id in game_data[1].split(",")]
+        if game_data[2] == "No players":
+            away_players = game_data[2]
+        else:
+            away_players = [self.get_player_by_id(player_id) for player_id in game_data[2].split(",")]
         return self.game_logic.create_game_object(game_data, home_players, away_players)
     
     def add_game(self, game: Game) -> None:
