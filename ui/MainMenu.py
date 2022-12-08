@@ -36,7 +36,11 @@ class MainMenu:
                 quit()
             elif selection == "1":
                 ID_input = input("\nEnter ID: ")
-                player = PlayerDefault(self.logic_wrapper, ID_input)
+                ID_player = self.logic_wrapper.get_player_by_id(ID_input)
+                if ID_player.captain == True:
+                    player = CaptainDefault(self.logic_wrapper, ID_input)
+                else:
+                    player = PlayerDefault(self.logic_wrapper, ID_input)
                 player.input_prompt()
             elif selection == '2':
                 guest_default_page = GuestDefault(self.logic_wrapper)
