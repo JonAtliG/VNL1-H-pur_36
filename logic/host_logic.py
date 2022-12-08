@@ -9,6 +9,7 @@ class Host_logic():
         host.id = data[0]
         host.name = data[1]
         host.league_names = [name for name in data[2].split(",")]
+        return host
     
     def verify_id(self, id):
         return self.__data_wrapper.verify_host_id(id)
