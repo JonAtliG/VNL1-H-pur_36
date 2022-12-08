@@ -30,14 +30,14 @@ class GuestDefault:
                 for league in leagues:
                     print(f"{c}. {league.name}")
                     c += 1
-                print(f"'q' to go back: "')
+                print(f"'q' to go back: ")
                 league_choice = input("Select a league: ")
                 if league_choice == "q":
                     return
                 elif league_choice.isdigit():
                     if 1 <= int(league_choice) < c:
                         league = leagues[int(league_choice) - 1]
-                        print(f"League: {league.name}")
+                        print(f"League: {league.name} ({league.phone_number})")
                         print("1. View finished matches")
                         print("2. View upcoming matches")
                         print("3. View leaderboard")

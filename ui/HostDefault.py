@@ -14,16 +14,6 @@ class HostDefault():
         'q' to logout.
               """)
     
-    def __league_options(self):
-        print("""
-    Please select an option:
-        1. Create League
-        2. Add teams to League
-        3. View matches played
-        4. View teams and players
-        'q' to logout.""")
-        print("_"*25)
-    
     def __create_league(self):
         league = League()
         leagues = self.logic_wrapper.get_all_leagues()
