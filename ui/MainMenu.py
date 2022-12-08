@@ -36,7 +36,11 @@ class MainMenu:
                 quit()
             elif selection == "1":
                 ID_input = input("\nEnter ID: ")
-                player = PlayerDefault(self.logic_wrapper, ID_input)
+                ID_player = self.logic_wrapper.get_player_by_id(ID_input)
+                if ID_player.captain == True:
+                    player = CaptainDefault(self.logic_wrapper, ID_input)
+                else:
+                    player = PlayerDefault(self.logic_wrapper, ID_input)
                 player.input_prompt()
             elif selection == '2':
                 guest_default_page = GuestDefault(self.logic_wrapper)
@@ -54,9 +58,12 @@ class MainMenu:
                 else:
                     input("Incorrect ID, click enter to continue")
             elif selection == "4":
-                host = HostDefault(self.logic_wrapper)
-                host.input_prompt()
-                    
-
+                ID_input = input("\nEnter ID: ")
+                player = self.logic_wrapper.get_player_by_id(ID_input)
+                if player.host == True:
+                    host = HostDefault(self.logic_wrapper, ID_input)
+                    host.input_prompt()
+                else:
+                    input("ID does not have host privileges, click enter to continue")
             else:
                 print("Invalid option")
