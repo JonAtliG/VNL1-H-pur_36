@@ -24,7 +24,8 @@ class Game_Logic():
         game.home_player_score = int(data[3])
         game.away_player_score = int(data[4])
         game.game_type = data[5]
-        if data[6] == "True":
+        game.player_count = int(data[6])
+        if data[7] == "True":
             game.played = True
         else:
             game.played = False
