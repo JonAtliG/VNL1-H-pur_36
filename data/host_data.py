@@ -12,10 +12,7 @@ class Host_Data():
         if host.league_names == "No leagues":
             host_data += "No leagues"
         else:
-            if type(host.league_names) == str:
-                host_data += host.league_names
-            elif type(host.league_names) == list:
-                host_data += ",".join(host.league_names)
+            host_data += ",".join(host.league_names)
         return host_data
     
     def __get_all_host_data(self):
