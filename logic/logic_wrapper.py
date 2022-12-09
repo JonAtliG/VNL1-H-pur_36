@@ -197,9 +197,9 @@ class Logic_Wrapper():
         self.game_logic.update_game(game)
 
 
-    #input validator
-    def validate_date(self, date) -> bool:
-        return self.input_validator.date(date)
+    # Input validator
+    def validate_date(self, date, low = None, high = None) -> bool:
+        return self.input_validator.date(date, low, high)
 
     def validate_name(self, name) -> bool:
         return self.input_validator.name(name)
