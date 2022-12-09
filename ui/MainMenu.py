@@ -9,11 +9,7 @@ class MainMenu:
     
     def __init__(self) -> None:
         '''Constructor for MainMenu class.'''
-        self.logic_wrapper = Logic_Wrapper()
-
-    #def __str__(self) -> str:
-    #    
-    #    return f"{self.menu_output()}{self.input_prompt()}"
+        self.__logic_wrapper = Logic_Wrapper()
 
     def menu_output(self):
         '''Displays the menu for the MainMenu class.'''
@@ -42,23 +38,23 @@ class MainMenu:
             elif selection == "1":
                 print("_"*30)
                 ID_input = input("\nEnter ID: ")
-                if self.logic_wrapper.is_valid_player_id(ID_input):
-                    player = PlayerDefault(self.logic_wrapper, ID_input)
+                if self.__logic_wrapper.is_valid_player_id(ID_input):
+                    player = PlayerDefault(self.__logic_wrapper, ID_input)
                     player.input_prompt()
                 else:
                     input("Invalid ID, click enter to continue. ")
                     
             elif selection == '2':
                 print("_"*30)
-                guest_default_page = GuestDefault(self.logic_wrapper)
+                guest_default_page = GuestDefault(self.__logic_wrapper)
                 guest_default_page.input_prompt()
             elif selection == "3":
                 print("_"*30)
                 Admin_login = input("\nEnter admin ID: ")
-                if self.logic_wrapper.verify_admin_id(Admin_login):
+                if self.__logic_wrapper.verify_admin_id(Admin_login):
                     Admin_password = input("Password: ")
-                    if self.logic_wrapper.verify_admin_password(Admin_password):
-                        admin_page = AdminPage(self.logic_wrapper)
+                    if self.__logic_wrapper.verify_admin_password(Admin_password):
+                        admin_page = AdminPage(self.__logic_wrapper)
                         admin_page.input_prompt()
                         continue
                     else:
@@ -74,8 +70,8 @@ class MainMenu:
     def host_login(self):
         '''Prompts the user to enter a host ID.'''
         ID_input = input("\nEnter host ID: ")
-        if self.logic_wrapper.verify_host_id(ID_input):
-            host = HostDefault(ID_input, self.logic_wrapper)
+        if self.__logic_wrapper.verify_host_id(ID_input):
+            host = HostDefault(ID_input, self.__logic_wrapper)
             host.input_prompt()
         else:
             input("Host ID does not exist, click enter to continue.")

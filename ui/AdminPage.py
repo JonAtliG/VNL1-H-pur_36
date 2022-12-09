@@ -1,4 +1,4 @@
-from ui.DisplayAll import DisplayAll
+from ui.Display_Information import Display_Information
 from model.player import Player
 from model.club import Club
 from model.team import Team
@@ -7,8 +7,8 @@ from model.host import Host
 class AdminPage():
     def __init__(self, logic_connection) -> None:
         '''Constructor for AdminPage class.'''
-        self.logic_wrapper = logic_connection
-        self.display_all = DisplayAll(logic_connection)
+        self.__logic_wrapper = logic_connection
+        self.__display_information = Display_Information(logic_connection)
 
     def adminpage_output(self) -> str:
         '''Prints the admin page menu.'''
@@ -47,9 +47,9 @@ class AdminPage():
             elif choice == '5':
                 self.add_team_to_club()
             elif choice == '6':
-                self.display_all.view_all()
+                self.__display_information.view_all()
             elif choice == "7":
-                self.display_all.display_leagues()
+                self.__display_information.display_leagues()
             elif choice == 'q':
                 return
 
@@ -61,71 +61,71 @@ class AdminPage():
         host = Host()
         while True:
             host.name = input("Enter Host Name: ")
-            if self.logic_wrapper.validate_name(host.name):
+            if self.__logic_wrapper.validate_name(host.name):
                 break
             else:
                 input("Invalid name, click enter to continue.")
         while True:
             host.id = input("Enter Host ID: ")
-            if self.logic_wrapper.validate_id(host.id):
+            if self.__logic_wrapper.validate_id(host.id):
                 break
             else:
                 input("Invalid ID, click enter to continue.")
                 
-        self.logic_wrapper.add_host(host)
+        self.__logic_wrapper.add_host(host)
     
     def create_player(self):
         '''Creates a player object and adds it to the data layer.'''
         player = Player()
         while True:
             player.name = input("Enter Player Name: ")
-            if self.logic_wrapper.validate_name(player.name):
+            if self.__logic_wrapper.validate_name(player.name):
                 break
             else:
                 input("Invalid name, click enter to continue.")
         while True:
             player.nid = input("Player SSN: ")
-            if self.logic_wrapper.validate_id(player.nid):
+            if self.__logic_wrapper.validate_id(player.nid):
                 break
             else:
                 input("Invalid SSN, click enter to continue.")
         while True:
             player.mail = input("E-mail: ")
-            if self.logic_wrapper.validate_mail(player.mail):
+            if self.__logic_wrapper.validate_mail(player.mail):
                 break
             else:
                 input("Invalid e-mail, click enter to continue.")
         while True:
             player.phone = input("Phone number: ")
-            if self.logic_wrapper.validate_phone(player.phone):
+            if self.__logic_wrapper.validate_phone(player.phone):
                 break
             else:
                 input("Invalid phone number, click enter to continue.")
         
         while True:
             player.birthdate = input("Birthdate (dd.mm.yyyy): ")
-            if self.logic_wrapper.validate_birthday(player.birthdate):
+            if self.__logic_wrapper.validate_birthday(player.birthdate):
                 break
             else:
                 input("Invalid birthdate, click enter to continue.")
         
         while True:
             player.address = input("Address: ")
-            if self.logic_wrapper.validate_name(player.address):
+            if self.__logic_wrapper.validate_name(player.address):
                 break
             else:
                 input("Invalid address, click enter to continue.")
 
         player.team = "No team"
         input("Player created, click enter to continue.")
-        self.logic_wrapper.add_player(player)
+        self.__logic_wrapper.add_player(player)
     
     def create_team(self):
         '''Creates a team object and adds it to the data layer.'''
         team = Team()
         while True:
             team.name = input("Enter Team Name: ")
-            if self.logic_wrapper.validate_name(team.name):
+            if self.__logic_wrapper.validate_name(team.name):
                 break
             else:
                 input("Invalid name, click enter to continue.")
@@ -139,7 +139,7 @@ class AdminPage():
             if inp == "c":
                 return
             try:
-                player = self.logic_wrapper.get_player_by_id(inp)
+                player = self.__logic_wrapper.get_player_by_id(inp)
                 if player.team != "No team":
                     print("Person is already in a team")
                     c -= 1
@@ -153,28 +153,28 @@ class AdminPage():
                 print("Player not found")
                 c -= 1
             c += 1
-        self.logic_wrapper.update_player(team.captain)
-        [self.logic_wrapper.update_player(player) for player in team.players]
-        self.logic_wrapper.add_team(team)
+        self.__logic_wrapper.update_player(team.captain)
+        [self.__logic_wrapper.update_player(player) for player in team.players]
+        self.__logic_wrapper.add_team(team)
     
     def create_club(self):
         '''Creates a club object and adds it to the data layer.'''
         club = Club()
         while True:
             club.name = input("Enter club name: ")
-            if self.logic_wrapper.validate_name(club.name):
+            if self.__logic_wrapper.validate_name(club.name):
                 break
             else:
                 input("Invalid name, click enter to continue.")
         while True:
             club.address = input("Enter address: ")
-            if self.logic_wrapper.validate_name(club.address):
+            if self.__logic_wrapper.validate_name(club.address):
                 break
             else:
                 input("Invalid address, click enter to continue.")
         while True:
             club.phone = input("Enter phone number: ")
-            if self.logic_wrapper.validate_phone(club.phone):
+            if self.__logic_wrapper.validate_phone(club.phone):
                 break
             else:
                 input("Invalid phone number, click enter to continue.")
@@ -197,13 +197,13 @@ class AdminPage():
                     if team_name == "q":
                         break
                     try:
-                        team = self.logic_wrapper.get_team_by_name(team_name)
+                        team = self.__logic_wrapper.get_team_by_name(team_name)
                         if team.club != "No club":
                             print("Team is already in a club")
                             c -= 1
                         else:
                             team.club = club.name
-                            self.logic_wrapper.update_team(team)
+                            self.__logic_wrapper.update_team(team)
                             club.teams.append(team)
                     except:
                         print("Team not found")
@@ -218,20 +218,20 @@ class AdminPage():
                     break
             except:
                 pass
-        self.logic_wrapper.add_club(club)
+        self.__logic_wrapper.add_club(club)
 
     def add_team_to_club(self):
-        clubs =  self.logic_wrapper.get_all_clubs()
+        clubs =  self.__logic_wrapper.get_all_clubs()
         c = 1
         for club in clubs:
             print(f"{c}. {club.name}")
             c += 1
         while True:
             choice = input("Choose a club to add a team to, or quit(q): ")
-            if self.logic_wrapper.validate_number(choice, c):
+            if self.__logic_wrapper.validate_number(choice, c):
                 club = clubs[int(choice) - 1]
                 #try:
-                teams = self.logic_wrapper.get_teams_not_in_club()
+                teams = self.__logic_wrapper.get_teams_not_in_club()
                 #except:
                 #    input("There are no teams that are not in a club, click enter to go back")
                 #    return
@@ -243,12 +243,12 @@ class AdminPage():
                     choice = input("Choose a team too add or quit (q): ")
                     if choice == "q":
                         return
-                    elif self.logic_wrapper.validate_number(choice, c):
+                    elif self.__logic_wrapper.validate_number(choice, c):
                         team = teams[int(choice) - 1]
-                        team = self.logic_wrapper.set_team_club(team, club.name)
-                        club = self.logic_wrapper.add_team_to_club(club, team)
-                        self.logic_wrapper.update_club(club)
-                        self.logic_wrapper.update_team(team)
+                        team = self.__logic_wrapper.set_team_club(team, club.name)
+                        club = self.__logic_wrapper.add_team_to_club(club, team)
+                        self.__logic_wrapper.update_club(club)
+                        self.__logic_wrapper.update_team(team)
                         input("Team has been added to the club, click enter to continue.")
                         return
             elif choice == "q":

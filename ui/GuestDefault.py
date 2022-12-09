@@ -1,11 +1,11 @@
-from ui.DisplayAll import DisplayAll
+from ui.Display_Information import Display_Information
 
 class GuestDefault:
 
     def __init__(self, logic_connection) -> None:
         '''Constructor for GuestDefault class.'''
-        self.logic_wrapper = logic_connection
-        self.display_all = DisplayAll(logic_connection)
+        self.__logic_wrapper = logic_connection
+        self.__display_information = Display_Information(logic_connection)
 
 
     def __str__(self) -> str:
@@ -29,8 +29,8 @@ class GuestDefault:
             if option == "q":
                 return
             elif option == "1":
-                self.display_all.display_leagues()
+                self.__display_information.display_leagues()
             elif option == "2":
-                self.display_all.view_all()
+                self.__display_information.view_all()
             else:
                 input("Invalid option, click enter to continue.")

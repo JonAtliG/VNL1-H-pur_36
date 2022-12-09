@@ -2,7 +2,7 @@ from model.league import League
 from model.match import Match
 from model.game import Game
 
-class DisplayAll():
+class Display_Information():
     def __init__(self, logic_connection) -> None:
         '''Constructor for DisplayAll class.'''
         self.logic_wrapper = logic_connection
@@ -80,13 +80,21 @@ class DisplayAll():
             print()
             for game in match.games:
                 if game.played == True:
-                    print(f"({game.home_player_score})\t{', '.join(player.name for player in game.home_players)}\t| {', '.join(player.name for player in game.away_players)}\t({game.away_player_score})")
+                    print(f"{game.home_players[0].name}".ljust(20), end = "")
+                    print(f"{game.home_player_score} | {game.away_player_score}".ljust(9), end = "")
+                    print(f"{game.away_players[0].name}".ljust(20),end = f"  Game Type: {game.game_type}\n")
+                    for i in range(1, game.player_count):
+                        print(f"{game.home_players[i].name}".ljust(20), end = "")
+                        print(f"  | ".ljust(9), end = "")
+                        print(f"{game.away_players[i].name}")
+            input("Click enter to go back.")
+            return
     
 
     def display_unfinished_matches(self, league: League):
         '''Displays all matches in a league that have not been played.'''
         if league.matches == []:
-            print("No matches have been played yet")
+            input("There are no matches in the league, click enter to go back.")
             return
         print(league.name)
         for match in league.matches:
@@ -95,8 +103,23 @@ class DisplayAll():
             print()
             for game in match.games:
                 if game.played == False:
-                    print(f"({game.home_player_score})\t{', '.join(player.name for player in game.home_players)}\t| {', '.join(player.name for player in game.away_players)}\t({game.away_player_score})")
-    
+                    if game.home_players != "No players":
+                        home_players = ["No player", "No player", "No player", "No player"]
+                    else:
+                        home_players = game.home_players
+                    if game.away_players == "No players":
+                        away_players = ["No player", "No player", "No player", "No player"]
+                    else:
+                        away_players = game.away_players
+                    print(f"{home_players[0].name}".ljust(20), end = "")
+                    print(f"{game.home_player_score} | {game.away_player_score}".ljust(9), end = "")
+                    print(f"{away_players[0].name}".ljust(20),end = f"  Game Type: {game.game_type}\n")
+                    for i in range(1, game.player_count):
+                        print(f"{home_players[i].name}".ljust(20), end = "")
+                        print(f"  | ".ljust(9), end = "")
+                        print(f"{away_players[i].name}")
+            input("Click enter to go back.")
+            return
 
     def display_leaderboard(self, league: League):
         '''Displays the leaderboard for a league.'''

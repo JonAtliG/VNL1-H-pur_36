@@ -1,4 +1,4 @@
-from ui.DisplayAll import DisplayAll
+from ui.Display_Information import Display_Information
 from model.league import League
 from model.match import Match
 import datetime
@@ -7,8 +7,8 @@ class HostDefault():
     def __init__(self, hostid, logic_connection) -> None:
         '''Constructor for HostDefault class.'''
         self.__logic_wrapper = logic_connection
-        self.display_information = DisplayAll(logic_connection)
-        self.host = self.__logic_wrapper.get_host_by_id(hostid)
+        self.__display_information = Display_Information(logic_connection)
+        self.__host = self.__logic_wrapper.get_host_by_id(hostid)
     
     def input_prompt(self):
         '''Prompts the user to enter an option.'''
@@ -24,7 +24,7 @@ class HostDefault():
                     print("_"*30)
                     self.__league_options()
                 elif option == "3":
-                    self.display_information.display_leagues()
+                    self.__display_information.display_leagues()
                 else:
                     input("Invalid option, click enter to continue.")
 
@@ -66,19 +66,19 @@ class HostDefault():
                 break
             else:
                 input("Invalid date, click enter to continue.")
-        if self.host.league_names == "No leagues":
-            self.host.league_names = []
-        self.host.league_names.append(league.name)
+        if self.__host.league_names == "No leagues":
+            self.__host.league_names = []
+        self.__host.league_names.append(league.name)
         self.__logic_wrapper.add_league(league)
-        self.__logic_wrapper.update_host(self.host)
+        self.__logic_wrapper.update_host(self.__host)
     
     def __league_options(self) -> None:
         '''Displays the options for the league options menu.'''
         while True:
-            if self.host.league_names == "No leagues":
+            if self.__host.league_names == "No leagues":
                 input("You have no leagues, click enter to continue.")
                 return
-            leagues = [self.__logic_wrapper.get_league_by_name(name) for name in self.host.league_names]
+            leagues = [self.__logic_wrapper.get_league_by_name(name) for name in self.__host.league_names]
             c = 1
             for league in leagues:
                 print(f"{c}. {league.name}")

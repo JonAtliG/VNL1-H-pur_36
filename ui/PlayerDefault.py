@@ -1,13 +1,11 @@
-from ui.DisplayAll import DisplayAll
+from ui.Display_Information import Display_Information
 from ui.CaptainDefault import CaptainDefault
 
 class PlayerDefault():
-
     def __init__(self, logic_connection, ID) -> None:
         '''Constructor for PlayerDefault class.'''
-        self.id = ID
         self.__logic_wrapper = logic_connection
-        self.__DisplayAll = DisplayAll(logic_connection)
+        self.__display_information = Display_Information(logic_connection)
         self.__player = self.__logic_wrapper.get_player_by_id(ID)
         if self.__player.team != "No team":
             self.__team = self.__logic_wrapper.get_team_by_name(self.__player.team)
@@ -45,10 +43,10 @@ class PlayerDefault():
                 self.information()
                 go_back = input("\nPress enter to go back")
             elif option == '2':
-                self.__DisplayAll.view_all()
+                self.__display_information.view_all()
                 continue
             elif option == "3":
-                self.__DisplayAll.display_leagues()
+                self.__display_information.display_leagues()
             elif option == "4":
                 if self.__captain:
                     captain_page = CaptainDefault(self.__player, self.__team, self.__logic_wrapper)
