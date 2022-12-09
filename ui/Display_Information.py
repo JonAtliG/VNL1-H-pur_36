@@ -75,8 +75,10 @@ class Display_Information():
             print("No matches have been played yet")
             return
         print(league.name)
+        check = False
         for match in league.matches:
             if match.games[0].played:
+                check = True
                 print("-"*50)
                 print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
                 print()
@@ -88,6 +90,8 @@ class Display_Information():
                         print(f"{game.home_players[i].name}".ljust(20), end = "")
                         print(f"  | ".ljust(9), end = "")
                         print(f"{game.away_players[i].name}")
+        if check == False:
+            print("No matches have been played yet")
         input("Click enter to go back.")
         return
     
@@ -97,8 +101,10 @@ class Display_Information():
         if league.matches == []:
             input("There are no matches in the league, click enter to go back.")
             return
+        check = False
         for match in league.matches:
             if match.games[0].played == False:
+                check = True
                 print("-"*50)
                 print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
                 print()
@@ -120,6 +126,9 @@ class Display_Information():
                         print(f"{away_players[i]}")
             else:
                 continue
+        if check == False:
+            input("There are no unfinished matches in the league, click enter to go back.")
+            return
         input("Click enter to go back.")
         return
 
@@ -149,10 +158,12 @@ class Display_Information():
         
         teams.sort(key=lambda x: x[0])
         teams.sort(key=lambda x: (x[1], x[2]), reverse=True)
-        print("Team | Wins | Points")
-        print("--------------------")
+        print("-------------------------------------")
+        print("Team                 | Wins | Points")
+        print("-------------------------------------")
         for team in teams:
-            print(f"{team[0]} | {team[1]} | {team[2]}")
+            #format a fixed width for the team name
+            print(f"{'{0: <20}'.format(str(team[0]))} | {'{0: <5}'.format(str(team[1]))} | {team[2]}")
 
     def display_leagues(self) -> None:
         '''UI for user to see league information'''

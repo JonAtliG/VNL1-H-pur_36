@@ -155,6 +155,7 @@ class AdminPage():
             c += 1
         self.__logic_wrapper.update_player(team.captain)
         [self.__logic_wrapper.update_player(player) for player in team.players]
+        input("Team created, click enter to continue.")
         self.__logic_wrapper.add_team(team)
     
     def create_club(self):
@@ -178,6 +179,8 @@ class AdminPage():
                 break
             else:
                 input("Invalid phone number, click enter to continue.")
+        
+        input("Club created, click enter to continue.")
         self.__logic_wrapper.add_club(club)
 
     def add_team_to_club(self):
