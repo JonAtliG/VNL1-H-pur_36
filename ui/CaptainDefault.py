@@ -1,8 +1,8 @@
-from ui.PlayerDefault import PlayerDefault
-
 class CaptainDefault():
-    def __init__(self, ID) -> None:
-        self.id = ID
+    def __init__(self, player, team, logic_connection) -> None:
+        self.__logic_connection = logic_connection
+        self.__player = player
+        self.__team = team
 
     def __str__(self) -> str:
         pass #on right column, show options, on left show info
@@ -17,6 +17,7 @@ class CaptainDefault():
         'q' to logout.""")
 
     def input_prompt(self):
+        self.options()
         choice = input("Select an option: ")
         if choice == '1':
             pass

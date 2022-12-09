@@ -76,6 +76,9 @@ class Data_Wrapper:
         self.team_data.add_team(team)
     
     ### Player data
+    def is_valid_player_id(self, id):
+        return self.player_data.is_valid_id(id)
+    
     def get_all_player_data(self):
         return self.player_data.get_all_player_data()
     
