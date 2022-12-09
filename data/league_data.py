@@ -25,6 +25,9 @@ class League_Data():
     def get_league_data_by_name(self, name: str) -> list:
         return self.__CSV_Handler.get_data_by_data(name, 0)
     
+    def get_all_league_data_by_team_name(self, name: str) -> list:
+        return self.__CSV_Handler.get_all_data_by_data_in_data(name, 1)
+    
     def get_all_league_data(self) -> list:
         return self.__CSV_Handler.get_all_data()
 

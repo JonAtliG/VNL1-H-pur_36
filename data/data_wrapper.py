@@ -95,6 +95,9 @@ class Data_Wrapper:
     def get_league_data_by_name(self, name) -> list:
         return self.leage_data.get_league_data_by_name(name)
     
+    def get_all_league_data_by_team_name(self, name: str) -> list:
+        return self.leage_data.get_all_league_data_by_team_name(name)
+    
     def get_all_league_data(self) -> list:
         return self.leage_data.get_all_league_data()
     
