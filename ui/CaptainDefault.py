@@ -71,6 +71,7 @@ class CaptainDefault():
             else:
                 match.games[x].away_players = players_to_set
                 players_to_set = []
+        #Update match and games in database
         self.__logic__wrapper.update_match(match)
         [self.__logic__wrapper.update_game(game) for game in match.games]
         self.__league = self.__logic__wrapper.get_league_by_name(self.__league.name)
@@ -138,6 +139,7 @@ class CaptainDefault():
                     home = int(home.strip())
                     away = int(away.strip())
                     ls = set([home, away])
+                    #Check if score is valid
                     if ls == {0, 2} or ls == {1, 2}:
                         game = self.__logic__wrapper.set_game_score(game, home, away)
                         game.played = True

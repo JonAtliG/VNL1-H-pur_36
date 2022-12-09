@@ -33,10 +33,6 @@ class AdminPage():
             choice = input("Select an option: ")
             if choice == '1':
                 self.create_host()
-                #self.set_host_privileges()
-                # enter host ID
-                # add host privileges á bara þetta ID
-                # svo þegar maður log in by id, með Host ID, þá runnar HostDefault
                 pass
             elif choice == '2':
                 self.create_player()
@@ -130,6 +126,7 @@ class AdminPage():
             else:
                 input("Invalid name, click enter to continue.")
         c = 0
+        #Requires 4 players, 1 captain and 3 players
         while c < 4:
             
             if c== 0:
@@ -153,6 +150,7 @@ class AdminPage():
                 print("Player not found")
                 c -= 1
             c += 1
+        #Updates the players in the data layer
         self.__logic_wrapper.update_player(team.captain)
         [self.__logic_wrapper.update_player(player) for player in team.players]
         input("Team created, click enter to continue.")
@@ -193,11 +191,11 @@ class AdminPage():
             choice = input("Choose a club to add a team to, or quit(q): ")
             if self.__logic_wrapper.validate_number(choice, c):
                 club = clubs[int(choice) - 1]
-                #try:
-                teams = self.__logic_wrapper.get_teams_not_in_club()
-                #except:
-                #    input("There are no teams that are not in a club, click enter to go back")
-                #    return
+                try:
+                    teams = self.__logic_wrapper.get_teams_not_in_club()
+                except:
+                    input("There are no teams that are not in a club, click enter to go back")
+                    return
                 c = 1
                 for team in teams:
                     print(f"{c}. {team.name}")
@@ -207,6 +205,7 @@ class AdminPage():
                     if choice == "q":
                         return
                     elif self.__logic_wrapper.validate_number(choice, c):
+                        #Adds the team to the club
                         team = teams[int(choice) - 1]
                         team = self.__logic_wrapper.set_team_club(team, club.name)
                         club = self.__logic_wrapper.add_team_to_club(club, team)

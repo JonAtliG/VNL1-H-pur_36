@@ -140,6 +140,7 @@ class Display_Information():
         print(league.name)
         teams = [[team.name, 0, 0] for team in league.teams]
         teamnames = [team.name for team in league.teams]
+        #Calculate points and wins
         for match in league.matches:
             home = 0
             away = 0

@@ -43,7 +43,7 @@ class HostDefault():
         '''Creates a league.'''
         league = League()
         leagues = self.__logic_wrapper.get_all_leagues()
-        
+        #while loops to validate input
         while True:
 
             name = input("Enter a name for the league: ")
@@ -133,10 +133,12 @@ class HostDefault():
                     print(f"{c}. {match.home_team.name} vs {match.away_team.name}")
                     c += 1
                 print("_"*30)
+                #get the match to change the score of
                 while True:
                     choice = input("Choose a match to change the score of or quit (q): ")
                     if self.__logic_wrapper.validate_number(choice, c):
                         match = finished_matches[int(choice)-1]
+                        #get each game in the match
                         while True:
                             print(f"Match: {match.home_team.name} vs {match.away_team.name}")
                             games = match.games
@@ -185,6 +187,7 @@ class HostDefault():
             for team in league.teams:
                 print(f"{c}. {team.name}")
                 c += 1
+            #get the home team
             while True:
                 choice = input("Choose a home team for the match or quit (q): ")
                 if self.__logic_wrapper.validate_number(choice, c):
@@ -198,10 +201,12 @@ class HostDefault():
                             print(f"{c}. {team.name}")
                             possible_away_teams.append(team)
                             c += 1
+                    #get the away team
                     while True:
                         choice = input("Choose an away team for the match or quit (q): ")
                         if self.__logic_wrapper.validate_number(choice, c):
                             match.away_team = possible_away_teams[int(choice)-1]
+                            #get the date of the match
                             while True:
                                 date = input("Enter a date for the match (dd.mm.yyyy) or quit (q): ")
                                 if self.__logic_wrapper.validate_date(date, league.start_date, league.end_date):
@@ -286,6 +291,7 @@ class HostDefault():
             if teams_not_in_league == []:
                 input("There are no teams to add to the league, click enter to continue.")
                 return league
+            #get the team to add
             while True:
                 choice = input("Choose a team to add or quit (q): ")
                 if choice == "q":
