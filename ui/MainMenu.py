@@ -35,15 +35,16 @@ class MainMenu:
             selection = selection.lower()
             if selection == "q":
                 quit()
+                
             elif selection == "1":
                 print("_"*30)
                 ID_input = input("\nEnter ID: ")
-                ID_player = self.logic_wrapper.get_player_by_id(ID_input)
-                if ID_player.captain == True:
-                    player = CaptainDefault(self.logic_wrapper, ID_input)
-                else:
+                if self.logic_wrapper.is_valid_player_id(ID_input):
                     player = PlayerDefault(self.logic_wrapper, ID_input)
-                player.input_prompt()
+                    player.input_prompt()
+                else:
+                    input("Invalid ID, click enter to continue. ")
+                    
             elif selection == '2':
                 print("_"*30)
                 guest_default_page = GuestDefault(self.logic_wrapper)

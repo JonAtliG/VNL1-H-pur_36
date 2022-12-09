@@ -21,7 +21,14 @@ class Player_Data():
         return player_data
     
     def __get_player_index_by_id(self, id: str) -> int:
-        return self.__CSV_Handler.get_line_index_by_data(id, 1)     
+        return self.__CSV_Handler.get_line_index_by_data(id, 1)
+    
+    def is_valid_id(self, id):
+        try:
+            self.get_player_data_by_id(id)
+            return True
+        except:
+            return False
  
     def get_player_data_by_id(self, id: str) -> list:
         return self.__CSV_Handler.get_data_by_data(id, 1)

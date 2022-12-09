@@ -100,6 +100,9 @@ class Logic_Wrapper():
         self.team_logic.add_team(team)
     
     ### Player Logic
+    def is_valid_player_id(self, id: str) -> bool:
+        return self.player_logic.is_valid_id(id)
+    
     def get_player_by_id(self, id: str) -> Player:
         return self.player_logic.get_player_by_id(id)
     
