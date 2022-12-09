@@ -6,8 +6,6 @@ from data.player_data import Player_Data
 from data.league_data import League_Data
 from data.match_data import Match_Data
 from data.game_data import Game_Data
-from data.teams_in_tournament import Registered_Teams
-from data.scores import Scores
 
 class Data_Wrapper:
     def __init__(self):
@@ -17,8 +15,6 @@ class Data_Wrapper:
         self.club_data = Club_Data()
         self.team_data = Team_Data()
         self.player_data = Player_Data()
-        self.teams_in_tournament = Registered_Teams()
-        self.scores = Scores()
         self.leage_data = League_Data()
         self.match_data = Match_Data()
         self.game_data = Game_Data()
