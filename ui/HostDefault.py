@@ -1,6 +1,7 @@
 from ui.DisplayAll import DisplayAll
 from model.league import League
 from model.match import Match
+import datetime
 
 class HostDefault():
     def __init__(self, hostid, logic_connection) -> None:
@@ -54,7 +55,7 @@ class HostDefault():
                 input("Invalid date, click enter to continue.")
         while True:
             league.end_date = input("Enter end date for the league (dd.mm.yyyy): ")
-            if self.__logic_wrapper.validate_date(league.end_date):
+            if self.__logic_wrapper.validate_date(league.end_date) or datetime.datetime.strptime(league.end_date, "%d.%m.%Y") > datetime.datetime.strptime(league.start_date, "%d.%m.%Y"):
                 break
             else:
                 input("Invalid date, click enter to continue.")
@@ -130,7 +131,12 @@ class HostDefault():
                             if choice.isdigit():
                                 if 0 < int(choice) < c:
                                     match.away_team = league.teams[int(choice)-1]
-                                    match.date = input("Enter a date for the match (dd.mm.yy): ")
+                                    while True:
+                                        match.date = input("Enter a date for the match (dd.mm.yy): ")
+                                        if self.__logic_wrapper.validate_date(match.date):
+                                            break
+                                        else:
+                                            input("Invalid date, click enter to continue.")
                                     match = self.__logic_wrapper.give_match_games(match)
                                     if league.matches == "No matches":
                                         league.matches = [match]
@@ -164,7 +170,12 @@ class HostDefault():
                 choice = input("Choose a match to change its date or quit (q): ")
                 if choice: # input validator
                     match_to_change = upcoming_matches[int(choice)-1]
-                    new_date = input("Enter a new date for the match (dd.mm.yyyy): ") # input validator
+                    while True:
+                        new_date = input("Enter a new date for the match (dd.mm.yyyy): ")
+                        if self.__logic_wrapper.validate_date(new_date):
+                            break
+                        else:
+                            input("Invalid date, click enter to continue.")
                     match_to_change.date = new_date
                     self.__logic_wrapper.update_match(match_to_change)
                     input("Match has been updated, click enter to continue.")
