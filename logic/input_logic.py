@@ -1,6 +1,8 @@
 import re
+import datetime
+
 class Input_Validator:
-    def date(self, inp):
+    def date(self, inp, low, high):
         if ";" in inp or "," in inp:
             return False
         target = re.search("(\d{2}).(\d{2}).(\d{4})", inp)
@@ -12,7 +14,12 @@ class Input_Validator:
             return False
         if int(target.group(3)) < 2022 or int(target.group(3)) > 2050:
             return False
-        return True
+        checks = [True, True]
+        if not low is None:
+            checks[0] = datetime.datetime.strptime(inp, "%d.%m.%Y") >= datetime.datetime.strptime(low, "%d.%m.%Y")
+        if not high is None:
+            checks[1] = datetime.datetime.strptime(inp, "%d.%m.%Y") <= datetime.datetime.strptime(high, "%d.%m.%Y")
+        return checks[0] and checks[1]
         
     def name(self, inp):
         if ";" in inp or "," in inp:
@@ -35,7 +42,7 @@ class Input_Validator:
             return False
         if not inp.isdigit():
             return False
-        if int(inp) > high or int(inp) < 1:
+        if int(inp) >= high or int(inp) < 1:
             return False
         return True
 

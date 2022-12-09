@@ -122,7 +122,7 @@ class Data_Wrapper:
         self.match_data.add_match(match)
     
     def update_match(self, match):
-        self.update_match(match)
+        self.match_data.update_match(match)
     
     ### Game Data
     def get_all_game_ids(self):

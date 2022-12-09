@@ -13,7 +13,7 @@ class Game_Data():
         else:
             game_data += ",".join(player.nid for player in game.home_players) + ";"
         if game.away_players == "No players":
-            game_data += "No players"
+            game_data += "No players;"
         else:
             game_data += ",".join(player.nid for player in game.away_players) + ";"
         game_data += f"{game.home_player_score};{game.away_player_score};{game.game_type};{game.player_count};{game.played}"
@@ -32,7 +32,7 @@ class Game_Data():
         return self.__CSV_Handler.get_all_data()
     
     def update_game(self, game: Game) -> None:
-        index = self.__get_game_index_by_id(game.id)
+        index = self.__get_game_index_by_id(str(game.id))
         game_data = self.__create_game_data_from_object(game)
         self.__CSV_Handler.replace_line(index, game_data)
 

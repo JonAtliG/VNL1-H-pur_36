@@ -22,7 +22,7 @@ class Match_Data():
         return self.__CSV_Handler.get_data_by_data(id, 0)
     
     def update_match(self, match: Match) -> None:
-        index = self.__get_match_index_by_id(match.id)
+        index = self.__get_match_index_by_id(str(match.id))
         match_data = self.__create_match_data_from_object(match)
         self.__CSV_Handler.replace_line(index, match_data)
         
