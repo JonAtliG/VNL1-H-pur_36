@@ -85,7 +85,7 @@ class HostDefault():
                         print(f"League: {league.name}")
                         print("1. Plan an upcoming match")
                         print("2. Change time of an upcoming match")
-                        print("3. Change score of a finished match")
+                        print("3. Change score of a finished game")
                         print("4. Add teams to league")
                         print('"q". Go back')
                         choice = input("Select an option: ")
@@ -94,7 +94,7 @@ class HostDefault():
                         elif choice == "2":
                             self.__change_time_of_upcoming_match(league)
                         elif choice == "3":
-                            pass
+                            self.change_score_of_finished_game(league)
                         elif choice == "4":
                             league = self.__choose_team_to_add(league)
                         elif choice == "q":
@@ -104,6 +104,65 @@ class HostDefault():
             else:
                 input("Invalid option, click enter to continue.")
     
+    def change_score_of_finished_game(self, league: League):
+        if league.matches == "No matches":
+            input("There are no matches in the league, click enter to continue.")
+            return
+        else:
+            finished_matches = []
+            for match in league.matches:
+                if match.games[0].played:
+                    finished_matches.append(match)
+            if len(finished_matches) == 0:
+                input("There are no finished matches in the league, click enter to continue.")
+                return
+            else:
+                c = 1
+                for match in finished_matches:
+                    print(f"{c}. {match.home_team.name} vs {match.away_team.name}")
+                    c += 1
+                print("_"*30)
+                while True:
+                    choice = input("Choose a match to change the score of or quit (q): ")
+                    if self.__logic_wrapper.validate_number(choice, c):
+                        match = finished_matches[int(choice)-1]
+                        while True:
+                            print(f"Match: {match.home_team.name} vs {match.away_team.name}")
+                            games = match.games
+                            c = 1
+                            for game in games:
+                                print(f"{c}. ({game.home_player_score})\t{', '.join(player.name for player in game.home_players)} |\t{', '.join(player.name for player in game.away_players)} \t({game.away_player_score})")
+                                c += 1
+                            print("_"*30)
+                            choice = input("Choose a game to change the score of or quit (q): ")
+                            if self.__logic_wrapper.validate_number(choice, c):
+                                game = games[int(choice)-1]
+                                while True:
+                                    inp = input("Enter the new score (home team score - away team score): ")
+                                    if inp == "q":
+                                        return
+                                    try:
+                                        home, away = inp.split("-")
+                                        home = int(home.strip())
+                                        away = int(away.strip())
+                                        ls = set([home, away])
+                                        if ls == {0, 2} or ls == {1, 2}:
+                                            game.home_players_score = home
+                                            game.away_players_score = away
+                                            self.__logic_wrapper.update_game(game)
+                                            return
+                                    except:
+                                        pass
+                                    input("Invalid score, click enter to continue.")
+                            elif choice == "q":
+                                return
+                            else:
+                                input("Invalid option, click enter to continue.")
+                                return
+                    elif choice == "q":
+                        return
+
+
     def __create_match(self, league: League) -> League:
         c = 1
         if league.teams == "No teams" or len(league.teams) < 2:
