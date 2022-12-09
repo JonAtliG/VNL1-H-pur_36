@@ -33,7 +33,6 @@ class CaptainDefault():
             input("You are not registed in any leagues, click enter to go back.")
     
     def __set_player_order_of_match(self, match: Match) -> Match:
-        second_check = False
         number_strings = ["first", "second", "third", "fourth"]
         players_to_set = []
         team_players = [self.__player]

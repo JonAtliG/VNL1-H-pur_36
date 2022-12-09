@@ -17,39 +17,39 @@ from logic.game_logic import Game_Logic
 from logic.input_logic import Input_Validator
 class Logic_Wrapper():
     def __init__(self):
-        self.data_wrapper = Data_Wrapper()
-        self.admin_logic = Admin_Logic(self.data_wrapper)
-        self.host_logic = Host_logic(self.data_wrapper)
-        self.club_logic = Club_Logic(self.data_wrapper)
-        self.team_logic = Team_Logic(self.data_wrapper)
-        self.player_logic = Player_Logic(self.data_wrapper)
-        self.league_logic = League_Logic(self.data_wrapper)
-        self.match_logic = Match_Logic(self.data_wrapper)
-        self.game_logic = Game_Logic(self.data_wrapper)
+        self.__data_wrapper = Data_Wrapper()
+        self.__admin_logic = Admin_Logic(self.__data_wrapper)
+        self.__host_logic = Host_logic(self.__data_wrapper)
+        self.club_logic = Club_Logic(self.__data_wrapper)
+        self.team_logic = Team_Logic(self.__data_wrapper)
+        self.player_logic = Player_Logic(self.__data_wrapper)
+        self.league_logic = League_Logic(self.__data_wrapper)
+        self.match_logic = Match_Logic(self.__data_wrapper)
+        self.game_logic = Game_Logic(self.__data_wrapper)
         self.input_validator = Input_Validator()
     
     ### Admin logic
     def verify_admin_id(self, ID):
-        return self.admin_logic.verify_ID(ID)
+        return self.__admin_logic.verify_ID(ID)
     
     def verify_admin_password(self, password):
-        return self.admin_logic.verify_Password(password)
+        return self.__admin_logic.verify_Password(password)
     
     ### Host logic
     def verify_host_id(self, id: str) -> bool:
-        return self.host_logic.verify_id(id)
+        return self.__host_logic.verify_id(id)
     
     def get_host_by_id(self, id: str) -> Host:
-        return self.host_logic.get_host_by_id(id)
+        return self.__host_logic.get_host_by_id(id)
     
     def get_host_by_league_name(self, name: str) -> Host:
-        return self.host_logic.get_host_by_league_name(name)
+        return self.__host_logic.get_host_by_league_name(name)
     
     def add_host(self, host: Host):
-        self.host_logic.add_host(host)
+        self.__host_logic.add_host(host)
     
     def update_host(self, host: Host):
-        self.host_logic.update_host(host)
+        self.__host_logic.update_host(host)
     
     ### Club Logic
     def __get_club_data_by_name(self, name: str) -> list:
