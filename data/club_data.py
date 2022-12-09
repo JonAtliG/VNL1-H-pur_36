@@ -17,7 +17,10 @@ class Club_Data():
     def __create_club_data_from_object(self, club: Club) -> str:
         '''Takes in a club object and returns the club data as a string'''
         line = club.name + ";"
-        line += ",".join([team_name for team_name in [team.name for team in club.teams]]) + ";"
+        if club.teams == "No teams":
+            line += "No teams;"
+        else:
+            line += ",".join([team_name for team_name in [team.name for team in club.teams]]) + ";"
         line += club.address + ";" + club.phone
         return line
     

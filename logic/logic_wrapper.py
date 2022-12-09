@@ -87,8 +87,6 @@ class Logic_Wrapper():
     
     def add_team_to_club(self, club: Club, team: Team) -> Club:
         '''Adds the given team to the given club.'''
-        self.club_logic.add_team_to_club(club, team)
-    def add_team_to_club(self, club: Club, team: Team) -> Team:
         return self.club_logic.add_team_to_club(club, team)
     
     def update_club(self, club: Club):

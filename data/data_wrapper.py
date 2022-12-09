@@ -72,15 +72,13 @@ class Data_Wrapper:
     
     
     ### Team data
-<<<<<<< HEAD
     def get_teams(self):
         '''Returns all teams in the tournament.'''
         return self.teams_in_tournament.get_teams()
-=======
+
     def get_team_data_not_in_club(self) -> list:
         '''Returns team data for teams not in a club'''
         return self.team_data.get_team_data_not_in_club()
->>>>>>> 64dae4f90eeacccc3c6f91daddd8dc99d9b60850
     
     def get_team_data_by_name(self, name):
         '''Returns the team data of the team with the given name.'''
