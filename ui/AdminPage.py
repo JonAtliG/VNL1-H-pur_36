@@ -117,17 +117,15 @@ class AdminPage():
                 break
             else:
                 input("Invalid name, click enter to continue.")
-        
         c = 0
         while c < 4:
             
             if c== 0:
-                inp = input("Enter Captain ID: ")
+                inp = input("Enter Captain ID or cancel (c): ")
             else:
-                inp = input("Enter player ID: ")
-            print("Enter 'q' to quit")
-            if inp == "q":
-                break
+                inp = input("Enter player ID or cancel (c): ")
+            if inp == "c":
+                return
             try:
                 player = self.logic_wrapper.get_player_by_id(inp)
                 if player.team != "No team":
