@@ -1,5 +1,5 @@
-files = ["admin_data.csv", "club_data.csv", "game_data.csv", "host_data.csv", "league_data.csv", "match_data.csv", "player_data.csv", "team_data.csv"]
-backupfiles = ["files_backup/admin_data.csv", "files_backup/club_data.csv", "files_backup/game_data.csv", "files_backup/host_data.csv", "files_backup/league_data.csv", "files_backup/match_data.csv", "files_backup/player_data.csv", "files_backup/team_data.csv"]
+files = ["data/files/admin_data.csv", "data/files/club_data.csv", "data/files/game_data.csv", "data/files/host_data.csv", "data/files/league_data.csv", "data/files/match_data.csv", "data/files/player_data.csv", "data/files/team_data.csv"]
+backupfiles = ["data/files_backup/admin_data.csv", "data/files_backup/club_data.csv", "data/files_backup/game_data.csv", "data/files_backup/host_data.csv", "data/files_backup/league_data.csv", "data/files_backup/match_data.csv", "data/files_backup/player_data.csv", "data/files_backup/team_data.csv"]
 
 for i, file in enumerate(files):
     file_data = []
