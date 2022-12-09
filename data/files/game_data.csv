@@ -62,3 +62,10 @@ game_id;player1;player2;player1_score;player2_score;game_type;player_count;playe
 61;1309743005,1711793440;1408783929,2609723648;1;2;301;2;True
 62;1503833070,2712823053;811933925,1512713385;2;0;Cricket;2;True
 63;1309743005,2712823053,1711793440,1503833070;811933925,1408783929,1512713385,2609723648;2;0;501;4;True
+64;No players;No players;0;0;501;1;False
+65;No players;No players;0;0;501;1;False
+66;No players;No players;0;0;501;1;False
+67;No players;No players;0;0;501;1;False
+68;No players;No players;0;0;301;2;False
+69;No players;No players;0;0;Cricket;2;False
+70;No players;No players;0;0;501;4;False
