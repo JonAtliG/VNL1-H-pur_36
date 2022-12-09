@@ -27,10 +27,11 @@ class PlayerDefault():
         Welcome {self.__player.name}  - Team: {self.__team_name}
 
         1. View account information
-        2. View all clubs, teams and players""", end = "")
+        2. View all clubs, teams and players
+        3. View leagues""", end = "")
         if self.__captain:
             print("""
-        3. Captain page""")
+        4. Captain page""")
         print("""
         'q' Logout""")
 
@@ -46,14 +47,16 @@ class PlayerDefault():
             elif option == '2':
                 self.__DisplayAll.view_all()
                 continue
-            elif option == 'q':
-                return
             elif option == "3":
+                self.__DisplayAll.display_leagues()
+            elif option == "4":
                 if self.__captain:
                     captain_page = CaptainDefault(self.__player, self.__team, self.__logic_wrapper)
                     captain_page.input_prompt()
                 else:
                     input("Invalid option, press enter to continue: ")
+            elif option == "q":
+                return
             else:
                 input("Invalid option, press enter to continue: ")
 

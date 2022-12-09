@@ -128,3 +128,39 @@ class DisplayAll():
         print("--------------------")
         for team in teams:
             print(f"{team[0]} | {team[1]} | {team[2]}")
+
+    def display_leagues(self) -> None:
+        '''UI for user to see league information'''
+        while True:
+            leagues = self.logic_wrapper.get_all_leagues()
+            c = 1
+            print("_"*30)
+            for league in leagues:
+                print(f"{c}. {league.name}")
+            c += 1
+            league_choice = input("Select a league or go back (q): ")
+            if league_choice == "q":
+                return
+            if self.logic_wrapper.validate_number(league_choice, c):
+                print("_"*30)
+                league = leagues[int(league_choice) - 1]
+                host = self.logic_wrapper.get_host_by_league_name(league.name)
+                while True:
+                    print(f"League: {league.name} ({host.name})")
+                    print("1. View finished matches")
+                    print("2. View upcoming matches")
+                    print("3. View leaderboard")
+                    print('"q". Go back')
+                    choice = input("Select an option: ")
+                    if choice == "1":
+                        self.display_finished_matches(league)
+                    elif choice == "2":
+                        self.display_unfinished_matches(league)
+                    elif choice == "3":
+                        self.display_leaderboard(league)
+                    elif choice == "q":
+                        break
+                    else:
+                        input("Invalid option, click enter to continue.")
+            else:
+                input("Invalid option, click enter to continue.")

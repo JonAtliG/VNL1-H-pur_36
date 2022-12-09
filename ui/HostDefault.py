@@ -23,6 +23,8 @@ class HostDefault():
                 elif option == "2":
                     print("_"*30)
                     self.__league_options()
+                elif option == "3":
+                    self.display_information.display_leagues()
                 else:
                     input("Invalid option, click enter to continue.")
 
@@ -32,7 +34,8 @@ class HostDefault():
         print("""
     Please select an option:
         1. Create League
-        2. Choose League    
+        2. Choose League  
+        3. View leagues  
         'q' to logout.
               """)
     

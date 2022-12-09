@@ -37,7 +37,7 @@ class MainMenu:
             selection = input("Enter option: ")
             selection = selection.lower()
             if selection == "q":
-                quit()
+                return
                 
             elif selection == "1":
                 print("_"*30)

@@ -21,6 +21,7 @@ class AdminPage():
         4. Create Club
         5. Add team to club
         6. View all Teams, Clubs and Players
+        7. View leagues
         
         'q' to Logout
         """)
@@ -46,7 +47,9 @@ class AdminPage():
             elif choice == '5':
                 self.add_team_to_club()
             elif choice == '6':
-                self.display_all.view_all()                
+                self.display_all.view_all()
+            elif choice == "7":
+                self.display_all.display_leagues()
             elif choice == 'q':
                 return
 
