@@ -87,7 +87,54 @@ class CaptainDefault():
                 input("Invalid choice, click enter to go back.")
         else:
             input("You have no matches with unset player order, click enter to go back.")
-            
+
+
+    def __set_score_of_match(self):
+        #Find matches that don't have scores and do not have no players and you are captain of the hometeam
+        unset_matches = []
+        for match in self.__league.matches:
+            if match.home_team.name == self.__team.name:
+                if match.games[0].away_players != "No players" and match.games[0].away_players != "No players" and match.games[0].played == False:
+                    unset_matches.append(match)
+        
+        if len(unset_matches) == 0:
+            input("You have no matches with unset scores, click enter to go back.")
+            return
+        c = 1
+        for match in unset_matches:
+            print(f"{c}. {match.home_team.name} vs {match.away_team.name} - {match.date}")
+            c += 1
+        choice = input("Choose a match to set or go back (q): ")
+        if choice == "q":
+            return
+        elif self.__logic__wrapper.validate_number(choice, c):
+            match_to_set = unset_matches[int(choice)-1]
+            print(f"Match: {match.home_team.name} vs {match.away_team.name}")
+            c = 1
+            while c <= len(match_to_set.games):
+                game = match_to_set.games[c-1]
+                print(f"{c}. ({game.home_player_score})\t{', '.join(player.name for player in game.home_players)} |\t{', '.join(player.name for player in game.away_players)} \t({game.away_player_score})")        
+                inp = input("Enter the score (home team score - away team score): ")
+                try:
+                    home, away = inp.split("-")
+                    home = int(home.strip())
+                    away = int(away.strip())
+                    ls = set([home, away])
+                    if ls == {0, 2} or ls == {1, 2}:
+                        game = self.__logic__wrapper.set_game_score(game, home, away)
+                        self.__logic__wrapper.update_game(game)
+                        c += 1
+                    else:
+                        input("Invalid score, click enter to continue.")
+                except:
+                    input("Invalid score, click enter to continue.")
+            return
+        else:
+            input("Invalid choice, click enter to go back.")
+            return
+                    
+
+
 
     def options(self):
         print(f"""Captain options - Team: {self.__team.name}
@@ -109,7 +156,7 @@ class CaptainDefault():
             elif choice == '2':
                 self.__choose_match_to_set_player_order()
             elif choice == '3':
-                pass
+                self.__set_score_of_match()
             elif choice == 'q':
                 return
             else:
