@@ -110,7 +110,7 @@ class CaptainDefault():
         unset_matches = []
         for match in self.__league.matches:
             if match.home_team.name == self.__team.name:
-                if match.games[0].away_players != "No players" and match.games[0].away_players != "No players" and match.games[0].played == False:
+                if match.games[0].home_players != "No players" and match.games[0].away_players != "No players" and match.games[0].played == False:
                     unset_matches.append(match)
         
         if len(unset_matches) == 0:
