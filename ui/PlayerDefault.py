@@ -10,17 +10,19 @@ class PlayerDefault():
         self.__player = self.__logic_wrapper.get_player_by_id(ID)
         if self.__player.team != "No team":
             self.__team = self.__logic_wrapper.get_team_by_name(self.__player.team)
+            self.__team_name = self.__team.name
             if self.__team.captain.nid == self.__player.nid:
                 self.__captain = True
             else:
                 self.__captain = False
         else:
             self.__team = "No team"
+            self.__team_name = "No team"
             self.__captain = False
     
     def options(self):
         print(f"""
-        Welcome {self.__player.name}  - Team: {self.__team.name}
+        Welcome {self.__player.name}  - Team: {self.__team_name}
 
         1. View account information
         2. View all clubs, teams and players""", end = "")
