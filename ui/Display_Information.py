@@ -60,8 +60,9 @@ class Display_Information():
         '''Displays a club's name and all teams in the club.'''
         print("\nClub:", club.name)
         print("_"*30)
-        for team in club.teams:
-            self.display_team(team)
+        if club.teams != "No teams":
+            for team in club.teams:
+                self.display_team(team)
     
     def display_all_clubs(self, clubs):
         '''Displays all clubs in the database.'''
@@ -75,11 +76,11 @@ class Display_Information():
             return
         print(league.name)
         for match in league.matches:
-            print("-"*50)
-            print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
-            print()
-            for game in match.games:
-                if game.played == True:
+            if match.games[0].played:
+                print("-"*50)
+                print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
+                print()
+                for game in match.games:
                     print(f"{game.home_players[0].name}".ljust(20), end = "")
                     print(f"{game.home_player_score} | {game.away_player_score}".ljust(9), end = "")
                     print(f"{game.away_players[0].name}".ljust(20),end = f"  Game Type: {game.game_type}\n")
@@ -87,8 +88,8 @@ class Display_Information():
                         print(f"{game.home_players[i].name}".ljust(20), end = "")
                         print(f"  | ".ljust(9), end = "")
                         print(f"{game.away_players[i].name}")
-            input("Click enter to go back.")
-            return
+        input("Click enter to go back.")
+        return
     
 
     def display_unfinished_matches(self, league: League):
@@ -96,30 +97,31 @@ class Display_Information():
         if league.matches == []:
             input("There are no matches in the league, click enter to go back.")
             return
-        print(league.name)
         for match in league.matches:
-            print("-"*50)
-            print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
-            print()
-            for game in match.games:
-                if game.played == False:
-                    if game.home_players != "No players":
+            if match.games[0].played == False:
+                print("-"*50)
+                print(f"{match.home_team.name} vs. {match.away_team.name} | {match.date}")
+                print()
+                for game in match.games:
+                    if game.home_players == "No players":
                         home_players = ["No player", "No player", "No player", "No player"]
                     else:
-                        home_players = game.home_players
+                        home_players = [player.name for player in game.home_players]
                     if game.away_players == "No players":
                         away_players = ["No player", "No player", "No player", "No player"]
                     else:
-                        away_players = game.away_players
-                    print(f"{home_players[0].name}".ljust(20), end = "")
+                        away_players = [player.name for player in game.away_players]
+                    print(f"{home_players[0]}".ljust(20), end = "")
                     print(f"{game.home_player_score} | {game.away_player_score}".ljust(9), end = "")
-                    print(f"{away_players[0].name}".ljust(20),end = f"  Game Type: {game.game_type}\n")
+                    print(f"{away_players[0]}".ljust(20),end = f"  Game Type: {game.game_type}\n")
                     for i in range(1, game.player_count):
-                        print(f"{home_players[i].name}".ljust(20), end = "")
+                        print(f"{home_players[i]}".ljust(20), end = "")
                         print(f"  | ".ljust(9), end = "")
-                        print(f"{away_players[i].name}")
-            input("Click enter to go back.")
-            return
+                        print(f"{away_players[i]}")
+            else:
+                continue
+        input("Click enter to go back.")
+        return
 
     def display_leaderboard(self, league: League):
         '''Displays the leaderboard for a league.'''
@@ -160,7 +162,7 @@ class Display_Information():
             print("_"*30)
             for league in leagues:
                 print(f"{c}. {league.name}")
-            c += 1
+                c += 1
             league_choice = input("Select a league or go back (q): ")
             if league_choice == "q":
                 return

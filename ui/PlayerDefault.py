@@ -41,7 +41,6 @@ class PlayerDefault():
 
             if option == '1':
                 self.information()
-                go_back = input("\nPress enter to go back")
             elif option == '2':
                 self.__display_information.view_all()
                 continue

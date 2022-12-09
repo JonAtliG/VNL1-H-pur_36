@@ -178,46 +178,6 @@ class AdminPage():
                 break
             else:
                 input("Invalid phone number, click enter to continue.")
-        club.teams = []
-        while True:
-            add_team = input("Add team? (y/n)")
-            if add_team == 'y':
-                while True:
-                    try:
-                        counter = int(input("How many teams do you want to add? (1-5): "))
-                        if 1 <= counter <= 5:
-                            break
-                    except:
-                        print("Invalid input")
-                
-                c = 0
-                while c < counter:
-                    team_name = input("Enter Team Name: ")
-                    print("Enter 'q' to quit")
-                    if team_name == "q":
-                        break
-                    try:
-                        team = self.__logic_wrapper.get_team_by_name(team_name)
-                        if team.club != "No club":
-                            print("Team is already in a club")
-                            c -= 1
-                        else:
-                            team.club = club.name
-                            self.__logic_wrapper.update_team(team)
-                            club.teams.append(team)
-                    except:
-                        print("Team not found")
-                        c -= 1
-                    c += 1
-            
-            elif add_team == 'n':
-                break
-
-            try:
-                if team_name == "q":
-                    break
-            except:
-                pass
         self.__logic_wrapper.add_club(club)
 
     def add_team_to_club(self):
