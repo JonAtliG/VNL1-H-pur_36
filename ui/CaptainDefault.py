@@ -9,7 +9,7 @@ class CaptainDefault():
         # for line in player setup, print |  line
 
     def options(self):
-        print("""Welcome, ####
+        print(f"""Captain options - Team: {self.__team.name}
         Please select an option:
         1. Record match scores
         2. View Teams and Players

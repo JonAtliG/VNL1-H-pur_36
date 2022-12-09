@@ -10,21 +10,25 @@ class PlayerDefault():
         self.__player = self.__logic_wrapper.get_player_by_id(ID)
         if self.__player.team != "No team":
             self.__team = self.__logic_wrapper.get_team_by_name(self.__player.team)
-            self.__captain = True
+            if self.__team.captain.nid == self.__player.nid:
+                self.__captain = True
+            else:
+                self.__captain = False
         else:
             self.__team = "No team"
             self.__captain = False
     
     def options(self):
         print(f"""
-        Welcome {self.__player.name}  - Team: {self.__team}
-        
+        Welcome {self.__player.name}  - Team: {self.__team.name}
+
         1. View account information
-        2. View all clubs, teams and players\n
-        """)
+        2. View all clubs, teams and players""", end = "")
         if self.__captain:
-            print("3. Captain page\n")
-        print("'q' Logout")
+            print("""
+        3. Captain page""")
+        print("""
+        'q' Logout""")
 
     def input_prompt(self):      
             while True:
@@ -52,11 +56,16 @@ class PlayerDefault():
 
     def information(self):
         print("\nPlayer information:\n")
-        print("{:<15} {}".format("Team: ", self.player.team))
-        #if captain: print("Team Captain of", self.player.team)
-        print("{:<15} {}".format("Name:", self.player.name))
-        print("{:<15} {}".format("ID:", self.player.nid))
-        print("{:<15} {}".format("Birthdate:", self.player.birthdate))
-        print("{:<15} {}".format("Address:", self.player.address))
-        print("{:<15} {}".format("Phone:", self.player.phone))
-        print("{:<15} {}".format("E-mail:", self.player.mail))
+        print("{:<15} {}".format("Team: ", self.__player.team))
+        if self.__team != "No team":
+            if self.__captain:
+                print("{:<15} {}".format("Team role:", "Captain"))
+            else:
+                print("{:<15} {}".format("Team role:", "Member"))
+        print("{:<15} {}".format("Name:", self.__player.name))
+        print("{:<15} {}".format("ID:", self.__player.nid))
+        print("{:<15} {}".format("Birthdate:", self.__player.birthdate))
+        print("{:<15} {}".format("Address:", self.__player.address))
+        print("{:<15} {}".format("Phone:", self.__player.phone))
+        print("{:<15} {}".format("E-mail:", self.__player.mail))
+        input("Click enter to go back.")
