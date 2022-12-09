@@ -52,6 +52,13 @@ class Logic_Wrapper():
         self.__host_logic.update_host(host)
     
     ### Club Logic
+    def __get_club_by_data(self, data: list) -> Club:
+        if data[1] == "No teams":
+            teams = "No teams"
+        else:
+            teams = [self.get_team_by_name(name) for name in data[1].split(",")]
+        return self.club_logic.make_club_object(data, teams)
+
     def __get_club_data_by_name(self, name: str) -> list:
         return self.club_logic.get_club_data_by_name(name)
     
@@ -60,14 +67,14 @@ class Logic_Wrapper():
     
     def get_club_by_name(self, name: str) -> Club:
         club_data = self.__get_club_data_by_name(name)
-        return self.club_logic.make_club_object(club_data, self.get_teams_by_names(club_data[1]))
+        return self.__get_club_by_data(club_data)
     
     def get_all_clubs(self) -> list:
         all_club_data = self.__get_all_club_data()
-        return [self.club_logic.make_club_object(club_data, self.get_teams_by_names(club_data[1])) for club_data in all_club_data]
+        return [self.__get_club_by_data(club_data) for club_data in all_club_data]
     
     def add_team_to_club(self, club: Club, team: Team) -> Team:
-        self.club_logic.add_team_to_club(club, team)
+        return self.club_logic.add_team_to_club(club, team)
     
     def update_club(self, club: Club):
         self.club_logic.update_club(club)
@@ -76,9 +83,23 @@ class Logic_Wrapper():
         self.club_logic.add_club(club)
     
     ### Team Logic
+    def __get_team_by_data(self, data: list) -> Team:
+        '''Returns team object made from the data'''
+        return self.team_logic.make_team_object(data, self.get_player_by_id(data[1]), self.get_players_by_ids(data[2]))
+    
+    def set_team_club(self, team: Team, club_name: str):
+        '''Returns the team with the club set'''
+        return self.team_logic.set_club(team, club_name)
+
+    def get_teams_not_in_club(self) -> list:
+        '''returns list of teams that are not in a club'''
+        team_data = self.team_logic.get_team_data_not_in_club()
+        return [self.__get_team_by_data(data) for data in team_data]
+
     def get_team_by_name(self, name: str) -> Team:
+        '''Returns team object of the team with the given name'''
         team_data = self.team_logic.get_team_data_by_name(name)
-        return self.team_logic.make_team_object(team_data, self.get_player_by_id(team_data[1]), self.get_players_by_ids(team_data[2]))
+        return self.__get_team_by_data(team_data)
     
     def get_teams_by_names(self, names: str) -> list:
         return [self.get_team_by_name(name) for name in names.split(",")]

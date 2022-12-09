@@ -5,7 +5,7 @@ class Club_Logic():
     def __init__(self, data_connection) -> None:
         self.data_wrapper = data_connection
     
-    def make_club_object(self, club_data, teams: list) -> Club:
+    def make_club_object(self, club_data: list, teams: list) -> Club:
         '''Takes in the club data and teams, returns Club object'''
         club = Club()
         club.name = club_data[0]
@@ -15,7 +15,7 @@ class Club_Logic():
         return club
     
     def add_team_to_club(self, club: Club, team: Team):
-        if club.teams == "No Teams":
+        if type(club.teams) == str:
             club.teams = [team]
         else:
             club.teams.append(team)
