@@ -6,7 +6,7 @@ class Club_Logic():
         '''Constructor for Club_Logic class.'''
         self.data_wrapper = data_connection
     
-    def make_club_object(self, club_data, teams: list) -> Club:
+    def make_club_object(self, club_data: list, teams: list) -> Club:
         '''Takes in the club data and teams, returns Club object'''
         club = Club()
         club.name = club_data[0]
@@ -16,8 +16,8 @@ class Club_Logic():
         return club
     
     def add_team_to_club(self, club: Club, team: Team):
-        '''Adds a team to a club'''
-        if club.teams == "No Teams":
+        '''Adds a team to the club'''
+        if type(club.teams) == str:
             club.teams = [team]
         else:
             club.teams.append(team)

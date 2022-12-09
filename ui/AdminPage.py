@@ -19,7 +19,8 @@ class AdminPage():
         2. Create Player
         3. Create Team
         4. Create Club
-        5. View all Teams, Clubs and Players
+        5. Add team to club
+        6. View all Teams, Clubs and Players
         
         'q' to Logout
         """)
@@ -43,6 +44,8 @@ class AdminPage():
             elif choice == '4':
                 self.create_club()
             elif choice == '5':
+                self.add_team_to_club()
+            elif choice == '6':
                 self.display_all.view_all()                
             elif choice == 'q':
                 return
@@ -213,3 +216,39 @@ class AdminPage():
             except:
                 pass
         self.logic_wrapper.add_club(club)
+
+    def add_team_to_club(self):
+        clubs =  self.logic_wrapper.get_all_clubs()
+        c = 1
+        for club in clubs:
+            print(f"{c}. {club.name}")
+            c += 1
+        while True:
+            choice = input("Choose a club to add a team to, or quit(q): ")
+            if self.logic_wrapper.validate_number(choice, c):
+                club = clubs[int(choice) - 1]
+                #try:
+                teams = self.logic_wrapper.get_teams_not_in_club()
+                #except:
+                #    input("There are no teams that are not in a club, click enter to go back")
+                #    return
+                c = 1
+                for team in teams:
+                    print(f"{c}. {team.name}")
+                    c += 1
+                while True:
+                    choice = input("Choose a team too add or quit (q): ")
+                    if choice == "q":
+                        return
+                    elif self.logic_wrapper.validate_number(choice, c):
+                        team = teams[int(choice) - 1]
+                        team = self.logic_wrapper.set_team_club(team, club.name)
+                        club = self.logic_wrapper.add_team_to_club(club, team)
+                        self.logic_wrapper.update_club(club)
+                        self.logic_wrapper.update_team(team)
+                        input("Team has been added to the club, click enter to continue.")
+                        return
+            elif choice == "q":
+                return
+            else:
+                print("Invalid input.")

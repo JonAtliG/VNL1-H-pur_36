@@ -24,6 +24,10 @@ class Team_Data():
     def __get_team_index_by_name(self, name: str) -> int:
         '''Fetches the team index for the name and returns it'''
         return self.__CSV_Handler.get_line_index_by_data(name, 0)
+    
+    def get_team_data_not_in_club(self) -> list:
+        '''Returns all team data for teams not in a club'''
+        return self.__CSV_Handler.get_all_data_by_data_in_data("No club", 3)
 
     def get_all_team_data(self) -> list:
         '''Fetches all team data and returns it'''

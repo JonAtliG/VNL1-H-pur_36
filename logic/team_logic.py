@@ -23,6 +23,10 @@ class Team_Logic():
         '''Returns the team data by name'''
         return self.data_wrapper.get_team_data_by_name(name)
     
+    def set_club(self, team: Team, club_name: str) -> Team:
+        team.club = club_name
+        return team
+    
     def make_team_captain(self, team: Team, player: Player) -> Team:
         '''Makes a player the captain of a team'''
         players = []
@@ -32,6 +36,10 @@ class Team_Logic():
             else:
                 players.append(member)
         return team
+    
+    def get_team_data_not_in_club(self) -> list:
+        '''Returns list of team data of teams not in a club'''
+        return self.data_wrapper.get_team_data_not_in_club()
     
     def add_player_to_team(self, team: Team, player: Player) -> Team:
         '''Adds a player to a team'''
