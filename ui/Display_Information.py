@@ -71,8 +71,8 @@ class Display_Information():
 
     def display_finished_matches(self, league: League):
         '''Displays all matches in a league that have been played.'''
-        if league.matches == []:
-            print("No matches have been played yet")
+        if league.matches == "No matches":
+            input("No matches have been played yet, click enter to go back.")
             return
         print(league.name)
         check = False
@@ -98,7 +98,7 @@ class Display_Information():
 
     def display_unfinished_matches(self, league: League):
         '''Displays all matches in a league that have not been played.'''
-        if league.matches == []:
+        if league.matches == "No matches":
             input("There are no matches in the league, click enter to go back.")
             return
         check = False
