@@ -46,6 +46,11 @@ class Game_Logic():
             game.played = False
         return game
     
+    def set_game_score(self, game: Game, home, away):
+        game.home_player_score = home
+        game.away_player_score = away
+        return game
+    
     def create_games_for_match(self) -> list:
         games = []
         gametypes = ["501", "301", "Cricket"]

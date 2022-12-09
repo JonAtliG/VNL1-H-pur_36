@@ -147,8 +147,7 @@ class HostDefault():
                                         away = int(away.strip())
                                         ls = set([home, away])
                                         if ls == {0, 2} or ls == {1, 2}:
-                                            game.home_players_score = home
-                                            game.away_players_score = away
+                                            game = self.__logic_wrapper.set_game_score(game, home, away)
                                             self.__logic_wrapper.update_game(game)
                                             return
                                     except:

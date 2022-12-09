@@ -181,6 +181,9 @@ class Logic_Wrapper():
     def __create_games_for_match(self) -> list:
         return self.game_logic.create_games_for_match()
     
+    def set_game_score(self, game, home, away):
+        return self.game_logic.set_game_score(game, home, away)
+    
     def get_game_by_id(self, id):
         game_data = self.__get_game_data_by_id(id)
         if game_data[1] == "No players":
