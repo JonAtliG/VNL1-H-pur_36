@@ -2,6 +2,7 @@ from model.player import Player
 
 class Player_Logic():
     def __init__(self, data_connection):
+        '''Constructor for Player_Logic class.'''
         self.__data_wrapper = data_connection
     
     def create_player_object_with_data(self, data: list) -> Player:
@@ -10,6 +11,7 @@ class Player_Logic():
         return player
     
     def is_valid_id(self, id) -> bool:
+        '''Returns True if id is valid, False if not'''
         return self.__data_wrapper.is_valid_player_id(id)
     
     def get_player_by_id(self, id):

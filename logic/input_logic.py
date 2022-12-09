@@ -3,6 +3,7 @@ import datetime
 
 class Input_Validator:
     def date(self, inp, low, high):
+        '''Returns True if the date is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         target = re.search("(\d{2}).(\d{2}).(\d{4})", inp)
@@ -22,6 +23,7 @@ class Input_Validator:
         return checks[0] and checks[1]
         
     def name(self, inp):
+        '''Returns True if the name is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         if len(inp) < 2 or len(inp) > 50:
@@ -29,6 +31,7 @@ class Input_Validator:
         return True
 
     def nid(self, inp):
+        '''Returns True if the name is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         if len(inp) != 10:
@@ -38,6 +41,7 @@ class Input_Validator:
         return True
     
     def number(self, inp, high):
+        '''Returns True if the number is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         if not inp.isdigit():
@@ -48,6 +52,7 @@ class Input_Validator:
 
 
     def mail(self, inp):
+        '''Returns True if the mail is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         if len(inp) < 5 or len(inp) > 50:
@@ -57,6 +62,7 @@ class Input_Validator:
         return True
     
     def phone(self, inp):
+        '''Returns True if the phone is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         if len(inp) != 7:
@@ -66,6 +72,7 @@ class Input_Validator:
         return True
     
     def birthday(self, inp):
+        '''Returns True if the birthday is valid, False otherwise.'''
         if ";" in inp or "," in inp:
             return False
         target = re.search("(\d{2}).(\d{2}).(\d{4})", inp)

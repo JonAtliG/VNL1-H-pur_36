@@ -5,6 +5,7 @@ from copy import deepcopy
 
 class CaptainDefault():
     def __init__(self, player, team, logic_connection) -> None:
+        '''Constructor for CaptainDefault class.'''
         self.__logic__wrapper = logic_connection
         self.__player = player
         self.__team = team
@@ -17,6 +18,7 @@ class CaptainDefault():
             self.__date_str = ""
     
     def __change_selected_league(self):
+        '''Changes the selected league'''
         if len(self.__leagues) > 0:
             c = 1
             for league in self.__leagues:
@@ -33,6 +35,7 @@ class CaptainDefault():
             input("You are not registed in any leagues, click enter to go back.")
     
     def __set_player_order_of_match(self, match: Match) -> Match:
+        '''Sets the player order of a match.'''
         number_strings = ["first", "second", "third", "fourth"]
         players_to_set = []
         team_players = [self.__player]
@@ -75,6 +78,7 @@ class CaptainDefault():
                 
     
     def __choose_match_to_set_player_order(self):
+        '''Chooses a match to set the player order of.'''
         unset_matches = []
         for match in self.__league.matches:
             if match.home_team.name == self.__team.name:
@@ -101,6 +105,7 @@ class CaptainDefault():
 
 
     def __set_score_of_match(self):
+        '''Sets the score of a match.'''
         #Find matches that don't have scores and do not have no players and you are captain of the hometeam
         unset_matches = []
         for match in self.__league.matches:
@@ -122,6 +127,8 @@ class CaptainDefault():
             match_to_set = unset_matches[int(choice)-1]
             print(f"Match: {match.home_team.name} vs {match.away_team.name}")
             c = 1
+            homewins = 0
+            awaywins = 0
             while c <= len(match_to_set.games):
                 game = match_to_set.games[c-1]
                 print(f"{c}. ({game.home_player_score})\t{', '.join(player.name for player in game.home_players)} |\t{', '.join(player.name for player in game.away_players)} \t({game.away_player_score})")        
@@ -133,12 +140,18 @@ class CaptainDefault():
                     ls = set([home, away])
                     if ls == {0, 2} or ls == {1, 2}:
                         game = self.__logic__wrapper.set_game_score(game, home, away)
+                        game.played = True
                         self.__logic__wrapper.update_game(game)
+                        if home > away:
+                            homewins += 1
+                        else:
+                            awaywins += 1
                         c += 1
                     else:
                         input("Invalid score, click enter to continue.")
                 except:
                     input("Invalid score, click enter to continue.")
+            print(f"Final score: {homewins} - {awaywins}")
             return
         else:
             input("Invalid choice, click enter to go back.")
@@ -148,17 +161,17 @@ class CaptainDefault():
 
 
     def options(self):
+        '''Prints the options for the captain.'''
         print(f"""Captain options - Team: {self.__team.name}
         Current league selected: {self.__league.name}{self.__date_str}
         Please select an option:
         1. Change selected league
         2. Set player order for upcoming matches
         3. Set score for a match
-        2. View Teams and Players
-        3. See upcoming matches
         'q' to logout.""")
 
     def input_prompt(self):
+        '''Prompts the captain for input.'''
         while True:
             self.options()
             choice = input("Select an option: ")

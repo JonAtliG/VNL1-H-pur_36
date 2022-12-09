@@ -4,6 +4,7 @@ class Registered_Teams():
 
 
     def get_teams(self):
+        '''Returns a list of all teams in the tournament'''
         teams = []
         with open(self.file_name, "r") as csv:
             c = 0
@@ -21,6 +22,7 @@ class Registered_Teams():
             return teams
     
     def add_team(self, team):
+        '''Adds a team to the file.'''
         with open(self.file_name, "a") as csv:
             csv.write("\n" + team[0] + "\n")
             csv.write(";".join(team[1]) + "\n")

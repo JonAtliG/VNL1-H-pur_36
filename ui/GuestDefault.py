@@ -3,14 +3,17 @@ from ui.DisplayAll import DisplayAll
 class GuestDefault:
 
     def __init__(self, logic_connection) -> None:
+        '''Constructor for GuestDefault class.'''
         self.logic_wrapper = logic_connection
         self.display_all = DisplayAll(logic_connection)
 
 
     def __str__(self) -> str:
+        '''Returns the GuestDefault class as a string.'''
         return self.options(), self.input_prompt()
 
     def options(self):
+        '''Displays the options for the GuestDefault class.'''
         print("""
         Select an option:
             1. View Leagues
@@ -19,6 +22,7 @@ class GuestDefault:
             """)
 
     def input_prompt(self):
+        '''Prompts the user to enter an option.'''
         while True:
             self.options()
             option = input("Enter option: ")

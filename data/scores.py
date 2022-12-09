@@ -1,9 +1,11 @@
 class Scores:
     def __init__(self):
+        '''Constructor for Scores class.'''
         self.file_name = "files/scores.csv"
 
 
     def get_scores(self):
+        '''Returns a list of all the scores in the file.'''
         games = []
         with open(self.file_name, "r") as csv:
             c = 0
@@ -28,6 +30,7 @@ class Scores:
 
 
     def add_score(self, game):
+        '''Adds a score to the file.'''
         with open(self.file_name, "a") as csv:
             csv.write("\nDate: " + game[0] + "\n")
             csv.write("Game: " + game[1] + "\n")

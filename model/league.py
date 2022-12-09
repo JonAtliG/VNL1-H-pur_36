@@ -1,5 +1,6 @@
 class League():
     def __init__(self, name = "No name", teams: list = "No teams", matches :list = "No matches" , start_date = "No time", end_date = "No time"):
+        '''Constructor for League class.'''
         self.name = name
         self.teams = teams
         self.matches = matches

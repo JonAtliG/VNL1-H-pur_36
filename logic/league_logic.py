@@ -2,6 +2,7 @@ from model.league import League
 
 class League_Logic():
     def __init__(self, data_connection) -> None:
+        '''Constructor for League_Logic class.'''
         self.__data_wrapper = data_connection
     
     def get_all_league_data_by_team_name(self, name: str) -> list:

@@ -5,11 +5,13 @@ import datetime
 
 class HostDefault():
     def __init__(self, hostid, logic_connection) -> None:
+        '''Constructor for HostDefault class.'''
         self.__logic_wrapper = logic_connection
         self.display_information = DisplayAll(logic_connection)
         self.host = self.__logic_wrapper.get_host_by_id(hostid)
     
     def input_prompt(self):
+        '''Prompts the user to enter an option.'''
         while True:
                 self.__options()
                 option = input("Select an option: ")
@@ -26,6 +28,7 @@ class HostDefault():
 
     
     def __options(self):
+        '''Displays the options for the HostDefault class.'''
         print("""
     Please select an option:
         1. Create League
@@ -34,6 +37,7 @@ class HostDefault():
               """)
     
     def __create_league(self):
+        '''Creates a league.'''
         league = League()
         leagues = self.__logic_wrapper.get_all_leagues()
         
@@ -66,6 +70,7 @@ class HostDefault():
         self.__logic_wrapper.update_host(self.host)
     
     def __league_options(self) -> None:
+        '''Displays the options for the league options menu.'''
         while True:
             if self.host.league_names == "No leagues":
                 input("You have no leagues, click enter to continue.")
@@ -107,6 +112,7 @@ class HostDefault():
                 input("Invalid option, click enter to continue.")
     
     def change_score_of_finished_game(self, league: League):
+        '''Changes the score of a finished game.'''
         if league.matches == "No matches":
             input("There are no matches in the league, click enter to continue.")
             return
@@ -165,6 +171,7 @@ class HostDefault():
 
 
     def __create_match(self, league: League) -> League:
+        '''Creates a match.'''
         c = 1
         if league.teams == "No teams" or len(league.teams) < 2:
             input("There are not enough teams in the league to plan a match, click enter to continue.")
@@ -220,6 +227,7 @@ class HostDefault():
                 print("Invalid choice.")
     
     def __change_time_of_upcoming_match(self, league: League):
+        '''Changes the time of an upcoming match.'''
         if league.matches == "No matches":
             input("League has no matches, click enter to continue.")
         else:
@@ -256,6 +264,7 @@ class HostDefault():
                 return
                 
     def __choose_team_to_add(self, league):
+        '''Chooses a team to add to a league.'''
         while True:
             teams = self.__logic_wrapper.get_all_teams()
             teams_not_in_league = []

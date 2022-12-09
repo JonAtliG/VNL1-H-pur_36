@@ -6,10 +6,12 @@ from model.host import Host
 
 class AdminPage():
     def __init__(self, logic_connection) -> None:
+        '''Constructor for AdminPage class.'''
         self.logic_wrapper = logic_connection
         self.display_all = DisplayAll(logic_connection)
 
     def adminpage_output(self) -> str:
+        '''Prints the admin page menu.'''
         print("_"*30)
         print("Welcome, Admin")
         print("""Please select one of the options:
@@ -23,6 +25,7 @@ class AdminPage():
         """)
 
     def input_prompt(self):
+        '''Prompts the user for input and returns the input.'''
         while True:
             self.adminpage_output()
             choice = input("Select an option: ")
@@ -48,6 +51,7 @@ class AdminPage():
                 input("Invalid option, click enter to continue:")
     
     def create_host(self):
+        '''Creates a host object and adds it to the data layer.'''
         host = Host()
         while True:
             host.name = input("Enter Host Name: ")
@@ -65,6 +69,7 @@ class AdminPage():
         self.logic_wrapper.add_host(host)
     
     def create_player(self):
+        '''Creates a player object and adds it to the data layer.'''
         player = Player()
         while True:
             player.name = input("Enter Player Name: ")
@@ -110,6 +115,7 @@ class AdminPage():
         self.logic_wrapper.add_player(player)
     
     def create_team(self):
+        '''Creates a team object and adds it to the data layer.'''
         team = Team()
         while True:
             team.name = input("Enter Team Name: ")
@@ -146,6 +152,7 @@ class AdminPage():
         self.logic_wrapper.add_team(team)
     
     def create_club(self):
+        '''Creates a club object and adds it to the data layer.'''
         club = Club()
         while True:
             club.name = input("Enter club name: ")

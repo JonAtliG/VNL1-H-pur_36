@@ -1,4 +1,7 @@
 from ui.MainMenu import MainMenu
 
-mainmenu = MainMenu()
-mainmenu.input_prompt()
+#Main function for the program.
+try:
+    MainMenu().input_prompt()
+except:
+    print("An unexpected error occured, please try again.")

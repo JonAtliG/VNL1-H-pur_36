@@ -10,29 +10,36 @@ club name index  = 3
 
 class Team_Data():
     def __init__(self) -> None:
+        '''Constructor for Team_Data class.'''
         self.file_name = "data/files/team_data.csv"
         self.__CSV_Handler = CSV_Handler(self.file_name)
     
     def __create_team_data_from_object(self, team: Team):
+        '''Takes in a team object and returns the team data as a string'''
         data = team.name + ";" + team.captain.nid + ";"
         data += ",".join([player.nid for player in team.players])
         data += ";" + team.club
         return data
     
     def __get_team_index_by_name(self, name: str) -> int:
+        '''Fetches the team index for the name and returns it'''
         return self.__CSV_Handler.get_line_index_by_data(name, 0)
 
     def get_all_team_data(self) -> list:
+        '''Fetches all team data and returns it'''
         return self.__CSV_Handler.get_all_data()
                 
     def get_team_data_by_name(self, name: str) -> list:
+        '''Fetches the team data for the name and returns it'''
         return self.__CSV_Handler.get_data_by_data(name, 0)
     
     def update_team(self, team: Team) -> None:
+        '''Updates the team in the database'''
         team_data = self.__create_team_data_from_object(team)
         team_index = self.__get_team_index_by_name(team.name)
         self.__CSV_Handler.replace_line(team_index, team_data)
     
     def add_team(self, team: Team) -> None:
+        '''Adds a team to the database'''
         team_data = self.__create_team_data_from_object(team)
         self.__CSV_Handler.add_line(team_data)

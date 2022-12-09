@@ -2,6 +2,7 @@ from model.host import Host
 
 class Host_logic():
     def __init__(self, data_connection) -> None:
+        '''Constructor for Host_Logic class.'''
         self.__data_wrapper = data_connection
     
     def __make_host_object_from_data(self, data: list) -> Host:

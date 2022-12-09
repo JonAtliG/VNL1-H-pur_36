@@ -8,6 +8,7 @@ class MainMenu:
     
     
     def __init__(self) -> None:
+        '''Constructor for MainMenu class.'''
         self.logic_wrapper = Logic_Wrapper()
 
     #def __str__(self) -> str:
@@ -15,6 +16,7 @@ class MainMenu:
     #    return f"{self.menu_output()}{self.input_prompt()}"
 
     def menu_output(self):
+        '''Displays the menu for the MainMenu class.'''
         print("_"*30)
         print("          Welcome!!!")
         print("_"*30)
@@ -29,6 +31,7 @@ class MainMenu:
         """)
 
     def input_prompt(self):
+        '''Prompts the user to enter an option.'''
         while True:
             self.menu_output()
             selection = input("Enter option: ")
@@ -69,6 +72,7 @@ class MainMenu:
                 print("Invalid option")
 
     def host_login(self):
+        '''Prompts the user to enter a host ID.'''
         ID_input = input("\nEnter host ID: ")
         if self.logic_wrapper.verify_host_id(ID_input):
             host = HostDefault(ID_input, self.logic_wrapper)

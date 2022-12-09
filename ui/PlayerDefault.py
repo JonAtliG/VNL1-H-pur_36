@@ -4,6 +4,7 @@ from ui.CaptainDefault import CaptainDefault
 class PlayerDefault():
 
     def __init__(self, logic_connection, ID) -> None:
+        '''Constructor for PlayerDefault class.'''
         self.id = ID
         self.__logic_wrapper = logic_connection
         self.__DisplayAll = DisplayAll(logic_connection)
@@ -21,6 +22,7 @@ class PlayerDefault():
             self.__captain = False
     
     def options(self):
+        '''Displays the options for the player.'''
         print(f"""
         Welcome {self.__player.name}  - Team: {self.__team_name}
 
@@ -32,31 +34,33 @@ class PlayerDefault():
         print("""
         'q' Logout""")
 
-    def input_prompt(self):      
-            while True:
-                self.options()
-                option = input("Enter option: ")
+    def input_prompt(self):
+        '''Prompts the user for input.'''   
+        while True:
+            self.options()
+            option = input("Enter option: ")
 
-                if option == '1':
-                    self.information()
-                    go_back = input("\nPress enter to go back")
-                elif option == '2':
-                    self.__DisplayAll.view_all()
-                    continue
-                elif option == 'q':
-                    return
-                elif option == "3":
-                    if self.__captain:
-                        captain_page = CaptainDefault(self.__player, self.__team, self.__logic_wrapper)
-                        captain_page.input_prompt()
-                    else:
-                        input("Invalid option, press enter to continue: ")
+            if option == '1':
+                self.information()
+                go_back = input("\nPress enter to go back")
+            elif option == '2':
+                self.__DisplayAll.view_all()
+                continue
+            elif option == 'q':
+                return
+            elif option == "3":
+                if self.__captain:
+                    captain_page = CaptainDefault(self.__player, self.__team, self.__logic_wrapper)
+                    captain_page.input_prompt()
                 else:
                     input("Invalid option, press enter to continue: ")
+            else:
+                input("Invalid option, press enter to continue: ")
 
 
 
     def information(self):
+        '''Displays the information of the player.'''
         print("\nPlayer information:\n")
         print("{:<15} {}".format("Team: ", self.__player.team))
         if self.__team != "No team":

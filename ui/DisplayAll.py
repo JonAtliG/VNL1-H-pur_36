@@ -4,9 +4,11 @@ from model.game import Game
 
 class DisplayAll():
     def __init__(self, logic_connection) -> None:
+        '''Constructor for DisplayAll class.'''
         self.logic_wrapper = logic_connection
 
     def view_all(self):
+        '''Displays all players, teams and clubs in the database.'''
         while True:
             print("_"*30)
             print("""
@@ -27,14 +29,17 @@ class DisplayAll():
                 return
     
     def display_player(self, player):
+        '''Displays a player's name and ID.'''
         print(player)
     
     def display_all_players(self, players):
+        '''Displays all players in the database.'''
         for player in players:
             print("Name:", player.name + ",", " ID:", player.nid)
             
     
     def display_team(self, team):
+        '''Displays a team's name, captain and all players in the team.'''
         cap = team.captain
         print("\nTeam:", team.name)
         print("""
@@ -47,32 +52,24 @@ class DisplayAll():
         print("_ "*18)
     
     def display_all_teams(self, teams):
+        '''Displays all teams in the database.'''
         for team in teams:
             self.display_team(team)
     
     def display_club(self, club):
+        '''Displays a club's name and all teams in the club.'''
         print("\nClub:", club.name)
         print("_"*30)
         for team in club.teams:
             self.display_team(team)
     
     def display_all_clubs(self, clubs):
+        '''Displays all clubs in the database.'''
         for club in clubs:
             self.display_club(club)
-# match = Match()
-# match.home_team
-# match.away_team
-# match.date
-# match.games :list
-#
-#game = Game()
-#game.home_player
-#game.away_player
-#game.home_player_score
-#game.away_player_score
-#game.played
 
     def display_finished_matches(self, league: League):
+        '''Displays all matches in a league that have been played.'''
         if league.matches == []:
             print("No matches have been played yet")
             return
@@ -87,6 +84,7 @@ class DisplayAll():
     
 
     def display_unfinished_matches(self, league: League):
+        '''Displays all matches in a league that have not been played.'''
         if league.matches == []:
             print("No matches have been played yet")
             return
@@ -101,6 +99,7 @@ class DisplayAll():
     
 
     def display_leaderboard(self, league: League):
+        '''Displays the leaderboard for a league.'''
         if league.matches == []:
             print("No matches have been played yet")
             return
