@@ -92,7 +92,7 @@ class AdminPage():
                 input("Invalid phone number, click enter to continue.")
         
         while True:
-            player.birthdate = input("Birthdate: ")
+            player.birthdate = input("Birthdate (dd.mm.yyyy): ")
             if self.logic_wrapper.validate_birthday(player.birthdate):
                 break
             else:
@@ -106,6 +106,7 @@ class AdminPage():
                 input("Invalid address, click enter to continue.")
 
         player.team = "No team"
+        input("Player created, click enter to continue.")
         self.logic_wrapper.add_player(player)
     
     def create_team(self):

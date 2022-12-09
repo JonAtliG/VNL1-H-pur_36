@@ -49,16 +49,18 @@ class HostDefault():
         league.name = name
         while True:
             league.start_date = input("Enter start date for the league (dd.mm.yyyy): ")
-            if self.__logic_wrapper.validate_date(league.start_date):
+            if self.__logic_wrapper.validate_date(league.start_date) and datetime.datetime.strptime(league.start_date, "%d.%m.%Y") >= datetime.datetime.now():
                 break
             else:
                 input("Invalid date, click enter to continue.")
         while True:
             league.end_date = input("Enter end date for the league (dd.mm.yyyy): ")
-            if self.__logic_wrapper.validate_date(league.end_date) or datetime.datetime.strptime(league.end_date, "%d.%m.%Y") > datetime.datetime.strptime(league.start_date, "%d.%m.%Y"):
+            if self.__logic_wrapper.validate_date(league.end_date) and datetime.datetime.strptime(league.end_date, "%d.%m.%Y") > datetime.datetime.strptime(league.start_date, "%d.%m.%Y"):
                 break
             else:
                 input("Invalid date, click enter to continue.")
+        if self.host.league_names == "No leagues":
+            self.host.league_names = []
         self.host.league_names.append(league.name)
         self.__logic_wrapper.add_league(league)
         self.__logic_wrapper.update_host(self.host)
